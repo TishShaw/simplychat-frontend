@@ -43,9 +43,9 @@ function NavBar(props) {
 						</li>
 					</ul>
 					<div className='nav-right'>
-						<i class='fa-solid fa-user nav-right-item'></i>
+						<i className='fa-solid fa-user nav-right-item'></i>
 						<div className='nav-right-item login'>Login</div>
-						<i class='fa-solid fa-bag-shopping nav-right-item'></i>
+						<i className='fa-solid fa-bag-shopping nav-right-item'></i>
 					</div>
 				</div>
 			</div>
