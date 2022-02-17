@@ -1,6 +1,6 @@
 import React from 'react';
-import Favorites from '../components/Favorites/Favorites';
-import FavoritesHero from '../components/Hero/FavoritesHero';
+import Favorites from '../Favorites/Favorites';
+import FavoritesHero from '../Hero/FavoritesHero';
 
 function FavoritesPage(props) {
     return (

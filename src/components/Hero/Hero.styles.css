@@ -9,9 +9,9 @@ img {
 .heroBtn {
 	position: absolute;
 	padding: 16px;
-	width: 360px;
-	bottom: 145px;
-	left: 100px;
+	width: 200px;
+	bottom: 35px;
+	left: 550px;
 	z-index: 1;
 }
 
@@ -20,3 +20,4 @@ a:hover {
 	text-decoration: none;
 	color: inherit;
 }
+
