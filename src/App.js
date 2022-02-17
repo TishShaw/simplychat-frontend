@@ -7,6 +7,7 @@ import Homepage from './pages/Homepage';
 import Shoppage from './pages/Shoppage';
 import axios from 'axios';
 import ProductDetail from './components/Products/ProductList';
+import Favorites from './components/Favorites/Favorites';
 
 function App() {
 	const [product, setProduct] = useState([]);
@@ -22,12 +23,13 @@ function App() {
 			<NavBar />
 			<ProductContext.Provider
 				value={{
-					product
+					product,
 				}}>
 				<Routes>
 					<Route path='/' element={<Homepage />} />
 					<Route path='/shop' element={<Shoppage />} />
 					<Route path='/:id' element={<ProductDetail />} />
+					<Route path='/Favorites' element={<Favorites />} />
 				</Routes>
 			</ProductContext.Provider>
 		</div>

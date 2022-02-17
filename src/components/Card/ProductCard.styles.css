@@ -1,0 +1,20 @@
+.heart:hover {
+    color: rgb(222, 110, 128);
+}
+
+.heart-active {
+    color: rgb(222, 110, 128);
+} 
+
+.heart {
+    position: absolute;
+	padding: 16px;
+	width: 360px;
+    bottom: 200px;
+	left: 180px;
+	z-index: 1;
+}
+
+.productCard-content {
+    position: relative;
+}

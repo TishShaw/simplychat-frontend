@@ -1,0 +1,10 @@
+.pd-image {
+    height: 300px;
+    width: 200px;
+}
+
+.pd-wrapper {
+    height: 400px;
+    max-width: 90%;
+    margin-top: 10%;
+}

@@ -46,6 +46,7 @@ function NavBar(props) {
 						<i className='fa-solid fa-user nav-right-item'></i>
 						<div className='nav-right-item login'>Login</div>
 						<i className='fa-solid fa-bag-shopping nav-right-item'></i>
+						<Link to='/Favorites'><i class='fa-solid fa-heart'></i></Link>
 					</div>
 				</div>
 			</div>

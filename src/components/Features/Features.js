@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Button } from 'bootstrap-4-react';
-import axios from 'axios';
+import { ProductContext } from '../../Context';
 import './Features.styles.css';
 
-function Features(props) {
-	const [product, setProduct] = useState([]);
-
-	useEffect(() => {
-		axios.get('http://localhost:8000/shop/').then((res) =>{
-            console.log(res.data)
-            setProduct(res.data)
-        } 
-    )}, []);
+function Features() {
+	const { product } = useContext(ProductContext);
+	console.log(product);
 
 	return (
 		<div className='features'>
