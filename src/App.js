@@ -4,7 +4,7 @@ import { ProductContext } from './Context';
 import NavBar from './components/NavBar/NavBar';
 import Homepage from './pages/Homepage';
 import Shoppage from './pages/Shoppage';
-import ProductDetail from './components/Products/ProductList';
+import ProductDetail from './components/Products/ProductDetails';
 import Login from './components/Login/Login';
 import Favorites from './components/Favorites/Favorites';
 import Signup from './components/Signup/Signup';
