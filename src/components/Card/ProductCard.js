@@ -20,10 +20,6 @@ function ProductCard({ item }) {
 		setiIsFav(!isFav);
 	};
 
-	// useEffect(() => {
-	//     addFavorite()
-	// },[])
-
 	useEffect(() => {
         axios.get(`http://localhost:8000/shop/${id}`)
         .then(res => console.log(res))
@@ -35,14 +31,7 @@ function ProductCard({ item }) {
 				<img className='best-image' src={item.image} alt='' />
 				<p className='best-name'>{item.item}</p>
 				<p className='best-price'>{item.price}</p>
-				{isFav ? (
-					<i
-						onClick={handleClick}
-						className='fa-solid fa-heart heart heart-active'
-					/>
-				) : (
-					<i onClick={handleClick} className='fa-solid fa-heart heart' />
-				)}
+				<i className='fa-solid fa-heart'></i>
 			</div>
 
 			<div className='buttons'>

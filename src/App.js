@@ -4,24 +4,19 @@ import { ProductContext } from './Context';
 import NavBar from './components/NavBar/NavBar';
 import Homepage from './pages/Homepage';
 import Shoppage from './pages/Shoppage';
-import axios from 'axios';
 import ProductDetail from './components/Products/ProductList';
 import Login from './components/Login/Login';
 import Favorites from './components/Favorites/Favorites';
 import Signup from './components/Signup/Signup';
+import Lips from './components/Category/Lips';
+import Face from './components/Category/Face';
+import Eyes from './components/Category/Eyes';
 
 function App() {
-	const [product, setProduct] = useState([]);
 	const [currentUser, setCurrentUser] = useState(null);
 	const [login, setLogin] = useState(
 		localStorage.getItem('token') ? true : false
 	);
-	useEffect(() => {
-		axios.get('http://localhost:8000/shop/').then((res) => {
-			console.log(res.data);
-			setProduct(res.data);
-		});
-	}, []);
 
 	const getUser = async () => {
 		try {
@@ -77,21 +72,27 @@ function App() {
 			getUser();
 		}
 	}, []);
-
+	
 	return (
 		<div>
-			<NavBar />
 			<ProductContext.Provider
 				value={{
-					product,
+					handleThisLogin,
+					handleThisLogout,
+					currentUser,
+					login,
 				}}>
+				<NavBar />
 				<Routes>
 					<Route path='/' element={<Homepage />} />
+					<Route path='/lips' element={<Lips />} />
+					<Route path='/face' element={<Face />} />
+					<Route path='/eyes' element={<Eyes />} />
+					<Route path='/login' element={<Login />} />
 					<Route path='/shop' element={<Shoppage />} />
+					<Route path='/signup' element={<Signup />} />
 					<Route path='/:id' element={<ProductDetail />} />
 					<Route path='/Favorites' element={<Favorites />} />
-					<Route path='/login' element={<Login />} />
-					<Route path='/signup' element={<Signup />} />
 				</Routes>
 			</ProductContext.Provider>
 		</div>

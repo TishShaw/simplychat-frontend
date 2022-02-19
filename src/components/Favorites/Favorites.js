@@ -1,34 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import FaveCard from '../FaveCard/FaveCard';
-
+import React, { useContext } from 'react';
+import { ProductContext } from '../../Context';
+import { Navigate } from 'react-router-dom';
 function Favorites(props) {
-    const [fave, setFave] = useState(null)
+	const { product, login } = useContext(ProductContext);
 
-    useEffect(() => {
-        axios.get('http://localhost:8000/shop/favorites/')
-        .then(res => setFave(res.data))
-    },[])
-
-    if(!fave) {
-        return <h1>Loading...</h1>
-    }
-    return (
-        <div>
-            {
-                fave.map((fav) => (
-                    
-                        <FaveCard 
-                            key={fav.id}
-                            fav={fav}
-                            image={fav.image}
-                            name={fav.item}
-                        />
-                    
-                ))
-            }
-        </div>
-    );
+	
+	if(!login) {
+		return <Navigate to='/login' />;
+	}
+	return (
+		<div>
+			<i class='fa-solid fa-heart'></i>
+		</div>
+	);
 }
 
 export default Favorites;
