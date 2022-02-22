@@ -1,0 +1,14 @@
+.review-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: rgb(231, 204, 202);
+}
+
+.review-container {
+    margin-top: 20px;
+    background-color: rgb(231, 204, 202);
+    width: 400px;
+    margin: auto;
+
+}

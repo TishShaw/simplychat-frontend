@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
-import { Button } from 'bootstrap-4-react';
 import { ProductContext } from '../../Context';
+import { Button } from 'bootstrap-4-react';
 import './Features.styles.css';
 
 function Features() {
 	const { product } = useContext(ProductContext);
-	console.log(product);
 
-	if(!product) {
+	if (!product) {
 		return 'loading products...';
 	}
 	return (
@@ -16,7 +15,7 @@ function Features() {
 				Best<span className='span'>Sellers</span>
 			</h1>
 			<div className='best'>
-				{/* <div className='best-item'>
+				<div className='best-item'>
 					<img className='best-image' src={product[1].image} alt='' />
 					<p className='best-name'>{product[1].item}</p>
 					<p className='best-price'>{product[1].price}</p>
@@ -40,7 +39,7 @@ function Features() {
 					<img className='best-image' src={product[12].image} alt='' />
 					<p className='best-name'>{product[12].item}</p>
 					<p className='best-price'>{product[12].price}</p>
-				</div> */}
+				</div>
 			</div>
 			<Button dark outline>
 				Shop Best Sellers

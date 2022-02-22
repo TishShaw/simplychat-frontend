@@ -9,14 +9,14 @@ function Signup(props) {
 				password: '',
 				re_password: '',
 			};
+			
         const navigate = useNavigate();   
         const [formData, setFormData] = useState(initialFormData);
         const [error, setError] = useState(false);
 	    const [success, setSuccess] = useState(false);
 
         const handleInputChange = (event) => {
-           
-			
+
             setFormData({...formData, [event.target.id]: event.target.value}
             )
         }
@@ -31,12 +31,11 @@ function Signup(props) {
                         'Content-type': 'application/json'
                     },
                 })
-                    if (response = 201) {
-                        setSuccess(true);
-                        
-                            navigate('/login')
-                        
-                    }
+					if (response = 201) {
+							setSuccess(true);
+								navigate('/login')
+							
+						}
 
                 } catch(err) {
                     console.log(err)
@@ -106,6 +105,7 @@ function Signup(props) {
 						placeholder='Confirm Password'
 						onChange={handleInputChange}
 					/>
+
 					<Button outline dark lg type='submit' className='loginBtn'>
 						Create Account
 					</Button>

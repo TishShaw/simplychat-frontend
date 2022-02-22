@@ -17,4 +17,14 @@
 
 .productCard-content {
     position: relative;
+    
 }
+
+.productCard {
+    margin: auto;
+}
+
+.productCard-item {
+    padding: 30px;
+}
+

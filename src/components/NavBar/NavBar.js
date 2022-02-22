@@ -10,7 +10,7 @@ function NavBar(props) {
 
 	if(!Navbar) return 'loading'
 	return (
-		<nav className='navbar navbar-expand-lg navbar-light py-3bg-light shadow-sm'>
+		<nav className='navbar navbar-expand-lg navbar-light py-3bg-light'>
 			<div className='container-fluid navbar-logo'>
 				<Link className='navbar-brand fw-bold fs-50 text-white ' to='/'>
 					<h2 className='logo-title'>Keita's Beauty</h2>
@@ -21,11 +21,11 @@ function NavBar(props) {
 					data-bs-toggle='collapse'
 					data-bs-target='#navbarSupportedContent'
 					aria-controls='navbarSupportedContent'
-					aria-expanded='false'
+					aria-expanded='true'
 					aria-label='Toggle navigation'>
 					<span className='navbar-toggler-icon'></span>
 				</button>
-				<div className='collapse navbar-collapse' id='navbarSupportedContent'>
+				<div className='collapse navbar-collapse' id=' navbarSupportedContent'>
 					<ul className='navbar-nav mx-auto mb-2 mb-lg-0 '>
 						<li className='nav-item'>
 							<Link
@@ -70,12 +70,12 @@ function NavBar(props) {
 								<Link to='/login'>Log In</Link>
 							</Button>
 						)}
-						<Link to='/cart'>
+						{/* <Link to='/cart'>
 							<i className='fa-solid fa-bag-shopping nav-right-item text-white'></i>
-						</Link>
-						<Link to='/Favorites' className='nav-right-item'>
+						</Link> */}
+						{/* <Link to='/Favorites' className='nav-right-item'>
 							<i className='fa-solid fa-heart text-white '></i>
-						</Link>
+						</Link> */}
 					</div>
 				</div>
 			</div>

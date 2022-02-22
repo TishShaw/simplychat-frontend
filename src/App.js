@@ -11,12 +11,23 @@ import Signup from './components/Signup/Signup';
 import Lips from './components/Category/Lips';
 import Face from './components/Category/Face';
 import Eyes from './components/Category/Eyes';
+// import Footer from './components/Footer/Footer';
+import axios from 'axios';
 
 function App() {
 	const [currentUser, setCurrentUser] = useState(null);
+
 	const [login, setLogin] = useState(
 		localStorage.getItem('token') ? true : false
 	);
+		const [product, setProduct] = useState([]);
+
+		useEffect(() => {
+			axios.get('http://localhost:8000/shop/').then((res) => {
+				console.log(res.data);
+				setProduct(res.data);
+			});
+		}, []);
 
 	const getUser = async () => {
 		try {
@@ -40,6 +51,7 @@ function App() {
 			console.log(error);
 		}
 	};
+	
 	const handleThisLogin = (token) => {
 		localStorage.setItem('token', token);
 		getUser();
@@ -77,9 +89,10 @@ function App() {
 		<div>
 			<ProductContext.Provider
 				value={{
-					handleThisLogin,
 					handleThisLogout,
 					currentUser,
+					handleThisLogin,
+					product,
 					login,
 				}}>
 				<NavBar />
@@ -94,6 +107,7 @@ function App() {
 					<Route path='/:id' element={<ProductDetail />} />
 					<Route path='/Favorites' element={<Favorites />} />
 				</Routes>
+				
 			</ProductContext.Provider>
 		</div>
 	);

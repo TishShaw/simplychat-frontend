@@ -11,7 +11,7 @@ img {
 	padding: 16px;
 	width: 200px;
 	bottom: 35px;
-	left: 550px;
+	left: 790px;
 	z-index: 1;
 }
 
@@ -20,4 +20,3 @@ a:hover {
 	text-decoration: none;
 	color: inherit;
 }
-
