@@ -12,7 +12,7 @@ function ProductCard({item}) {
 						<img className='best-image' src={item.image} alt='' />
 						<p className='best-name'>{item.item}</p>
 						<p className='best-price'>{item.price}</p>
-						<i className='fa-solid fa-heart'></i>
+						<i className='fa-solid fa-heart heart'></i>
 					</div>
 
 					<div className='buttons'>
@@ -20,6 +20,7 @@ function ProductCard({item}) {
 							dark
 							sm
 							outline
+							className='pc-btn'
 							onClick={() => {
 								console.log('view');
 							}}>
@@ -27,7 +28,9 @@ function ProductCard({item}) {
 								View
 							</Link>
 						</Button>
-						<div key={item.id}><CartBtn item={item}/></div>
+						<div key={item.id}>
+							<CartBtn item={item} />
+						</div>
 					</div>
 				</div>
 			</div>

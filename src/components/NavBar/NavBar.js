@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Button } from 'bootstrap-4-react';
 import { ProductContext } from '../../Context';
 import { useSelector } from 'react-redux';
 import './NavBar.styles.css';
 
 function NavBar(props) {
-	const { handleThisLogout, login } = useContext(ProductContext);
-
+	const { handleThisLogout, login, product } = useContext(ProductContext);
+	const {id} = useParams()
 	const { cartItems } = useSelector((state) => state.cartReducer);
-
+console.log(cartItems);
 	return (
 		<nav className='navbar navbar-expand-lg navbar-light py-3bg-light'>
 			<div className='container-fluid navbar-logo'>
@@ -76,7 +76,7 @@ function NavBar(props) {
 								<Link to='/login'>Log In</Link>
 							</Button>
 						)}
-						<Link to='/shop/cart'>
+						<Link to={`/shop/cart/:id`}>
 							<i className='fa-solid fa-bag-shopping nav-right-item text-white'></i>
 						</Link>
 						<Link to='/Favorites' className='nav-right-item'>

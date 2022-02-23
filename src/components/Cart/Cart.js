@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { Button } from 'bootstrap-4-react/lib/components';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { ProductContext } from '../../Context';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
+import './styles/Cart.style.css';
 
 function Cart(props) {
 	const cartItems = useSelector((state) => state.cartReducer.cartItems);
@@ -13,17 +12,25 @@ function Cart(props) {
 		return '';
 	}
 	return (
-		<div className='row top'>
-			<div className='col-2'>
-				<h1 className='cart-title'>Your Bag</h1>
-				{cartItems.map((item) => {
-					console.log(item);
-					return (
-						<div key={item.itemid} className='row'>
-							<CartItem item={item.item} />
-						</div>
-					);
-				})}
+		<div className='container'>
+			<div className='row align-items-center '>
+				<div className='col-6  '>
+					<h1 className='cart-title'>Your Bag</h1>
+					{cartItems.map((item) => {
+						console.log(item);
+						return (
+							<div key={item.itemid} className='row'>
+								<CartItem item={item.item} />
+							</div>
+						);
+					})}
+				</div>
+				<div className='subtotal-content'>
+					<h1 className='subtotal'>
+						subtotal: ({cartItems.reduce((acc, item) => acc + item, 0)}) items
+					</h1>
+					<Button primary>Checkout</Button>
+				</div>
 			</div>
 		</div>
 	);

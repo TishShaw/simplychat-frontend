@@ -2,18 +2,20 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from 'bootstrap-4-react/lib/components';
 import { ProductContext } from '../../Context';
+import NewReview from '../NewReview/NewReview';
 
 function Review({ item, owner, newReview, handleChange}) {
-	console.log(item);
     const [showing, setShowing] = useState(false)
 	const { currentUser } = useContext(ProductContext);
 	const { id } = useParams();
 	const navigate = useNavigate();
 
+
     const handleShowReview = (event) => {
         event.preventDefault();
 
-        setShowing(true)
+        setShowing(!showing)
+		console.log('open')
     }
 	console.log(id);
 	const removeReview = async () => {
@@ -68,13 +70,19 @@ function Review({ item, owner, newReview, handleChange}) {
 
 	const handleUpdate = (event) => {
 		event.preventDefault();
-
 		editReview();
 		console.log('submit');
 	};
 
+	const handleEdit = (event) => {
+		event.preventDefault();
+
+		console.log('huh')
+	}
+
 	return (
 		<div>
+			{showing ? <div>hello</div> : null}
 			<div className='card' style={{ width: '18rem', marginTop: '30px' }}>
 				<div className='card-body' key={item.id}>
 					<h5 className='card-title'>{item.review_title}</h5>
@@ -82,18 +90,13 @@ function Review({ item, owner, newReview, handleChange}) {
 					<p className='card-text'>{item.review_body}</p>
 					{currentUser && currentUser.username === owner && (
 						<div>
-                            {
-                                showing ? <div>Hello</div> :
-                                <div> bye</div>
-                            }
-							<Button dark outline>
+							<Button dark outline onClick={handleEdit}>
 								Edit
 							</Button>
 
 							<Button dark outline onClick={handleDelete}>
 								Delete
 							</Button>
-							
 						</div>
 					)}
 				</div>

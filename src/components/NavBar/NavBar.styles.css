@@ -16,6 +16,15 @@ nav {
 	color: azure;
 }
 
+.nav-right::before {
+	width: 0%;
+	bottom: 10px;
+}
+
+.nav-right:hover::before {
+	width: 100%;
+}
+
 .nav-collapse {
 	background-color: rgb(231, 204, 202);
 	width: 100wv;

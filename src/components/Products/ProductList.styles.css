@@ -33,7 +33,13 @@
     width: 800px;
 }
 
+.pc-heart {
+    margin-left: 20px;
+}
 
+button {
+    margin-left: 10px;
+}
 
 @media screen and (max-width: 650px) {
     .reviews {
