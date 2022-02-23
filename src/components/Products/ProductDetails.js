@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { ProductContext } from '../../Context';
 import { Button } from 'bootstrap-4-react/lib/components';
 import './ProductList.styles.css';
+import Review from '../../Review/Review';
+import CartBtn  from '../Cart/CartBtn';
 
-function ProductDetail() {
+function ProductDetail({match}) {
 	const { login } = useContext(ProductContext);
-	const { id } = useParams();
+
+	const {id}  = useParams();
 	const [showing, setShowing] = useState(false);
 	const [product, setProduct] = useState(null);
 	const handleShowing = (event) => {
@@ -14,12 +17,16 @@ function ProductDetail() {
 		setShowing(!showing);
 	};
 
+
 	const initialReviewData = {
-		product_id: '',
+		product_id: id,
 		review_title: '',
 		review_body: '',
 	};
-	// console.log(product.id)
+
+	console.log(initialReviewData)
+
+	
 
 	const navigate = useNavigate();
 	const [newReview, setNewReview] = useState(initialReviewData);
@@ -30,16 +37,26 @@ function ProductDetail() {
 		});
 	};
 
-	const createNewReview = async (event) => {
-		fetch(`http://localhost:8000/shop/review/`, {
-			method: 'POST',
-			body: JSON.stringify(newReview),
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Token ${localStorage.getItem('token')}`,
-			},
-		}).then((response) => console.log(newReview));
-	};
+	console.log(newReview);
+		const createNewReview = async (event) => {
+			// event.preventDefault();
+
+			try {
+				const response = await fetch('http://localhost:8000/shop/review/', {
+					method: 'POST',
+					body: JSON.stringify(newReview),
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Token ${localStorage.getItem('token')}`,
+					},
+				});
+				if (response.status === 201) {
+					navigate('/shop');
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -48,20 +65,22 @@ function ProductDetail() {
 		console.log('submit');
 	};
 
-	const addToCart = () => {};
-
-	const getProductDetail = async () => {
+	const getProductDetail = async() => {
 		try {
-			const response = await fetch(`http://localhost:8000/shop/${id}`);
-			const data = await response.json();
-			console.log(data);
-			if (response.status === 200) {
-				setProduct(data);
-			}
+			const response = await fetch(`http://localhost:8000/shop/${id}`).then(
+				(response) => response.json()
+			);
+			
+			
+			console.log(response);
+			setProduct(response);
+			console.log(product);
 		} catch (error) {
 			console.log(error);
 		}
+
 	};
+
 	useEffect(() => {
 		getProductDetail();
 	}, []);
@@ -75,7 +94,7 @@ function ProductDetail() {
 			<div className='row g-5'>
 				<div className='col-md-4'>
 					<img
-						src={product.image}
+						src={product.image ? product.image : ''}
 						className='img-fluid rounded-start'
 						alt='...'
 					/>
@@ -95,10 +114,7 @@ function ProductDetail() {
 							</button>
 						</div>
 						<p className='card-text'>{product.description}</p>
-						<Button dark md outline onClick={addToCart}>
-							{' '}
-							Add to Cart
-						</Button>
+						<CartBtn />
 						<Button dark md outline>
 							{' '}
 							Save for Later
@@ -115,36 +131,22 @@ function ProductDetail() {
 						sm
 						outline
 						onClick={handleShowing}
-						className='reviewsBtn'>
+						className='reviewsBtn'
+						>
 						{' '}
 						Add a review
 					</Button>
 				</div>
+				{!product.reviews.length && <p className='noReview'>No reviews yet!</p>}
 				<div>
 					{product.reviews.map((item) => (
-						<div className='card' style={{ width: '18rem', marginTop: '30px' }}>
-							<div className='card-body' key={item.id}>
-								<h5 className='card-title'>{item.review_title}</h5>
-								<h6 className='card-subtitle mb-2 text-muted'>{item.owner}</h6>
-								<p className='card-text'>{item.review_body}</p>
-							</div>
-						</div>
+						<Review newReview={newReview} handleShowing={handleShowing} handleChange={handleChange} item={item} owner={item.owner} key={item.id} />
 					))}
 				</div>
 				{showing ? (
 					<div className='review-container'>
 						<form className='review-form' onSubmit={handleSubmit}>
 							<div className='form-group'>
-								<label htmlFor='product_id'>Product:</label>
-								<input
-									type='checkbox'
-									value={newReview.product_id}
-									onChange={handleChange}
-									className='form-control'
-									id='product_id'
-									placeholder={product.item}
-									
-								/>
 								<label htmlFor='review_title'>Title:</label>
 								<input
 									type='text'

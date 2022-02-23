@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'bootstrap-4-react';
+import CartBtn from '../Cart/CartBtn';
 import './ProductCard.styles.css';
 
 function ProductCard({item}) {
@@ -26,9 +27,7 @@ function ProductCard({item}) {
 								View
 							</Link>
 						</Button>
-						<Button dark sm outline>
-							Add to Cart
-						</Button>
+						< CartBtn />
 					</div>
 				</div>
 			</div>

@@ -70,9 +70,9 @@ function NavBar(props) {
 								<Link to='/login'>Log In</Link>
 							</Button>
 						)}
-						{/* <Link to='/cart'>
+						<Link to='/cart'>
 							<i className='fa-solid fa-bag-shopping nav-right-item text-white'></i>
-						</Link> */}
+						</Link>
 						{/* <Link to='/Favorites' className='nav-right-item'>
 							<i className='fa-solid fa-heart text-white '></i>
 						</Link> */}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import {Button, Alert} from 'bootstrap-4-react';
 
-function Signup(props) {
+function Signup({login}) {
     	const initialFormData = {
 				username: '',
 				email: '',
