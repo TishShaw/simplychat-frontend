@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2c5f96fd.css",
+    "main.js": "/static/js/main.5c5e0e5a.js",
+    "static/js/787.e73dd0b9.chunk.js": "/static/js/787.e73dd0b9.chunk.js",
+    "static/media/WelcometoKeitasBeauty.png": "/static/media/WelcometoKeitasBeauty.1cd66379c715fe782c10.png",
+    "index.html": "/index.html",
+    "main.2c5f96fd.css.map": "/static/css/main.2c5f96fd.css.map",
+    "main.5c5e0e5a.js.map": "/static/js/main.5c5e0e5a.js.map",
+    "787.e73dd0b9.chunk.js.map": "/static/js/787.e73dd0b9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2c5f96fd.css",
+    "static/js/main.5c5e0e5a.js"
+  ]
+}
