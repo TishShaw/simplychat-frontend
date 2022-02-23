@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "echo \"Error: no build specified\" && exit 1",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

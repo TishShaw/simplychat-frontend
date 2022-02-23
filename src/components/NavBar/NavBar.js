@@ -1,14 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'bootstrap-4-react'
+import { Button } from 'bootstrap-4-react';
 import { ProductContext } from '../../Context';
 import './NavBar.styles.css';
-import { Navbar} from 'react-bootstrap';
 
 function NavBar(props) {
-	const { handleThisLogout, login  } = useContext(ProductContext);
+	const { handleThisLogout, login } = useContext(ProductContext);
 
-	if(!Navbar) return 'loading'
 	return (
 		<nav className='navbar navbar-expand-lg navbar-light py-3bg-light'>
 			<div className='container-fluid navbar-logo'>
@@ -62,7 +60,12 @@ function NavBar(props) {
 					</ul>
 					<div className='nav-right'>
 						{login ? (
-							<Button light md outline className='nav-right-item' onClick={handleThisLogout}>
+							<Button
+								light
+								md
+								outline
+								className='nav-right-item'
+								onClick={handleThisLogout}>
 								<Link to='/shop'>Log Out</Link>
 							</Button>
 						) : (
