@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Keita's Beauty   
+# Description
+	
+	Keita's Beauty is an online E-commerce Website where you can purchase your favorite make-up products for a reasonable price. 
+	
+# Planning Process
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Technologies Used
 
-## Available Scripts
+- Frontend
+  - React
+  - Redux
+  - Javascript
+  - CSS
+  - Bootstrap
 
-In the project directory, you can run:
+- Backend 
+  - Python
+  - Django Rest Frameworks
+  - Djoser
+  - Stripe
 
-### `npm start`
+- Database
+  - Postgres SQL
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### WireFrames
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+<img width="650" alt="375a0c80-8d93-11ec-9622-df715dac252d" src="https://user-images.githubusercontent.com/92543814/155243346-7c118fdf-f271-49a9-9953-baac4816168e.png">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img width="650" alt="34115180-8d90-11ec-81ac-63ed8f54811f" src="https://user-images.githubusercontent.com/92543814/155243363-7fc67c5c-ca7c-410c-992a-7f08acc3bd37.png">
 
-### `npm run build`
+<img width="650" alt="396e9c00-8d90-11ec-8414-b75cc583bfc7" src="https://user-images.githubusercontent.com/92543814/155243368-baf8b54e-2a89-4f52-a103-91b9d8139980.png">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### User Stories
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - I want to add to cart from the product page,
+   - I want to checkout with paypal or debit/credit.
+   - I want to adjust the product quantity in the cart.
+   - I want to save my favorite products.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Screenshots
+  <img width="650" alt="Screen Shot 2022-02-21 at 8 12 08 PM" src="https://user-images.githubusercontent.com/92543814/155241034-f3d8b321-7d5c-432d-825f-95ebd57eddf1.png">
+  
+   <img width="650" alt="Screen Shot 2022-02-21 at 8 32 34 PM" src="https://user-images.githubusercontent.com/92543814/155241196-8dc61c69-273b-4d69-a2bc-64111480f044.png">
+    <img width="650" alt="Screen Shot 2022-02-21 at 8 12 08 PM" src="https://user-images.githubusercontent.com/92543814/155241225-a0d50a35-e38f-4e41-ae0c-fe6a026049a1.png">
+        <img width="650" alt="Screen Shot 2022-02-21 at 8 27 03 PM" src="https://user-images.githubusercontent.com/92543814/155241265-231e2de7-5f40-4aed-808c-d6f26c5ba882.png">
+  
+ ## Installation
+```
+  - Fork and clone down the repository to your machine.
+  - cd into the repo
+  - Open in VScode by running code . in your terminal
+  - Run npm i or npm install in your terminal
+  - Run npm start in your terminal
+ ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Major Hurdles
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
