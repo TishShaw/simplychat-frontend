@@ -8,6 +8,7 @@
     max-width: 90%;
     margin: auto;
     margin-top: 50px;
+
 }
 
 .reviews {
@@ -29,6 +30,7 @@
 
 .review-container {
     margin-top: 30px;
+    width: 800px;
 }
 
 

@@ -21,24 +21,27 @@ function App() {
 	const [login, setLogin] = useState(
 		localStorage.getItem('token') ? true : false
 	);
-		const [product, setProduct] = useState([]);
 
-		useEffect(() => {
-			axios.get('http://localhost:8000/shop/').then((res) => {
-				console.log(res.data);
-				setProduct(res.data);
-			});
-		}, []);
+	const [product, setProduct] = useState([]);
+
+	useEffect(() => {
+		axios.get('https://secret-beyond-07972.herokuapp.com/shop/').then((res) => {
+			setProduct(res.data);
+		});
+	}, []);
 
 	const getUser = async () => {
 		try {
-			const res = await fetch('http://localhost:8000/users/me/', {
-				headers: {
-					Authorization: `Token ${localStorage.getItem('token')}`,
-				},
-			});
+			const res = await fetch(
+				'https://secret-beyond-07972.herokuapp.com/users/me/',
+				{
+					headers: {
+						Authorization: `Token ${localStorage.getItem('token')}`,
+					},
+				}
+			);
+
 			const data = await res.json();
-			console.log(data);
 			if (data.detail === 'Invalid token.') {
 				setCurrentUser(null);
 				setLogin(false);
@@ -52,23 +55,25 @@ function App() {
 			console.log(error);
 		}
 	};
-	
+
 	const handleThisLogin = (token) => {
 		localStorage.setItem('token', token);
 		getUser();
-		console.log(localStorage.getItem('token'));
 		setLogin(true);
 	};
 
 	const handleThisLogout = async (token) => {
-		console.log(localStorage.getItem('token'));
 		try {
-			const res = await fetch('http://localhost:8000/token/logout', {
-				method: 'POST',
-				headers: {
-					Authorization: `Token ${localStorage.getItem('token')}`,
-				},
-			});
+			const res = await fetch(
+				'https://secret-beyond-07972.herokuapp.com/token/logout',
+				{
+					method: 'POST',
+					headers: {
+						Authorization: `Token ${localStorage.getItem('token')}`,
+					},
+				}
+			);
+			
 			if (res.status === 204) {
 				alert('You have been logged out!');
 				setLogin(false);
@@ -85,6 +90,7 @@ function App() {
 			getUser();
 		}
 	}, []);
+
 	
 	return (
 		<div>
@@ -105,7 +111,7 @@ function App() {
 					<Route path='/login' element={<Login />} />
 					<Route path='/shop' element={<Shoppage />} />
 					<Route path='/signup' element={<Signup />} />
-					<Route path='/Cart/:id?' element={<Cart/>} />
+					<Route path='/shop/cart/' element={<Cart />} />
 					<Route path='/:id' element={<ProductDetail />} />
 					<Route path='/Favorites' element={<Favorites />} />
 				</Routes>

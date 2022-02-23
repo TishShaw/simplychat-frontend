@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { ProductContext } from '../../Context';
 import './styles/Lips.styles.css';
 
-function Lips({ product }) {
+function Lips() {
+	const { product } = useContext(ProductContext);
 	const [lipProducts, setLipProducts] = useState([]);
 
 	const filterLips = () => {

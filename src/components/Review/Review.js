@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from 'bootstrap-4-react/lib/components';
-import { ProductContext } from '../Context';
+import { ProductContext } from '../../Context';
 
 function Review({ item, owner, newReview, handleChange}) {
 	console.log(item);
@@ -19,7 +19,7 @@ function Review({ item, owner, newReview, handleChange}) {
 	const removeReview = async () => {
 		try {
 			const response = await fetch(
-				`http://localhost:8000/shop/review/${item.id}`,
+				`http://secret-beyond-07972.herokuapp.com/shop/review/${item.id}`,
 				{
 					method: 'DELETE',
 					body: JSON.stringify(newReview),
@@ -90,7 +90,7 @@ function Review({ item, owner, newReview, handleChange}) {
 								Edit
 							</Button>
 
-							<Button dark outline onClick={() => {}}>
+							<Button dark outline onClick={handleDelete}>
 								Delete
 							</Button>
 							

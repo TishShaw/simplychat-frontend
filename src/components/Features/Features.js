@@ -6,7 +6,7 @@ import './Features.styles.css';
 function Features() {
 	const { product } = useContext(ProductContext);
 
-	if (!product.images) {
+	if (!product.image) {
 		return 'loading products...';
 	}
 	return (

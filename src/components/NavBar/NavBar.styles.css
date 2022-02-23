@@ -1,29 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 .nav-right {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
 }
 
 .nav-right-item {
-    margin-right: 20px;
+	margin-right: 20px;
 }
 
 nav {
-    background-color: rgb(231, 204, 202);
-    height: 70px; 
-     color: azure;
+	background-color: rgb(231, 204, 202);
+	height: 70px;
+	color: azure;
 }
 
+.nav-collapse {
+	background-color: rgb(231, 204, 202);
+	width: 100wv;
+}
 .navbar-logo {
-    font-size: 20px;
-    color: azure;
+	font-size: 20px;
+	color: azure;
 }
 
 .logo-title {
-    font-size: 30px;
-    font-family: arial;
+	font-size: 30px;
+	font-family: arial;
 }
 
 .nav-right-item:hover {

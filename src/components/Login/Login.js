@@ -5,16 +5,16 @@ import { ProductContext } from '../../Context';
 import './Login.styles.css';
 
 function Login(props) {
-
+	const { handleThisLogin } = useContext(ProductContext);
 	const initialFormData = {
 		email: '',
 		password: '',
 	};
-
-	const { handleThisLogin } = useContext(ProductContext);
 	const [formData, setFormData] = useState(initialFormData);
 	const [error, setError] = useState(false);
 	const navigate = useNavigate();
+
+	
 
 	const handleChange = (event) => {
 		setFormData({ ...formData, [event.target.id]: event.target.value });
@@ -24,7 +24,8 @@ function Login(props) {
 		event.preventDefault();
 		setError(false);
 		try {
-			const API_ENDPOINT = 'http://localhost:8000/token/login/';
+			const API_ENDPOINT =
+				'https://secret-beyond-07972.herokuapp.com/token/login/';
 			const response = await fetch(API_ENDPOINT, {
 				method: 'POST',
 				body: JSON.stringify(formData),
@@ -32,10 +33,10 @@ function Login(props) {
 					'Content-Type': 'application/json',
 				},
 			});
-			console.log(response);
+
 			if (response.status === 200) {
 				const data = await response.json();
-				console.log(data);
+
 				handleThisLogin(data.auth_token);
 
 				navigate('/shop');
@@ -86,7 +87,11 @@ function Login(props) {
 			{error && (
 				<Alert variant='warning' className='mt-4'>
 					No valid user found with the credentials entered. Please try logging
-					in again or <Link to='/signup'><span id='signup'>sign up</span></Link> for an account.
+					in again or{' '}
+					<Link to='/signup'>
+						<span id='signup'>sign up</span>
+					</Link>{' '}
+					for an account.
 				</Alert>
 			)}
 		</div>

@@ -1,22 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import { ProductContext } from '../../Context';
 import './styles/Face.css';
 
-function Face({product}) {
-    // const [faceProduct, setFaceProduct] = useState([])
+function Face() {
 
-    // const filterProducts = () => {
-    //     const face = product.filter(item => {
-    //         if(item.category_name === 'face'){
-	// 			return item.item
-	// 		}
+	const { product } = useContext(ProductContext);
+    const [faceProduct, setFaceProduct] = useState([])
+
+    const filterProducts = () => {
+        const face = product.filter(item => {
+            if(item.category_name === 'face'){
+				return item.item
+			}
         
-    //     })
-    //     setFaceProduct(face)
-    // }
+        })
+        setFaceProduct(face)
+    }
     
-	// useEffect(() => {
-	// 	filterProducts()
-	// })
+	useEffect(() => {
+		filterProducts()
+	})
     return (
 			<div className='face'>
 				<h1 className='face-title'>Face</h1>

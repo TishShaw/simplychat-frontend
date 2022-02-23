@@ -1,24 +1,21 @@
 import React from 'react';
 import { Button } from 'bootstrap-4-react/lib/components';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch} from 'react-redux';
 
-function CartBtn(props) {
-    const navigate = useNavigate()
+function CartBtn(item) {
+	const dispatch = useDispatch();
 
-    const addToCart = () => {
-        console.log('cart')
-    }
+	const addToCart = () => {
+		console.log('cart');
+		dispatch({ type: 'ADD_TO_CART', payload: item });
+	};
 
-    
-
-    return (
-			
-				<Button dark md outline onClick={addToCart}>
-					{' '}
-					Add to Cart
-				</Button>
-			
-		);
+	return (
+		<Button dark md outline onClick={() => addToCart(item)}>
+			{' '}
+			Add to Cart
+		</Button>
+	);
 }
 
 export default CartBtn;

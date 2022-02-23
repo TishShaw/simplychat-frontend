@@ -3,13 +3,13 @@ import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { ProductContext } from '../../Context';
 import { Button } from 'bootstrap-4-react/lib/components';
 import './ProductList.styles.css';
-import Review from '../../Review/Review';
-import CartBtn  from '../Cart/CartBtn';
+import Review from '../Review/Review';
+import CartBtn from '../Cart/CartBtn';
 
-function ProductDetail({match}) {
+function ProductDetail({ match }) {
 	const { login } = useContext(ProductContext);
 
-	const {id}  = useParams();
+	const { id } = useParams();
 	const [showing, setShowing] = useState(false);
 	const [product, setProduct] = useState(null);
 	const handleShowing = (event) => {
@@ -17,16 +17,13 @@ function ProductDetail({match}) {
 		setShowing(!showing);
 	};
 
-
 	const initialReviewData = {
 		product_id: id,
 		review_title: '',
 		review_body: '',
 	};
 
-	console.log(initialReviewData)
-
-	
+	console.log(initialReviewData);
 
 	const navigate = useNavigate();
 	const [newReview, setNewReview] = useState(initialReviewData);
@@ -38,25 +35,28 @@ function ProductDetail({match}) {
 	};
 
 	console.log(newReview);
-		const createNewReview = async (event) => {
-			// event.preventDefault();
+	const createNewReview = async (event) => {
+		// event.preventDefault();
 
-			try {
-				const response = await fetch('http://localhost:8000/shop/review/', {
+		try {
+			const response = await fetch(
+				'https://secret-beyond-07972.herokuapp.com/shop/review/',
+				{
 					method: 'POST',
 					body: JSON.stringify(newReview),
 					headers: {
 						'Content-Type': 'application/json',
 						Authorization: `Token ${localStorage.getItem('token')}`,
 					},
-				});
-				if (response.status === 201) {
-					navigate('/shop');
 				}
-			} catch (error) {
-				console.log(error);
+			);
+			if (response.status === 201) {
+				navigate('/shop');
 			}
-		};
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -65,20 +65,18 @@ function ProductDetail({match}) {
 		console.log('submit');
 	};
 
-	const getProductDetail = async() => {
+	const getProductDetail = async () => {
 		try {
-			const response = await fetch(`http://localhost:8000/shop/${id}`).then(
-				(response) => response.json()
-			);
-			
-			
+			const response = await fetch(
+				`https://secret-beyond-07972.herokuapp.com/shop/${id}`
+			).then((response) => response.json());
+
 			console.log(response);
 			setProduct(response);
 			console.log(product);
 		} catch (error) {
 			console.log(error);
 		}
-
 	};
 
 	useEffect(() => {
@@ -90,9 +88,9 @@ function ProductDetail({match}) {
 	}
 
 	return (
-		<div className='card mb-3 pd-wrapper'>
+		<div className='card mb-3 pd-wrapper '>
 			<div className='row g-5'>
-				<div className='col-md-4'>
+				<div className='col-md-4 pro-card'>
 					<img
 						src={product.image ? product.image : ''}
 						className='img-fluid rounded-start'
@@ -119,7 +117,7 @@ function ProductDetail({match}) {
 							{' '}
 							Save for Later
 						</Button>
-						{/* <i className='fa-solid fa-heart'></i> */}
+						<i className='fa-solid fa-heart'></i>
 					</div>
 				</div>
 			</div>
@@ -131,8 +129,7 @@ function ProductDetail({match}) {
 						sm
 						outline
 						onClick={handleShowing}
-						className='reviewsBtn'
-						>
+						className='reviewsBtn'>
 						{' '}
 						Add a review
 					</Button>
@@ -140,11 +137,18 @@ function ProductDetail({match}) {
 				{!product.reviews.length && <p className='noReview'>No reviews yet!</p>}
 				<div>
 					{product.reviews.map((item) => (
-						<Review newReview={newReview} handleShowing={handleShowing} handleChange={handleChange} item={item} owner={item.owner} key={item.id} />
+						<Review
+							newReview={newReview}
+							handleShowing={handleShowing}
+							handleChange={handleChange}
+							item={item}
+							owner={item.owner}
+							key={item.id}
+						/>
 					))}
 				</div>
 				{showing ? (
-					<div className='review-container'>
+					<div className='review-container '>
 						<form className='review-form' onSubmit={handleSubmit}>
 							<div className='form-group'>
 								<label htmlFor='review_title'>Title:</label>

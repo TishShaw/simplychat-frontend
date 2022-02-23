@@ -3,7 +3,6 @@ import { ProductContext } from '../Context';
 import ProductCard from '../components/Card/ProductCard';
 import './styles/Shoppage.css';
 
-
 function Shoppage() {
 	const { product } = useContext(ProductContext);
 	return (

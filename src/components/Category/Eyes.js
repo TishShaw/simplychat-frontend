@@ -1,7 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
+import { ProductContext } from '../../Context';
 import './styles/Eyes.css';
 
-function Eyes({product}) {
+function Eyes() {
+	const { product } = useContext(ProductContext);
 	const [eyes, setEyes] = useState([])
 
 	const filterEyes = () => {

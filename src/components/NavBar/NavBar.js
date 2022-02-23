@@ -2,10 +2,13 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'bootstrap-4-react';
 import { ProductContext } from '../../Context';
+import { useSelector } from 'react-redux';
 import './NavBar.styles.css';
 
 function NavBar(props) {
 	const { handleThisLogout, login } = useContext(ProductContext);
+
+	const { cartItems } = useSelector((state) => state.cartReducer);
 
 	return (
 		<nav className='navbar navbar-expand-lg navbar-light py-3bg-light'>
@@ -23,8 +26,8 @@ function NavBar(props) {
 					aria-label='Toggle navigation'>
 					<span className='navbar-toggler-icon'></span>
 				</button>
-				<div className='collapse navbar-collapse' id=' navbarSupportedContent'>
-					<ul className='navbar-nav mx-auto mb-2 mb-lg-0 '>
+				<div className='collapse navbar-collapse' id='navbarSupportedContent'>
+					<ul className='navbar-nav me-auto mb-2 mb-lg-0 nav-collapse'>
 						<li className='nav-item'>
 							<Link
 								className='nav-link active text-white'
@@ -73,12 +76,12 @@ function NavBar(props) {
 								<Link to='/login'>Log In</Link>
 							</Button>
 						)}
-						<Link to='/cart'>
+						<Link to='/shop/cart'>
 							<i className='fa-solid fa-bag-shopping nav-right-item text-white'></i>
 						</Link>
-						{/* <Link to='/Favorites' className='nav-right-item'>
+						<Link to='/Favorites' className='nav-right-item'>
 							<i className='fa-solid fa-heart text-white '></i>
-						</Link> */}
+						</Link>
 					</div>
 				</div>
 			</div>
