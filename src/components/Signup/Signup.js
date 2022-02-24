@@ -26,7 +26,7 @@ function Signup({ login }) {
 		if (!error) {
 			try {
 				const response = await fetch(
-					'http://secret-beyond-07972.herokuapp.com/users/',
+					'https://secret-beyond-07972.herokuapp.com/users/',
 					{
 						method: 'POST',
 						body: JSON.stringify(formData),

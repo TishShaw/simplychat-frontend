@@ -19,7 +19,7 @@ function Features() {
 			</h1>
 			<div className='best'>
 				<div className='best-item'>
-					{/* <img className='best-image' src={product[1].image} alt='' /> */}
+					<img className='best-image' src={product[1].image} alt='' />
 					<p className='best-name'>{product[1].item}</p>
 					<p className='best-price'>{product[1].price}</p>
 				</div>

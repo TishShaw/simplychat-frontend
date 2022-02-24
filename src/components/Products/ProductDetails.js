@@ -76,7 +76,7 @@ function ProductDetail() {
 	const getProductDetail = async () => {
 		try {
 			const response = await fetch(
-				`http://secret-beyond-07972.herokuapp.com/shop/${id}`
+				`https://secret-beyond-07972.herokuapp.com/shop/${id}`
 			).then((response) => response.json());
 
 			
@@ -97,7 +97,7 @@ function ProductDetail() {
 	const getReview = async () => {
 		try {
 			let data = await fetch(
-				`http://secret-beyond-07972.herokuapp.com/shop/review/`,
+				`https://secret-beyond-07972.herokuapp.com/shop/review/`,
 				{
 					method: 'GET',
 					headers: {
@@ -128,7 +128,7 @@ function ProductDetail() {
 	const editReview = async () => {
 		try {
 			const response = await fetch(
-				`http://secret-beyond-07972.herokuapp.com/shop/review/${newid[0].id}`,
+				`https://secret-beyond-07972.herokuapp.com/shop/review/${newid[0].id}`,
 				{
 					method: 'PUT',
 					body: JSON.stringify(newReview),
@@ -150,7 +150,7 @@ function ProductDetail() {
 		const removeReview = async () => {
 			try {
 				const response = await fetch(
-					`http://secret-beyond-07972.herokuapp.com/shop/review/${newid[0].id}`,
+					`https://secret-beyond-07972.herokuapp.com/shop/review/${newid[0].id}`,
 					{
 						method: 'DELETE',
 						body: JSON.stringify(newReview),

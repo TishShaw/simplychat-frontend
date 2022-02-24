@@ -22,7 +22,7 @@ function ProductCard({item}) {
 							outline
 							className='pc-btn'
 							onClick={() => {
-								console.log('view');
+								
 							}}>
 							<Link to={`/${item.id}`} key={item.id}>
 								View
