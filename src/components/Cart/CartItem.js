@@ -1,16 +1,17 @@
 import React, {useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 
 function CartItem({ item }) {
 
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	console.log(item);
 
-	// const removeFromCart = (item) => {
-	// 	dispatch({ type: 'DELETE_FROM_CART', payload: item });
-	// }
+	const removeFromCart = (item) => {
+		dispatch({ type: 'DELETE_FROM_CART', payload: item});
+		console.log(item);
+	}
 
 
 		// useEffect(() => {
@@ -28,11 +29,12 @@ function CartItem({ item }) {
 				</div>
 				<div className='col-md-8'>
 					<div className='card-body'>
-						<h5 className='card-title'>{item.item}</h5>		
+						<h5 className='card-title'>{item.item}</h5>
 						<p className='card-text'>
 							<p className='text-muted'>{item.price}</p>
-							 {/* <button >
+							<button onClick={() => removeFromCart(item)}>
 								<svg
+									
 									xmlns='http://www.w3.org/2000/svg'
 									width='16'
 									height='16'
@@ -45,7 +47,7 @@ function CartItem({ item }) {
 										d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'
 									/>
 								</svg>
-							</button>  */}
+							</button>
 						</p>
 					</div>
 				</div>

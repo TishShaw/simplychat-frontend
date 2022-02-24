@@ -8,10 +8,12 @@ function CartBtn({item}) {
 	const dispatch = useDispatch();
 	console.log(item.id);
 
-	const addToCart = () => {
+	const addToCart = (item) => {
 		console.log('cart');
 		dispatch({ type: 'ADD_TO_CART', payload: item });
 	};
+
+	
 
 
 	return (

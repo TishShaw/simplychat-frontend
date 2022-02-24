@@ -7,7 +7,7 @@ const composeEnhancers = composeWithDevTools({});
 
 const initialStore = {
 	cartReducer: {
-		cartItems: JSON.parse(localStorage.getItem('cartItem')) ?? [],
+		cartItems: JSON.parse(localStorage.getItem('cartItems')) ?? [],
 	},
 	favoriteReducer: {
 		favoriteItems: JSON.parse(localStorage.getItem('favoriteItem')) ?? [],
