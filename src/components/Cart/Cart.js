@@ -6,7 +6,7 @@ import './styles/Cart.style.css';
 
 function Cart(props) {
 	const cartItems = useSelector((state) => state.cartReducer.cartItems);
-	console.log(cartItems);
+	
 
 
 	if(!cartItems) {
@@ -21,16 +21,16 @@ function Cart(props) {
 						console.log(item);
 						return (
 							<div key={item.item.id} className='row'>
-								<CartItem item={item.item} />
+								<CartItem item={item} key={item.id} />
 							</div>
 						);
 					})}
 				</div>
 				<div className='subtotal-content'>
 					<h1 className='subtotal'>
-						subtotal: ({cartItems.reduce((acc, item) => acc + item, 0)}) items
+						subtotal: $ {cartItems.reduce((acc, item) => item.price, 0)}
 					</h1>
-					<Button primary>Checkout</Button>
+					{/* <Button primary>Checkout</Button> */}
 				</div>
 			</div>
 		</div>

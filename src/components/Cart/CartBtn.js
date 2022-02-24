@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'bootstrap-4-react/lib/components';
 import { useDispatch} from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { addToCart } from '../../redux/actions';
 
 function CartBtn({item}) {
@@ -16,8 +16,9 @@ function CartBtn({item}) {
 
 	return (
 		<Button dark sm outline onClick={() => addToCart(item)}>
-		
-			<Link to={`/cart/${item.id}`}>Add to Cart</Link>
+			<Link to={`/cart/${item.id}`} key={item.id}>
+				Add to Cart
+			</Link>
 		</Button>
 	);
 }
