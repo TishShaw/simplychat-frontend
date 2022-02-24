@@ -1,7 +1,7 @@
 # Keita's Beauty   
 # Description
 	
-	Keita's Beauty is an online E-commerce Website where you can purchase your favorite make-up products for a reasonable price. 
+Keita's Beauty is an online E-commerce Website where you can purchase your favorite make-up products for a reasonable price. Redux state management is used to handle cart functionality.
 	
 # Planning Process
 
@@ -18,7 +18,7 @@
   - Python
   - Django Rest Frameworks
   - Djoser
-  - Stripe
+  
 
 - Database
   - Postgres SQL
@@ -35,10 +35,11 @@
 
 ### User Stories
 
-   - I want to add to cart from the product page,
-   - I want to checkout with paypal or debit/credit.
-   - I want to adjust the product quantity in the cart.
-   - I want to save my favorite products.
+   - As a user, I want to add to cart from the product page so I can eventually purchase my favorite makeup products.
+   - As a user, I want to view all products on one page so I can see all the store offers.
+   - As a user, I want to write reviews on different items so other users can see my experience with a product.
+   - As a user, I want to be able to add, update, and delete my reviews.
+   
 
 
 
@@ -52,13 +53,16 @@
   
  ## Installation
 ```
-  - Fork and clone down the repository to your machine.
-  - cd into the repo
-  - Open in VScode by running code . in your terminal
-  - Run npm i or npm install in your terminal
-  - Run npm start in your terminal
+  Fork and/or clone down this repository.
+  cd into this repo
+  Open in VScode by running code . in your terminal
+  Run npm i or npm install in your terminal
+  Run npm start to start up a new server
  ```
 
 ## Major Hurdles
+ 
+ A major hurdle when working on creating this full stack project was deployment. I initially tried deploying my front end with netlify but ran into a blocker with the build.command. I solved this issue by switching hosting services to github pages.
+ 
 
 
