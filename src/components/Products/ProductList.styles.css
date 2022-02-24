@@ -48,3 +48,7 @@ button {
     margin-left: 20px;
     }
 }
+
+.alert-message {
+    width: 200px;
+}

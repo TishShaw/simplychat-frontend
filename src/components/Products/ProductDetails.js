@@ -17,7 +17,9 @@ function ProductDetail() {
 	const [reviewId, setReviewId] = useState([]);
 	const handleShowing = (event) => {
 		event.preventDefault();
-		setShowing(!showing);
+		
+			setShowing(!showing);
+
 	};
 	const handleEditShowing = (event) => {
 		event.preventDefault();
@@ -67,7 +69,7 @@ function ProductDetail() {
 		e.preventDefault();
 
 		createNewReview();
-		console.log('submit');
+		
 	};
 
 
@@ -85,7 +87,7 @@ function ProductDetail() {
 		}
 	};
 
-	console.log(product);
+	
 
 
 	useEffect(() => {
@@ -106,7 +108,7 @@ function ProductDetail() {
 			)
 				.then((response) => response.json())
 				.then((data) => setReviewId(data));
-			console.log(id);
+			
 			
 			
 		} catch (error) {
@@ -168,14 +170,15 @@ function ProductDetail() {
 
 		const handleDelete = (event) => {
 			event.preventDefault();
+			getReview(id);
 			removeReview();
-			console.log('submit');
+			
 		};
 
 	const handleUpdate = (event) => {
 		event.preventDefault();
 		editReview();
-		console.log('submit');
+		
 	};
 
 	useEffect(() => {
@@ -200,20 +203,21 @@ function ProductDetail() {
 					<div className='card-body'>
 						<p className='card-text'>{product.item}</p>
 						<p className='card-text'>{product.price}</p>
-						
+
 						<p className='card-text'>{product.description}</p>
 
-						<CartBtn  />						
+						<CartBtn />
 						{/* <Button dark md outline>
 							{' '}
 							Save for Later
-						</Button> */}					
+						</Button> */}
 					</div>
 				</div>
 			</div>
 			<div className='row'>
 				<div className='reviews'>
 					<h6 className='card-title review-title'>Customer Reviews</h6>
+
 					<Button
 						dark
 						sm
@@ -268,6 +272,13 @@ function ProductDetail() {
 						editShowing={editShowing}
 					/>
 				) : null}
+				{login ? (
+					''
+				) : (
+					<div className='alert alert-primary alert-message' role='alert'>
+						please login to add a review!
+					</div>
+				)}
 			</div>
 		</div>
 	);

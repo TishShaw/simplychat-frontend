@@ -23,7 +23,7 @@ function Face() {
     return (
 			<div className='face'>
 				<h1 className='face-title'>Face</h1>
-				{/* {faceProduct.map((item) => {
+				{faceProduct.map((item) => {
 					return (
 						<div key={item.id}>
 							<img src={item.image} />
@@ -31,7 +31,7 @@ function Face() {
 							<p>{item.price}</p>
 						</div>
 					);
-				})} */}
+				})}
 			</div>
 		);
 }
