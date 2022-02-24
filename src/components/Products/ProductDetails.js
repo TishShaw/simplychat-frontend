@@ -228,7 +228,7 @@ function ProductDetail() {
 						Add a review
 					</Button>
 				</div>
-				{!product.reviews.length && <p className='noReview'>No reviews yet!</p>}
+				{/* {!product.reviews.length && <p className='noReview'>No reviews yet!</p>} */}
 				<div>
 					{product.reviews.map((item) => (
 						<div>
