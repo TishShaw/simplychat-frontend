@@ -7,10 +7,11 @@ import './styles/Cart.style.css';
 function Cart(props) {
 	const cartItems = useSelector((state) => state.cartReducer.cartItems);
 	console.log(cartItems);
+	
 
-	if (!cartItems) {
-		return '';
-	}
+	// if (!cartItems) {
+	// 	return '';
+	// }
 	return (
 		<div className='container'>
 			<div className='row align-items-center '>

@@ -7,13 +7,13 @@ import CartBtn from '../Cart/CartBtn';
 import NewReview from '../NewReview/NewReview';
 import UpdateReview from '../UpdateReview/UpdateReview';
 
-function ProductDetail({ match }) {
-	const { login, currentUser } = useContext(ProductContext);
+function ProductDetail() {
+	const { login, currentUser} = useContext(ProductContext);
 
 	const { id } = useParams();
 	const [showing, setShowing] = useState(false);
 	const [editShowing, setEditShowing] = useState(false);
-	const [product, setProduct] = useState(null);
+	const [product, setProduct] = useState('');
 	const [reviewId, setReviewId] = useState([]);
 	const handleShowing = (event) => {
 		event.preventDefault();
@@ -30,8 +30,6 @@ function ProductDetail({ match }) {
 		review_title: '',
 		review_body: '',
 	};
-
-	console.log(initialReviewData);
 
 	const navigate = useNavigate();
 	const [newReview, setNewReview] = useState(initialReviewData);
@@ -72,15 +70,16 @@ function ProductDetail({ match }) {
 		console.log('submit');
 	};
 
+
 	const getProductDetail = async () => {
 		try {
 			const response = await fetch(
-				`https://secret-beyond-07972.herokuapp.com/shop/${id}`
+				`http://secret-beyond-07972.herokuapp.com/shop/${id}`
 			).then((response) => response.json());
 
-			console.log(response);
+			
 			setProduct(response);
-			console.log(product);
+			
 		} catch (error) {
 			console.log(error);
 		}
@@ -89,7 +88,9 @@ function ProductDetail({ match }) {
 	console.log(product);
 
 
-
+	useEffect(() => {
+		getProductDetail()
+	},[])
 
 	const getReview = async () => {
 		try {
@@ -107,7 +108,6 @@ function ProductDetail({ match }) {
 				.then((data) => setReviewId(data));
 			console.log(id);
 			
-
 			
 		} catch (error) {
 			console.log(error);
@@ -137,7 +137,8 @@ function ProductDetail({ match }) {
 				}
 			);
 			if (response.status === 200) {
-				console.log('editing');
+				navigate('/shop');
+				
 			}
 		} catch (error) {
 			console.log(error);
@@ -167,10 +168,10 @@ function ProductDetail({ match }) {
 
 		const handleDelete = (event) => {
 			event.preventDefault();
-
 			removeReview();
 			console.log('submit');
 		};
+
 	const handleUpdate = (event) => {
 		event.preventDefault();
 		editReview();
@@ -199,23 +200,14 @@ function ProductDetail({ match }) {
 					<div className='card-body'>
 						<p className='card-text'>{product.item}</p>
 						<p className='card-text'>{product.price}</p>
-						<div className='dropdown'>
-							<button
-								className='btn dropdown-toggle'
-								type='button'
-								id='dropdownMenuButton1'
-								data-bs-toggle='dropdown'
-								aria-expanded='false'>
-								QTY:
-							</button>
-						</div>
+						
 						<p className='card-text'>{product.description}</p>
-						<CartBtn />
-						<Button dark md outline>
+
+						<CartBtn  />						
+						{/* <Button dark md outline>
 							{' '}
 							Save for Later
-						</Button>
-						<i className='fa-solid fa-heart pc-heart'></i>
+						</Button> */}					
 					</div>
 				</div>
 			</div>
@@ -233,7 +225,6 @@ function ProductDetail({ match }) {
 					</Button>
 				</div>
 				{!product.reviews.length && <p className='noReview'>No reviews yet!</p>}
-
 				<div>
 					{product.reviews.map((item) => (
 						<div>
@@ -262,14 +253,14 @@ function ProductDetail({ match }) {
 						</div>
 					))}
 				</div>
-				{editShowing ? (
+				{login && editShowing ? (
 					<UpdateReview
 						handleChange={handleChange}
 						handleUpdate={handleUpdate}
 						newReview={newReview}
 					/>
 				) : null}
-				{showing ? (
+				{login && showing ? (
 					<NewReview
 						handleChange={handleChange}
 						handleSubmit={handleSubmit}

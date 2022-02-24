@@ -12,7 +12,6 @@ import Lips from './components/Category/Lips';
 import Face from './components/Category/Face';
 import Eyes from './components/Category/Eyes';
 import Cart from './components/Cart/Cart';
-// import Footer from './components/Footer/Footer';
 import axios from 'axios';
 
 function App() {
@@ -111,7 +110,7 @@ function App() {
 					<Route path='/login' element={<Login />} />
 					<Route path='/shop' element={<Shoppage />} />
 					<Route path='/signup' element={<Signup />} />
-					<Route path='/shop/cart/:id' element={<Cart />} />
+					<Route path='/cart/:id?' element={<Cart />} />
 					<Route path='/:id' element={<ProductDetail />} />
 					<Route path='/Favorites' element={<Favorites />} />
 				</Routes>

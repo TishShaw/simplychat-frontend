@@ -1,20 +1,17 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from 'bootstrap-4-react/lib/components';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 function CartItem({ item }) {
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	console.log(item);
 
-	const removeFromCart = () => {
-		
-		console.log('removed');
-		dispatch({ type: 'DELETE_ITEM', payload: item });
-		navigate('/shop')
+	const removeFromCart = (item) => {
+		dispatch({ type: 'DELETE_FROM_CART', payload: item });
 	};
 
+	if (!item) {
+		return null;
+	}
 	return (
 		<div className='card mb-3 cart-container'>
 			<div className='row g-0'>
@@ -28,7 +25,7 @@ function CartItem({ item }) {
 						</Link>
 						<p className='card-text'>
 							<p className='text-muted'>{item.price}</p>
-							<button onClick={removeFromCart}>
+							<button onClick={removeFromCart(item)}>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
 									width='16'
