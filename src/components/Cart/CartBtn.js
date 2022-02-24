@@ -2,10 +2,11 @@ import React from 'react';
 import { Button } from 'bootstrap-4-react/lib/components';
 import { useDispatch} from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+// import { addToCart } from '../../redux/actions';
 
 function CartBtn({item}) {
 	const dispatch = useDispatch();
-	const {id} = useParams()
+	console.log(item.id);
 
 	const addToCart = () => {
 		console.log('cart');
@@ -16,7 +17,7 @@ function CartBtn({item}) {
 	return (
 		<Button dark sm outline onClick={() => addToCart(item)}>
 		
-			<Link to={`/cart`}>Add to Cart</Link>
+			<Link to={`/cart/${item.id}`}>Add to Cart</Link>
 		</Button>
 	);
 }

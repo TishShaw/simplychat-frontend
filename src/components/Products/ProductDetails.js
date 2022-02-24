@@ -13,7 +13,7 @@ function ProductDetail() {
 	const { id } = useParams();
 	const [showing, setShowing] = useState(false);
 	const [editShowing, setEditShowing] = useState(false);
-	const [product, setProduct] = useState('');
+	const [product, setProduct] = useState(null);
 	const [reviewId, setReviewId] = useState([]);
 	const handleShowing = (event) => {
 		event.preventDefault();
@@ -92,7 +92,7 @@ function ProductDetail() {
 
 	useEffect(() => {
 		getProductDetail()
-	},[])
+	},[product])
 
 	const getReview = async () => {
 		try {
@@ -185,7 +185,7 @@ function ProductDetail() {
 		getProductDetail();
 	}, []);
 
-	if (!product.reviews) {
+	if (!product) {
 		return null;
 	}
 
@@ -206,7 +206,7 @@ function ProductDetail() {
 
 						<p className='card-text'>{product.description}</p>
 
-						<CartBtn />
+						<CartBtn item={product} />
 						{/* <Button dark md outline>
 							{' '}
 							Save for Later
@@ -231,7 +231,7 @@ function ProductDetail() {
 				{/* {!product.reviews.length && <p className='noReview'>No reviews yet!</p>} */}
 				<div>
 					{product.reviews.map((item) => (
-						<div>
+						<div key={item.id}>
 							<div
 								className='card'
 								style={{ width: '18rem', marginTop: '30px' }}>

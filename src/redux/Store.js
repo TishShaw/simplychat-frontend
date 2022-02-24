@@ -13,4 +13,5 @@ const initialStore = {
 		favoriteItems: JSON.parse(localStorage.getItem('favoriteItem')) ?? [],
 	},
 };
+
 export const store = createStore(reducer, initialStore, composeEnhancers());

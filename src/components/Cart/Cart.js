@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button } from 'bootstrap-4-react/lib/components';
 import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
@@ -7,11 +7,11 @@ import './styles/Cart.style.css';
 function Cart(props) {
 	const cartItems = useSelector((state) => state.cartReducer.cartItems);
 	console.log(cartItems);
-	
 
-	// if (!cartItems) {
-	// 	return '';
-	// }
+
+	if(!cartItems) {
+		return null;
+	}
 	return (
 		<div className='container'>
 			<div className='row align-items-center '>
@@ -20,7 +20,7 @@ function Cart(props) {
 					{cartItems.map((item) => {
 						console.log(item);
 						return (
-							<div key={item.itemid} className='row'>
+							<div key={item.item.id} className='row'>
 								<CartItem item={item.item} />
 							</div>
 						);

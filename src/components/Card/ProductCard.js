@@ -24,12 +24,12 @@ function ProductCard({item}) {
 							onClick={() => {
 								
 							}}>
-							<Link to={`/${item.id}`} key={item.id}>
+							<Link to={`/${item.id}`}>
 								View
 							</Link>
 						</Button>
-						<div key={item.id}>
-							<CartBtn item={item} />
+						<div>
+								<CartBtn item={item} />
 						</div>
 					</div>
 				</div>

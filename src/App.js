@@ -88,7 +88,7 @@ function App() {
 		if (login) {
 			getUser();
 		}
-	}, []);
+	}, [login]);
 
 	
 	return (
@@ -110,7 +110,7 @@ function App() {
 					<Route path='/login' element={<Login />} />
 					<Route path='/shop' element={<Shoppage />} />
 					<Route path='/signup' element={<Signup />} />
-					<Route path='/cart/:id?' element={<Cart />} />
+					<Route path='/cart/:id' element={<Cart />} />
 					<Route path='/:id' element={<ProductDetail />} />
 					<Route path='/Favorites' element={<Favorites />} />
 				</Routes>

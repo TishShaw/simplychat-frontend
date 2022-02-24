@@ -11,6 +11,7 @@ function Eyes() {
 			if(item.category_name === 'eyes') {
 				return item.item
 			}
+			return item
 		})
 		setEyes(eyes)
 	}
