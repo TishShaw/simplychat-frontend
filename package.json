@@ -1,5 +1,6 @@
 {
 	"name": "KeitaBeauty-frontend",
+	"homepage": "https://keita-beauty-frontend-b47rrh4qk-tishshaw.vercel.app/",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
