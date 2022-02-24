@@ -1,0 +1,37 @@
+import Button from 'bootstrap-4-react/lib/components/Button';
+import React from 'react';
+
+function UpdateReview({ newReview, handleChange, handleUpdate, editShowing }) {
+	return (
+		<div className='review-container '>
+			<form className='review-form' onSubmit={handleUpdate}>
+				<div className='form-group'>
+					<label htmlFor='review_title'>Title:</label>
+					<input
+						type='text'
+						value={newReview.review_title}
+						onChange={handleChange}
+						className='form-control'
+						id='review_title'
+						placeholder='Enter Title'
+					/>
+					<label htmlFor='review_body'>Review Body:</label>
+					<input
+						type='text'
+						value={newReview.review_body}
+						onChange={handleChange}
+						className='form-control'
+						id='review_body'
+						placeholder='Enter Body of Review'
+					/>
+				</div>
+
+				<Button dark sm outline type='submit'>
+					Update Review
+				</Button>
+			</form>
+		</div>
+	);
+}
+
+export default UpdateReview;

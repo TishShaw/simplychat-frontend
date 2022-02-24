@@ -3,19 +3,26 @@ import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { ProductContext } from '../../Context';
 import { Button } from 'bootstrap-4-react/lib/components';
 import './ProductList.styles.css';
-import Review from '../Review/Review';
 import CartBtn from '../Cart/CartBtn';
 import NewReview from '../NewReview/NewReview';
+import UpdateReview from '../UpdateReview/UpdateReview';
 
 function ProductDetail({ match }) {
-	const { login } = useContext(ProductContext);
+	const { login, currentUser } = useContext(ProductContext);
 
 	const { id } = useParams();
 	const [showing, setShowing] = useState(false);
+	const [editShowing, setEditShowing] = useState(false);
 	const [product, setProduct] = useState(null);
+	const [reviewId, setReviewId] = useState([]);
 	const handleShowing = (event) => {
 		event.preventDefault();
 		setShowing(!showing);
+	};
+	const handleEditShowing = (event) => {
+		event.preventDefault();
+		getReview(id);
+		setEditShowing(!editShowing);
 	};
 
 	const initialReviewData = {
@@ -35,9 +42,8 @@ function ProductDetail({ match }) {
 		});
 	};
 
-	console.log(newReview);
-	const createNewReview = async (event) => {
-		// event.preventDefault();
+	const createNewReview = async () => {
+	
 
 		try {
 			const response = await fetch(
@@ -78,6 +84,97 @@ function ProductDetail({ match }) {
 		} catch (error) {
 			console.log(error);
 		}
+	};
+
+	console.log(product);
+
+
+
+
+	const getReview = async () => {
+		try {
+			let data = await fetch(
+				`http://secret-beyond-07972.herokuapp.com/shop/review/`,
+				{
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Token ${localStorage.getItem('token')}`,
+					},
+				}
+			)
+				.then((response) => response.json())
+				.then((data) => setReviewId(data));
+			console.log(id);
+			
+
+			
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	const newid = reviewId.filter((item) => {
+		if (item.product_id === product.id) {
+			return product.reviews[0].id;
+		} else {
+			return '';
+		}
+	});
+	
+
+	const editReview = async () => {
+		try {
+			const response = await fetch(
+				`http://secret-beyond-07972.herokuapp.com/shop/review/${newid[0].id}`,
+				{
+					method: 'PUT',
+					body: JSON.stringify(newReview),
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Token ${localStorage.getItem('token')}`,
+					},
+				}
+			);
+			if (response.status === 200) {
+				console.log('editing');
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+		const removeReview = async () => {
+			try {
+				const response = await fetch(
+					`http://secret-beyond-07972.herokuapp.com/shop/review/${newid[0].id}`,
+					{
+						method: 'DELETE',
+						body: JSON.stringify(newReview),
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: `Token ${localStorage.getItem('token')}`,
+						},
+					}
+				);
+				if (response.status === 204) {
+					navigate('/shop');
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		const handleDelete = (event) => {
+			event.preventDefault();
+
+			removeReview();
+			console.log('submit');
+		};
+	const handleUpdate = (event) => {
+		event.preventDefault();
+		editReview();
+		console.log('submit');
 	};
 
 	useEffect(() => {
@@ -136,20 +233,49 @@ function ProductDetail({ match }) {
 					</Button>
 				</div>
 				{!product.reviews.length && <p className='noReview'>No reviews yet!</p>}
+
 				<div>
 					{product.reviews.map((item) => (
-						<Review
-							newReview={newReview}
-							handleShowing={handleShowing}
-							handleChange={handleChange}
-							item={item}
-							owner={item.owner}
-							key={item.id}
-						/>
+						<div>
+							<div
+								className='card'
+								style={{ width: '18rem', marginTop: '30px' }}>
+								<div className='card-body' key={item.id}>
+									<h5 className='card-title'>{item.review_title}</h5>
+									<h6 className='card-subtitle mb-2 text-muted'>
+										{item.owner}
+									</h6>
+									<p className='card-text'>{item.review_body}</p>
+									{currentUser && currentUser.username === item.owner && (
+										<div>
+											<Button dark outline onClick={handleEditShowing}>
+												Edit
+											</Button>
+
+											<Button dark outline onClick={handleDelete}>
+												Delete
+											</Button>
+										</div>
+									)}
+								</div>
+							</div>
+						</div>
 					))}
 				</div>
+				{editShowing ? (
+					<UpdateReview
+						handleChange={handleChange}
+						handleUpdate={handleUpdate}
+						newReview={newReview}
+					/>
+				) : null}
 				{showing ? (
-					<NewReview handleChange={handleChange} handleSubmit={handleSubmit} newReview={newReview} />
+					<NewReview
+						handleChange={handleChange}
+						handleSubmit={handleSubmit}
+						newReview={newReview}
+						editShowing={editShowing}
+					/>
 				) : null}
 			</div>
 		</div>

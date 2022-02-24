@@ -1,7 +1,7 @@
 import Button from 'bootstrap-4-react/lib/components/Button';
 import React from 'react';
 
-function NewReview({newReview, handleChange, handleSubmit}) {
+function NewReview({newReview, handleChange, handleSubmit, editShowing}) {
     return (
 			<div className='review-container '>
 				<form className='review-form' onSubmit={handleSubmit}>
@@ -25,6 +25,7 @@ function NewReview({newReview, handleChange, handleSubmit}) {
 							placeholder='Enter Body of Review'
 						/>
 					</div>
+            
 					<Button dark sm outline type='submit'>
 						Submit Review
 					</Button>

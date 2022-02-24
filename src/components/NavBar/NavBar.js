@@ -27,7 +27,7 @@ console.log(cartItems);
 					<span className='navbar-toggler-icon'></span>
 				</button>
 				<div className='collapse navbar-collapse' id='navbarSupportedContent'>
-					<ul className='navbar-nav me-auto mb-2 mb-lg-0 nav-collapse'>
+					<ul className='navbar-nav mx-auto mb-2 mb-lg-0 nav-collapse'>
 						<li className='nav-item'>
 							<Link
 								className='nav-link active text-white'
