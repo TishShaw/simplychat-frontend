@@ -185,7 +185,7 @@ function ProductDetail() {
 		getProductDetail();
 	}, []);
 
-	if (!product) {
+	if (!product.reviews) {
 		return null;
 	}
 
