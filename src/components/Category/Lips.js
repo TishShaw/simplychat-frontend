@@ -21,7 +21,9 @@ function Lips() {
 
 	return (
 		<div className='lips'>
-			<h1 className='lips-title'>Lips</h1>
+			<div className='lips-headerImg'>
+				<h1 className='lips-title'>Lips</h1>
+			</div>
 			<div className='lips-content'>
 				{lipProducts.map((item) => {
 					return (

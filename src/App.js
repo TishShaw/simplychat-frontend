@@ -12,6 +12,7 @@ import Lips from './components/Category/Lips';
 import Face from './components/Category/Face';
 import Eyes from './components/Category/Eyes';
 import Cart from './components/Cart/Cart';
+import Layout from './Layout';
 import axios from 'axios';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 	useEffect(() => {
 		axios.get('https://secret-beyond-07972.herokuapp.com/shop/').then((res) => {
 			setProduct(res.data);
+			
 		});
 	}, []);
 
@@ -101,7 +103,7 @@ function App() {
 					product,
 					login,
 				}}>
-				<NavBar />
+				<Layout>
 				<Routes>
 					<Route path='/' element={<Homepage />} />
 					<Route path='/lips' element={<Lips />} />
@@ -114,6 +116,7 @@ function App() {
 					<Route path='/:id' element={<ProductDetail />} />
 					<Route path='/Favorites' element={<Favorites />} />
 				</Routes>
+				</Layout>
 			</ProductContext.Provider>
 		</div>
 	);

@@ -22,7 +22,9 @@ function Face() {
 	})
     return (
 			<div className='face'>
-				<h1 className='face-title'>Face</h1>
+				<div className='face-headerImg'>
+					<h1 className='face-title'>Face</h1>
+				</div>
 				{faceProduct.map((item) => {
 					return (
 						<div key={item.id}>

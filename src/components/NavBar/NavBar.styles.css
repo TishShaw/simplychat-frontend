@@ -10,14 +10,23 @@
 	margin-right: 20px;
 }
 
-nav {
+.nav {
+	height: 90px;
+	width: 100vw;
+	right: 0;
+	left: 0;
+	
+}
+
+.navbar {
+	z-index: 1;
+	width: 100vw;
 	background-color: rgb(231, 204, 202);
-	height: 70px;
-	color: azure;
+
 }
 
 .nav-right::before {
-	width: 0%;
+	width: 100%;
 	bottom: 10px;
 }
 
@@ -26,8 +35,8 @@ nav {
 }
 
 .nav-collapse {
-	background-color: rgb(231, 204, 202);
-	width: 100wv;
+	background-color: inherit;
+	width: 100%;
 }
 .navbar-logo {
 	font-size: 20px;
@@ -41,4 +50,47 @@ nav {
 
 .nav-right-item:hover {
 	color: rgb(91, 41, 22);
+}
+
+.navbar-header {
+	
+	background-color: rgba(31, 9, 20, 0.8);
+	color: azure;
+	width: 100vw;
+	height: 30px;
+	top:0;
+	overflow: hidden;
+	position: relative;
+}
+
+.navbar-header p {
+	position: absolute;
+	width: 100%;
+	height:100%;
+	margin: 0;
+	text-align: center;
+	transform: translateX(100%);
+	animation: navbar-header 10s linear infinite;
+}
+
+@-moz-keyframes navbar-header {
+ 0%   { -moz-transform: translateX(100%); }
+ 100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes navbar-header {
+ 0%   { -webkit-transform: translateX(100%); }
+ 100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes navbar-header {
+ 0%   { 
+ -moz-transform: translateX(100%); /* Firefox bug fix */
+ -webkit-transform: translateX(100%); /* Firefox bug fix */
+ transform: translateX(100%); 
+ }
+
+ 100% { 
+ -moz-transform: translateX(-100%); /* Firefox bug fix */
+ -webkit-transform: translateX(-100%); /* Firefox bug fix */
+ transform: translateX(-100%); 
+ }
 }

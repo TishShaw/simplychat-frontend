@@ -22,7 +22,9 @@ function Eyes() {
 	
     return (
 			<div className='eyes'>
-				<h1 className='eyes-title'>Eyes</h1>
+				<div className='eye-headerImg'>
+					<h1 className='eyes-title'>Eyes</h1>
+				</div>
 				<div className='eyes-content'>
 					{
 						eyes.map((item) => {
