@@ -15,14 +15,24 @@
 	width: 100vw;
 	right: 0;
 	left: 0;
-	
 }
 
 .navbar {
 	z-index: 1;
 	width: 100vw;
 	background-color: rgb(231, 204, 202);
+}
 
+.nav-cart {
+	width: 40px;
+	height: 40px;
+	margin-right: 30px ;
+}
+
+.nav-account {
+	width: 40px;
+	height: 45px;
+	margin-right: 10px;
 }
 
 .nav-right::before {
@@ -48,17 +58,12 @@
 	font-family: arial;
 }
 
-.nav-right-item:hover {
-	color: rgb(91, 41, 22);
-}
-
 .navbar-header {
-	
-	background-color: rgba(31, 9, 20, 0.8);
+	background-color: black;
 	color: azure;
 	width: 100vw;
 	height: 30px;
-	top:0;
+	top: 0;
 	overflow: hidden;
 	position: relative;
 }
@@ -66,7 +71,7 @@
 .navbar-header p {
 	position: absolute;
 	width: 100%;
-	height:100%;
+	height: 100%;
 	margin: 0;
 	text-align: center;
 	transform: translateX(100%);
@@ -74,23 +79,31 @@
 }
 
 @-moz-keyframes navbar-header {
- 0%   { -moz-transform: translateX(100%); }
- 100% { -moz-transform: translateX(-100%); }
+	0% {
+		-moz-transform: translateX(100%);
+	}
+	100% {
+		-moz-transform: translateX(-100%);
+	}
 }
 @-webkit-keyframes navbar-header {
- 0%   { -webkit-transform: translateX(100%); }
- 100% { -webkit-transform: translateX(-100%); }
+	0% {
+		-webkit-transform: translateX(100%);
+	}
+	100% {
+		-webkit-transform: translateX(-100%);
+	}
 }
 @keyframes navbar-header {
- 0%   { 
- -moz-transform: translateX(100%); /* Firefox bug fix */
- -webkit-transform: translateX(100%); /* Firefox bug fix */
- transform: translateX(100%); 
- }
+	0% {
+		-moz-transform: translateX(100%); /* Firefox bug fix */
+		-webkit-transform: translateX(100%); /* Firefox bug fix */
+		transform: translateX(100%);
+	}
 
- 100% { 
- -moz-transform: translateX(-100%); /* Firefox bug fix */
- -webkit-transform: translateX(-100%); /* Firefox bug fix */
- transform: translateX(-100%); 
- }
+	100% {
+		-moz-transform: translateX(-100%); /* Firefox bug fix */
+		-webkit-transform: translateX(-100%); /* Firefox bug fix */
+		transform: translateX(-100%);
+	}
 }

@@ -1,54 +1,94 @@
-.pd-image {
-    height: 300px;
-    width: 200px;
+.card-text-title {
+    font-size: 28px;
+    letter-spacing: 0.5px;
+}
+
+.card-text-price {
+    font-size: 26px;
+    font-weight: 400;
+}
+
+.productBtn-container {
+    margin-top: 50px;
+    width: 500px;
+}
+
+.productBtn {
+    background-color: rgb(232, 204, 202);
+    border: none;
+    color: white;
+    height: 60px;
+    width: 190px;
+    margin-right:  10px;
+}
+
+.productBtn-heart {
+    height: 50px;
+    width: 45px;
+}
+
+.product-quantity {
+    display: inline-block;
+}
+
+.input-quantity {
+    width: 30px;
+}
+
+
+.product-quantity-subtract {
+    height: 5px;
+    grid-column: 1;
+}
+
+.product-quantity-add {
+    grid-column: 3;
 }
 
 .pd-wrapper {
-    height: 400px;
+    height: 100%;
     max-width: 90%;
     margin: auto;
-    margin-top: 50px;
-
+    margin-top: 70px;
 }
 
-.reviews {
-    display: flex;
-    margin-top: 150px;
-    margin-left: 20px;
+.pro-card-container {
+    margin: auto;
+    width: 100%;
 }
 
-.review-title{
-    font-size: 20px;
-    padding-right: 40px;
-    margin-top: 10px;
-    border-bottom: 1px black solid;
-}
-
-.reviewsBtn {
-    margin-left: 20px;
-}
-
-.review-container {
-    margin-top: 30px;
-    width: 800px;
-}
 
 .pc-heart {
     margin-left: 20px;
+}
+
+.product-box-section {
+    height: 100%;
+    width: 100%;
+    margin: 100px auto;
 }
 
 button {
     margin-left: 10px;
 }
 
-@media screen and (max-width: 650px) {
+
+
+/* @media screen and (max-width: 650px) {
     .reviews {
     display: flex;
     margin-top: 80px;
     margin-left: 20px;
     }
-}
+} */
 
 .alert-message {
     width: 200px;
+}
+
+.img-thumbnail {
+    width:900px;
+    
+    height: 468px;
+    
 }

@@ -1,13 +1,16 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Button } from 'bootstrap-4-react';
 import CartBtn from '../Cart/CartBtn';
 import './ProductCard.styles.css';
 
 function ProductCard({item}) {
+	console.log(item)
+
     return (
 			<div className='productCard'>
-				<div key={item.id} className='productCard-item'>
+				<div className='productCard-item'>
 					<div className='productCard-content'>
 						<img className='best-image' src={item.image} alt='' />
 						<p className='best-name'>{item.item}</p>

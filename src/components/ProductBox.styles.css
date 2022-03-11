@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ProductBox-container {
+	border: 1px solid rgb(179, 123, 123);
+    height: 100%;
+    margin: auto;
+    padding: 10px 30px;
+    margin-bottom: 200px;
+}
+
+.ProductBox-Tab__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+    height: 100%;
+    
+
+}
+
+.tab-title {
+    margin: 10px;
+    padding: 20px;
+    height: 30px;
+    text-align: center;
+    
+}
+
+.tab-title-text {
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+.active-tab {
+    background-color: rgb(87, 80, 80);
+    color: white;
+}

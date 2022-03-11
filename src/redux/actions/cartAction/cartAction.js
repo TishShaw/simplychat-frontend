@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { ADD_TO_CART } from '../../constants/cartConstants';
+import { ADD_TO_CART, DELETE_FROM_CART } from '../../constants/cartConstants';
 
-export const addToCart = (id) => async (dispatch, getState) => {
+export const addToCart = (id, qty) => async (dispatch, getState) => {
 	const { data } = await axios.get(
-		`https://secret-beyond-07972.herokuapp.com/shop/${id}`
+		` https://desolate-brushlands-04983.herokuapp.com/shop/${id}`
 	);
 
 	dispatch({
@@ -13,12 +13,20 @@ export const addToCart = (id) => async (dispatch, getState) => {
 			name: data.item,
 			image: data.image,
 			price: data.price,
-			description: data.description,
 			reviews: data.reviews,
-			availability: data.is_active,
-			category: data.category_name,
+			countInStock: data.countInStock,
+			qty,
 		},
 	});
 
-	localStorage.setItem('cartItems', JSON.stringify(getState().cartItems));
+	localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
+};
+
+export const removeFromCart = (id) => (dispatch, getState) => {
+	dispatch({
+		type: DELETE_FROM_CART,
+		payload: id,
+	});
+
+	localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
 };

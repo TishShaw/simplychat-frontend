@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ProductContext } from './Context';
-import NavBar from './components/NavBar/NavBar';
 import Homepage from './pages/Homepage';
 import Shoppage from './pages/Shoppage';
 import ProductDetail from './components/Products/ProductDetails';
-import Login from './components/Login/Login';
+import Login from './components/Auth/Login/Login';
 import Favorites from './components/Favorites/Favorites';
-import Signup from './components/Signup/Signup';
+import Reviews from './components/Reviews/Reviews';
+import Signup from './components/Auth/Signup/Signup';
 import Lips from './components/Category/Lips';
 import Face from './components/Category/Face';
 import Eyes from './components/Category/Eyes';
@@ -25,16 +25,17 @@ function App() {
 	const [product, setProduct] = useState([]);
 
 	useEffect(() => {
-		axios.get('https://secret-beyond-07972.herokuapp.com/shop/').then((res) => {
-			setProduct(res.data);
-			
-		});
+		axios
+			.get('https://desolate-brushlands-04983.herokuapp.com/shop/')
+			.then((res) => {
+				setProduct(res.data);
+			});
 	}, []);
 
 	const getUser = async () => {
 		try {
 			const res = await fetch(
-				'https://secret-beyond-07972.herokuapp.com/users/me/',
+				'https://desolate-brushlands-04983.herokuapp.com/users/me/',
 				{
 					headers: {
 						Authorization: `Token ${localStorage.getItem('token')}`,
@@ -66,7 +67,7 @@ function App() {
 	const handleThisLogout = async (token) => {
 		try {
 			const res = await fetch(
-				'https://secret-beyond-07972.herokuapp.com/token/logout',
+				'https://desolate-brushlands-04983.herokuapp.com/token/logout',
 				{
 					method: 'POST',
 					headers: {
@@ -74,7 +75,7 @@ function App() {
 					},
 				}
 			);
-			
+
 			if (res.status === 204) {
 				alert('You have been logged out!');
 				setLogin(false);
@@ -92,7 +93,6 @@ function App() {
 		}
 	}, [login]);
 
-	
 	return (
 		<div>
 			<ProductContext.Provider
@@ -104,18 +104,19 @@ function App() {
 					login,
 				}}>
 				<Layout>
-				<Routes>
-					<Route path='/' element={<Homepage />} />
-					<Route path='/lips' element={<Lips />} />
-					<Route path='/face' element={<Face />} />
-					<Route path='/eyes' element={<Eyes />} />
-					<Route path='/login' element={<Login />} />
-					<Route path='/shop' element={<Shoppage />} />
-					<Route path='/signup' element={<Signup />} />
-					<Route path='/cart/:id' element={<Cart />} />
-					<Route path='/:id' element={<ProductDetail />} />
-					<Route path='/Favorites' element={<Favorites />} />
-				</Routes>
+					<Routes>
+						<Route path='/' element={<Homepage />} />
+						<Route path='/lips' element={<Lips />} />
+						<Route path='/face' element={<Face />} />
+						<Route path='/eyes' element={<Eyes />} />
+						<Route path='/login' element={<Login />} />
+						<Route path='/shop' element={<Shoppage />} />
+						<Route path='/signup' element={<Signup />} />
+						<Route path='/cart/:id' element={<Cart />} />
+						<Route path='/cart' element={<Cart />} />
+						<Route path='/:id' element={<ProductDetail />} />
+						<Route path='/Favorites' element={<Favorites />} />
+					</Routes>
 				</Layout>
 			</ProductContext.Provider>
 		</div>

@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.banner-image {
+   height: 200px;
+}
+
+/*  Newsfeed Banner Styles */
+
+.news-container {
+    background-image:linear-gradient(
+			rgba(154, 107, 107, 0.5),
+			rgba(225, 119, 111, 0.413)
+		);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    height: 18em;
+    margin: 90px 0;
+    text-align: center;
+}
+
+.news-input {
+    outline: none;
+    width: 300px;
+    padding: 8px;
+}
+
+.newsBtn {
+    border: none;
+    height: 45px;
+    width: 50px;
+    background-color: transparent;
+    border: 1px gray solid;
+    color: white;
+ 
+}

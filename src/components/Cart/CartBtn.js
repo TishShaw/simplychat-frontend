@@ -4,23 +4,12 @@ import { useDispatch} from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { addToCart } from '../../redux/actions';
 
-function CartBtn({item}) {
+function CartBtn({ addToCart , item}) {
 	const dispatch = useDispatch();
-	console.log(item.id);
-
-	const addToCart = (item) => {
-		console.log('cart');
-		dispatch({ type: 'ADD_TO_CART', payload: item });
-	};
-
-	
-
 
 	return (
-		<Button dark sm outline onClick={() => addToCart(item)}>
-			<Link to={`/cart/${item.id}`} key={item.id}>
-				Add to Cart
-			</Link>
+		<Button dark sm outline onClick={addToCart}>
+			<Link to={`/cart/:id?`}>Add to Cart</Link>
 		</Button>
 	);
 }

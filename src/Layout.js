@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 function Layout(props) {
     return (
         <div>
+           
             <NavBar />
             {props.children}
             

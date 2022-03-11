@@ -1,0 +1,14 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+    height: 100vh;
+}
+
+.loginBtn {
+    margin-top: 30px;
+}
+.login-title {
+    color: rgb(102, 18, 42);
+}

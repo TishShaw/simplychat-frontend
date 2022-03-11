@@ -1,14 +1,19 @@
 import React, { useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Button } from 'bootstrap-4-react';
+import Badge from 'react-bootstrap/Badge';
+import Bag from '../../assets/images/icons8-bag-64.png';
+import { useSelector, useDispatch } from 'react-redux';
+import CartItem from '../Cart/CartItem';
+
 import { ProductContext } from '../../Context';
 import './NavBar.styles.css';
 
 function NavBar(props) {
-	const { handleThisLogout, login} = useContext(ProductContext);
-	const {id} = useParams()
-	
+	const { handleThisLogout, login } = useContext(ProductContext);
+	const cartItems = useSelector((state) => state.cartItems);
+	console.log(cartItems);
 
+	const dispatch = useDispatch();
 	return (
 		<div>
 			<div className='navbar-header'>
@@ -16,7 +21,10 @@ function NavBar(props) {
 					FREE SHIPPING ON ANY U.S. ORDER | FREE RETURNS
 				</p>
 			</div>
-			<nav className='navbar navbar-expand-lg navbar-light bg-pink-900'>
+
+			<nav
+				className='navbar navbar-expand-lg navbar-light bg-pink-900'
+				light='true'>
 				<div className='container-fluid navbar-logo'>
 					<Link className='navbar-brand fw-bold fs-50 text-white ' to='/'>
 						<h2 className='logo-title'>Keita's Beauty</h2>
@@ -32,7 +40,7 @@ function NavBar(props) {
 						<span className='navbar-toggler-icon'></span>
 					</button>
 					<div className='collapse navbar-collapse' id='navbarSupportedContent'>
-						<ul className='navbar-nav mx-auto mb-2 mb-lg-0 nav-collapse'>
+						<ul className='navbar-nav mx-auto mb-2 mb-lg-0'>
 							<li className='nav-item'>
 								<Link
 									className='nav-link active text-white'
@@ -68,25 +76,29 @@ function NavBar(props) {
 						</ul>
 						<div className='nav-right'>
 							{login ? (
-								<Button
+								<div
 									light
 									md
 									outline
 									className='nav-right-item'
 									onClick={handleThisLogout}>
 									<Link to='/shop'>Log Out</Link>
-								</Button>
+								</div>
 							) : (
-								<Button light md outline className='nav-right-item'>
-									<Link to='/login'>Log In</Link>
-								</Button>
+								<div light md outline className='nav-right-item'>
+									<Link to='/login'>Log In </Link>|
+									<Link to='/signup'> Sign Up</Link>
+								</div>
 							)}
-							<Link to={`/cart`}>
-								<i className='fa-solid fa-bag-shopping nav-right-item text-white'></i>
-							</Link>
-							{/* <Link to='/Favorites' className='nav-right-item'>
-								{/* <i className='fa-solid fa-heart text-white '></i>
-							</Link> */}
+							{/* {cartItems.length > 0 && (
+								<Badge pill>{cartItems.reduce((a, c) => a + c, 0)}</Badge>
+							)} */}
+
+							<div className='nav-right'>
+								<Link to={`/cart`}>
+									<img src={Bag} alt='' className='nav-cart' />
+								</Link>
+							</div>
 						</div>
 					</div>
 				</div>

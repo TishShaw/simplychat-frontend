@@ -25,15 +25,17 @@ function Face() {
 				<div className='face-headerImg'>
 					<h1 className='face-title'>Face</h1>
 				</div>
-				{faceProduct.map((item) => {
-					return (
-						<div key={item.id}>
-							<img src={item.image} />
-							<p>{item.item}</p>
-							<p>{item.price}</p>
-						</div>
-					);
-				})}
+				<div className='face-resultsList'>
+					{faceProduct.map((item) => {
+						return (
+							<div key={item.id}>
+								<img src={item.image} className='faceResultsImg' />
+								<p>{item.item}</p>
+								<p>{item.price}</p>
+							</div>
+						);
+					})}
+				</div>
 			</div>
 		);
 }

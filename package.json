@@ -4,6 +4,8 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"@material-ui/core": "^4.12.3",
+		"@mui/material": "^5.5.0",
 		"@testing-library/jest-dom": "^5.16.2",
 		"@testing-library/react": "^12.1.2",
 		"@testing-library/user-event": "^13.5.0",
@@ -18,11 +20,12 @@
 		"react-redux": "^7.2.6",
 		"react-router-dom": "^6.2.1",
 		"react-scripts": "5.0.0",
+		"react-swipeable-views": "^0.14.0",
 		"redux": "^4.1.2",
 		"redux-devtools-extension": "^2.13.9",
+		"redux-thunk": "^2.4.1",
 		"web-vitals": "^2.1.4"
 	},
-
 	"scripts": {
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build",
@@ -51,7 +54,6 @@
 	},
 	"description": "Keita's Beauty is an online E-commerce Website where you can purchase your favorite make-up products for a reasonable price.",
 	"main": "index.js",
-	"devDependencies": {},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/TishShaw/KeitaBeauty-frontend.git"
