@@ -1,7 +1,12 @@
 import React from 'react';
 import './ShopFilter.styles.css';
 
-function ShopFilter(props) {
+function ShopFilter({ faceFilter, eyeFilter, lipFilter, productsFilter }) {
+	const handleClick = (e) => {
+		console.log(e.target.value);
+		console.log('clickkkkkk');
+	};
+
 	return (
 		<div className='shopFilter-container'>
 			<div className='shopFilter-categories'>
@@ -11,10 +16,10 @@ function ShopFilter(props) {
 					</h3>
 				</div>
 				<ul className='column'>
-					<li>All</li>
-					<li>Face</li>
-					<li>Eyes</li>
-					<li>Lips</li>
+					<li onClick={productsFilter}>All</li>
+					<li onClick={faceFilter}>Face</li>
+					<li onClick={eyeFilter}>Eyes</li>
+					<li onClick={lipFilter}>Lips</li>
 				</ul>
 			</div>
 			<div className='shopFilter-availability'>
@@ -34,10 +39,10 @@ function ShopFilter(props) {
 					<h3 className='shopFilter-sort__title'>Sort by</h3>
 				</div>
 				<ul className='column'>
-					<li>Featured</li>
-					<li>Best Selling</li>
-					<li>Price, low to high</li>
-					<li>Price, high to low</li>
+					<li onClick={handleClick}>Featured</li>
+					<li onClick={handleClick}>Best Selling</li>
+					<li onClick={handleClick}>Price, low to high</li>
+					<li onClick={handleClick}>Price, high to low</li>
 				</ul>
 			</div>
 		</div>

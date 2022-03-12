@@ -6,14 +6,13 @@ import Shoppage from './pages/Shoppage';
 import ProductDetail from './components/Products/ProductDetails';
 import Login from './components/Auth/Login/Login';
 import Favorites from './components/Favorites/Favorites';
-import Reviews from './components/Reviews/Reviews';
+import CheckoutPage from './pages/CheckoutPage';
 import Signup from './components/Auth/Signup/Signup';
 import Lips from './components/Category/Lips';
 import Face from './components/Category/Face';
 import Eyes from './components/Category/Eyes';
 import Cart from './components/Cart/Cart';
 import Layout from './Layout';
-import axios from 'axios';
 
 function App() {
 	const [currentUser, setCurrentUser] = useState(null);
@@ -21,16 +20,6 @@ function App() {
 	const [login, setLogin] = useState(
 		localStorage.getItem('token') ? true : false
 	);
-
-	const [product, setProduct] = useState([]);
-
-	useEffect(() => {
-		axios
-			.get('https://desolate-brushlands-04983.herokuapp.com/shop/')
-			.then((res) => {
-				setProduct(res.data);
-			});
-	}, []);
 
 	const getUser = async () => {
 		try {
@@ -100,7 +89,6 @@ function App() {
 					handleThisLogout,
 					currentUser,
 					handleThisLogin,
-					product,
 					login,
 				}}>
 				<Layout>
@@ -116,6 +104,7 @@ function App() {
 						<Route path='/cart' element={<Cart />} />
 						<Route path='/:id' element={<ProductDetail />} />
 						<Route path='/Favorites' element={<Favorites />} />
+						<Route path='/Checkout' element={<CheckoutPage />} />
 					</Routes>
 				</Layout>
 			</ProductContext.Provider>

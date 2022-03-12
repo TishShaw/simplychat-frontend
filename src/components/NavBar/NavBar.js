@@ -9,11 +9,13 @@ import { ProductContext } from '../../Context';
 import './NavBar.styles.css';
 
 function NavBar(props) {
-	const { handleThisLogout, login } = useContext(ProductContext);
-	const cartItems = useSelector((state) => state.cartItems);
-	console.log(cartItems);
-
+	const { handleThisLogout, login, currentUser } = useContext(ProductContext);
+	const cart = useSelector((state) => state.cart);
+	const { cartItems } = cart;
+	console.log(cartItems.length);
 	const dispatch = useDispatch();
+
+
 	return (
 		<div>
 			<div className='navbar-header'>
@@ -90,15 +92,21 @@ function NavBar(props) {
 									<Link to='/signup'> Sign Up</Link>
 								</div>
 							)}
-							{/* {cartItems.length > 0 && (
-								<Badge pill>{cartItems.reduce((a, c) => a + c, 0)}</Badge>
-							)} */}
-
-							<div className='nav-right'>
-								<Link to={`/cart`}>
-									<img src={Bag} alt='' className='nav-cart' />
-								</Link>
-							</div>
+							{login && currentUser ? (
+								<div className='nav-right'>
+									<Link to={`/cart`}>
+										<img src={Bag} alt='' className='nav-cart' />
+										{cartItems.length}
+									</Link>
+								</div>
+							) : (
+								<div className='nav-right'>
+									<Link to={`/cart`}>
+										<img src={Bag} alt='' className='nav-cart' />
+										
+									</Link>
+								</div>
+							)}
 						</div>
 					</div>
 				</div>

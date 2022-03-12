@@ -7,10 +7,12 @@
 .face-resultsList {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2,1fr);
     height: 100vh;
     width: 100%;
-    margin: auto;
+    margin: 30px;
 }
+
 .face-headerImg {
     	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/2721977/pexels-photo-2721977.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
 	background-position: center;
@@ -33,9 +35,13 @@
     font-size: 50px;
 }
 
-
-
 .faceResultsImg {
-    height: 200px;
+	height: 200px;
     width: 200px;
+}
+
+.face-cartBtn {
+    background-color: rgb(147, 141, 141);
+    color: white;
+    padding: 10px;
 }

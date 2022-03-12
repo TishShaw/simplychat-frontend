@@ -1,12 +1,12 @@
 .cart-title {
-    
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1.5px dotted rgb(91, 41, 22);
     width: 800px;
-    margin-top: 80px
+    margin-top: 30px;
+    margin-bottom: 30px;
     
 }
 
@@ -18,7 +18,29 @@
     justify-content: end;
 }
 
-.cart-container {
+.cart-img {
     height: 150px;
-    border: none;
+    width: 150px;
+}
+
+.checkout-btn {
+    background-color: pink;
+    color: white;
+    padding: 20px;
+    width: 300px;
+    font-weight: bold;
+
+}
+
+.bold {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.total-card {
+    border: 2px black solid;
+    padding: 20px;
+    width: 500px;
+    margin-left: 60%;
+    margin-top: 100px;
 }

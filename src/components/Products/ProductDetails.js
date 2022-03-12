@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductDetails } from '../../redux/actions/productAction/productAction';
 import Rating from '../Rating/Rating';
 import ProductBox from '../ProductBox';
 import './ProductList.styles.css';
@@ -8,23 +9,18 @@ import './ProductList.styles.css';
 function ProductDetail({ match, history }) {
 	const { id } = useParams();
 	const dispatch = useDispatch();
+	const productDetails = useSelector((state) =>  state.productDetails)
+	const { product } = productDetails;
 	const navigate = useNavigate();
-	const [product, setProduct] = useState(null);
 	const [reviewId, setReviewId] = useState([]);
 	const [qty, setQty] = useState(1);
 	const [rating, setRating] = useState(0);
 
-	const getProductDetail = async () => {
-		try {
-			const response = await fetch(
-				`https://desolate-brushlands-04983.herokuapp.com/shop/${id}`
-			).then((response) => response.json());
 
-			setProduct(response);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+	useEffect(() => {
+		dispatch(getProductDetails(id));
+	}, [dispatch, id]);
+	
 
 	const addToCart = (product) => {
 		dispatch({ type: 'ADD_TO_CART', payload: product });
@@ -33,12 +29,6 @@ function ProductDetail({ match, history }) {
 	const handleAddToCart = (product) => {
 		navigate(`/cart/${id}?qty=${qty}`);
 	};
-
-	console.log(product);
-
-	useEffect(() => {
-		getProductDetail();
-	}, []);
 
 	const getReview = async () => {
 		try {
@@ -58,10 +48,6 @@ function ProductDetail({ match, history }) {
 			console.log(error);
 		}
 	};
-
-	useEffect(() => {
-		getProductDetail();
-	}, []);
 
 	console.log(product);
 

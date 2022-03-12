@@ -27,9 +27,13 @@
 }
 
 .eyes-content {
-    margin-top: 300px;
+    margin: 30px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4,1fr);
-    margin-left: 50px;
+    grid-template-rows: repeat(2,1fr);
+}
+
+.eyesImg {
+    height: 200px;
+    width: 200px;
 }

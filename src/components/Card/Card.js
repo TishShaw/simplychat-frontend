@@ -7,7 +7,7 @@ import './Card.styles.css';
 import Rating from '../Rating/Rating';
 
 function Card({ item }) {
-	console.log(item);
+
 
 	return (
 		<div className='Card'>

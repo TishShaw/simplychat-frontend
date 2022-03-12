@@ -30,7 +30,7 @@ function Reviews({ product }) {
 	};
 
 	const initialReviewData = {
-		rating: '',
+		rating: null,
 		product_id: id,
 		review_title: '',
 		review_body: '',
@@ -59,7 +59,7 @@ function Reviews({ product }) {
 				}
 			);
 			if (response.status === 201) {
-				navigate('/shop');
+				
 			}
 		} catch (error) {
 			console.log(error);
@@ -212,7 +212,7 @@ function Reviews({ product }) {
 						newReview={newReview}
 						editShowing={editShowing}
 						rating={rating}
-						setRating={setRating}
+						setRating={setRating}						
 					/>
 				) : null}
 				{login ? (
