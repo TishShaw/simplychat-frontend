@@ -20,16 +20,16 @@ function Footer(props) {
 			<div className='footer-shop-section'>
 				<h1 className='footer-title'>Shop</h1>
 				<ul>
-					<li>Shop All Products</li>
-					<li>Face Products</li>
-					<li>Eye Products</li>
-					<li>Lip Products</li>
+					<li><Link to='/shop'>Shop All Products</Link></li>
+					<li><Link to='/face'>Face Products</Link></li>
+					<li><Link to='/eyes'>Eye Products</Link></li>
+					<li><Link to='/lips'>Lip Products</Link></li>
 				</ul>
 			</div>
 			<div className='footer-contact-section'>
 				<h1 className='footer-title'>Get In Touch</h1>
 				<ul>
-					<li>tishtanya.shaw24@gmail.com</li>
+					<li><a href="mailto:tishtanya.shaw24@gmail.com">tishtanya.shaw24@gmail.com</a></li>
 				</ul>
 			</div>
 			<div className='footer-affiliate-section'>

@@ -12,7 +12,13 @@ function ProductDetail({ match, history }) {
 	const dispatch = useDispatch();
 	const productDetails = useSelector((state) =>  state.productDetails)
 	const { product } = productDetails;
+	const reducer = (acc, currentVal) => {
+		return acc + currentVal;
+	};
 
+	const ratings = product.reviews.map((item) => item.rating);
+	const addRatings = ratings.reduce(reducer, 0);
+	const averageRatings = addRatings / ratings.length;
 
 	const navigate = useNavigate();
 	const [reviewId, setReviewId] = useState([]);
@@ -30,7 +36,6 @@ function ProductDetail({ match, history }) {
 
 	const [newReview, setNewReview] = useState(initialReviewData);
 	useEffect(() => {
-
 		dispatch(getProductDetails(id));
 	}, [dispatch, id]);
 	
@@ -42,30 +47,10 @@ function ProductDetail({ match, history }) {
 	const handleAddToCart = (product) => {
 		navigate(`/cart/${id}?qty=${qty}`);
 	};
-
-	const getReview = async () => {
-		try {
-			let data = await fetch(
-				`https://desolate-brushlands-04983.herokuapp.com/shop/review/`,
-				{
-					method: 'GET',
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: `Token ${localStorage.getItem('token')}`,
-					},
-				}
-			)
-				.then((response) => response.json())
-				.then((data) => setReviewId(data));
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	if (!product) {
+	
+	if (!product.reviews) {
 		return null;
 	}
-
 	return (
 		<div className='pd-wrapper'>
 			<div className='mb-3'>
@@ -81,7 +66,7 @@ function ProductDetail({ match, history }) {
 						<div className='card-body'>
 							<p className='card-text-title'>{product.item}</p>
 							<Rating
-								value={product.rating}
+								value={averageRatings}
 								text={`(${product.reviews.length}) reviews`}
 								color={'#f8e825'}
 							/>

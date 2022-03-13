@@ -18,7 +18,6 @@ function NewReview({
 	const navigate = useNavigate;
 	const productCreateReview = useSelector((state) => state.productCreateReview);
 	const { loading, success, error } = productCreateReview;
-	console.log(productCreateReview);
 
 	useEffect(() => {
 		if (success) {
@@ -44,22 +43,23 @@ function NewReview({
 					<label>Rating</label>
 					<select
 						as='select'
-						value={rating}
-						onChange={(e) => setRating(e.target.value)}>
+						id='rating'
+						value={newReview.rating}
+						onChange={handleChange}>
 						<option value=''>Select...</option>
-						<option value='1' id='rating'>
+						<option value={1} id='rating'>
 							1 - Poor
 						</option>
-						<option value='2' id='rating'>
+						<option value={2} id='rating'>
 							2 - Fair
 						</option>
-						<option value='3' id='rating'>
+						<option value={3} id='rating'>
 							3 - Good
 						</option>
-						<option value='4' id='rating'>
+						<option value={4} id='rating'>
 							4 - Very Good
 						</option>
-						<option value='5' id='rating'>
+						<option value={5} id='rating'>
 							5 - Excellent
 						</option>
 					</select>

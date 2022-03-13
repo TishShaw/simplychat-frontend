@@ -5,7 +5,6 @@ import { UPDATE_PRODUCT_REVIEW } from '../redux/constants/productConstants';
 import { updateProductReview } from '../redux/actions/productAction/productAction';
 
 function EditBtn({ item, handleEditShowing }) {
-    console.log(item.id);
 	const [showing, setShowing] = useState(false);
 	const dispatch = useDispatch();
 

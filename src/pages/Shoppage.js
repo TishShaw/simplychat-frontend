@@ -14,7 +14,7 @@ function Shoppage() {
 
 	useEffect(() => {
 		dispatch(getProducts(product));
-	},[])
+	}, []);
 
 	const productsFilter = (event) => {
 		event.preventDefault();
@@ -24,18 +24,15 @@ function Shoppage() {
 			console.log('allproducts');
 		});
 		setFilteredArr(product);
-		console.log(filteredArr);
-	}
+	};
 
 	const faceFilter = (event) => {
 		event.preventDefault();
 
 		const face = products.filter((item) => {
 			if (item.category_name === 'face') return item.item;
-			console.log('faceproducts');
 		});
 		setFilteredArr(face);
-		console.log(filteredArr);
 	};
 
 	const eyeFilter = (event) => {
@@ -43,10 +40,8 @@ function Shoppage() {
 
 		const eye = products.filter((item) => {
 			if (item.category_name === 'eyes') return item.item;
-			console.log('eyeproducts');
 		});
 		setFilteredArr(eye);
-		console.log(filteredArr);
 	};
 
 	const lipFilter = (event) => {
@@ -54,13 +49,9 @@ function Shoppage() {
 
 		const lip = products.filter((item) => {
 			if (item.category_name === 'lips') return item.item;
-			console.log('lipproducts');
 		});
 		setFilteredArr(lip);
-		console.log(filteredArr);
 	};
-
-	
 
 	return (
 		<div className='shop'>
@@ -75,14 +66,21 @@ function Shoppage() {
 							eyeFilter={eyeFilter}
 							lipFilter={lipFilter}
 							productsFilter={productsFilter}
-							
 						/>
 					</div>
-					<div className='shop-results'>
-						{filteredArr.map((item) => (
-							<Card key={item.id} item={item} />
-						))}
-					</div>
+					{filteredArr.length > 0 ? (
+						<div className='shop-results'>
+							{filteredArr.map((item) => (
+								<Card key={item.id} item={item} />
+							))}
+						</div>
+					) : (
+						<div className='shop-results'>
+							{products.map((item) => (
+								<Card key={item.id} item={item} />
+							))}
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

@@ -43,7 +43,6 @@ export const getProductDetails = (id) => async (dispatch) => {
 		const { data } = await axios.get(
 			`https://desolate-brushlands-04983.herokuapp.com/shop/${id}`
 		);
-		console.log(data.reviews);
 
 		dispatch({
 			type: GET_PRODUCTS_DETAILS_SUCCESSFUL,
@@ -65,7 +64,6 @@ export const removeProductReview = (id) => async (dispatch) => {
 		const config = {
 			headers: {
 				'Content-type': 'application/json',
-
 				Authorization: `Token ${localStorage.getItem('token')}`,
 			},
 		};
@@ -76,7 +74,6 @@ export const removeProductReview = (id) => async (dispatch) => {
 			`https://desolate-brushlands-04983.herokuapp.com/shop/review/${id}`,
 			config
 		);
-		console.log(data);
 
 		dispatch({
 			type: REMOVE_PRODUCT_REVIEW_SUCCESSFUL,
@@ -111,7 +108,6 @@ export const createProductReviews =
 				reviews,
 				config
 			);
-			console.log(data);
 
 			dispatch({
 				type: CREATE_PRODUCT_REVIEW_SUCCESSFUL,

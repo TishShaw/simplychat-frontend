@@ -1,9 +1,23 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from '../redux/actions/cartAction/cartAction';
+import InjectedCheckoutForm from '../components/CheckoutForm';
 import './styles/CheckoutPage.styles.css';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+
+const stripePromise = loadStripe(
+	'pk_test_51KcjH6KanM364UbJUkBvqY0fq8dvfiprMOqo2ft8bFY3JqmYyl4mSICRkILE6xOIDL2eLZSQYUIKuZH6celdafEw00CQcNVHDt'
+);
 
 function CheckoutPage(props) {
+
+		  const options = {
+				// passing the client secret obtained from the server
+				clientSecret: '{{CLIENT_SECRET}}',
+			};
+	
 	const [address, setAddress] = useState('');
 	const [city, setCity] = useState('');
 	const [postalCode, setPostalCode] = useState('');
@@ -101,15 +115,9 @@ function CheckoutPage(props) {
 							aria-labelledby='headingTwo'
 							data-bs-parent='#accordionExample'>
 							<div class='accordion-body'>
-								<strong>This is the second item's accordion body.</strong> It is
-								hidden by default, until the collapse plugin adds the
-								appropriate classes that we use to style each element. These
-								classes control the overall appearance, as well as the showing
-								and hiding via CSS transitions. You can modify any of this with
-								custom CSS or overriding our default variables. It's also worth
-								noting that just about any HTML can go within the{' '}
-								<code>.accordion-body</code>, though the transition does limit
-								overflow.
+								<Elements stripe={stripePromise} options={options}>
+									<InjectedCheckoutForm />
+								</Elements>
 							</div>
 						</div>
 					</div>

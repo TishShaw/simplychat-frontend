@@ -14,12 +14,14 @@ import Eyes from './components/Category/Eyes';
 import Cart from './components/Cart/Cart';
 import Layout from './Layout';
 
+
 function App() {
 	const [currentUser, setCurrentUser] = useState(null);
 
 	const [login, setLogin] = useState(
 		localStorage.getItem('token') ? true : false
 	);
+
 
 	const getUser = async () => {
 		try {

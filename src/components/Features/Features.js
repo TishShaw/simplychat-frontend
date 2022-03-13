@@ -7,11 +7,7 @@ import Redlip from '../../assets/images/redlip.jpg';
 import Banner from '../../assets/images/mediumbanner.png';
 
 function Features() {
-	const { product } = useContext(ProductContext);
 
-	if (!product) {
-		return 'loading products...';
-	}
 	return (
 		<div className='features'>
 			<h1 className='features-title'>

@@ -1,8 +1,4 @@
 import Button from 'bootstrap-4-react/lib/components/Button';
-import {
-	Form,
-} from 'react-bootstrap';
-
 import '../NewReview/NewReview.styles.css';
 
 function UpdateReview({ newReview, handleChange, handleUpdate, editShowing, rating, setRating }) {
@@ -13,14 +9,25 @@ function UpdateReview({ newReview, handleChange, handleUpdate, editShowing, rati
 					<label>Rating</label>
 					<select
 						as='select'
-						value={rating}
-						onChange={(e) => setRating(e.target.value)}>
+						id='rating'
+						value={newReview.rating}
+						onChange={handleChange}>
 						<option value=''>Select...</option>
-						<option value='1'>1 - Poor</option>
-						<option value='2'>2 - Fair</option>
-						<option value='3'>3 - Good</option>
-						<option value='4'>4 - Very Good</option>
-						<option value='5'>5 - Excellent</option>
+						<option value={1} id='rating'>
+							1 - Poor
+						</option>
+						<option value={2} id='rating'>
+							2 - Fair
+						</option>
+						<option value={3} id='rating'>
+							3 - Good
+						</option>
+						<option value={4} id='rating'>
+							4 - Very Good
+						</option>
+						<option value={5} id='rating'>
+							5 - Excellent
+						</option>
 					</select>
 				</div>
 

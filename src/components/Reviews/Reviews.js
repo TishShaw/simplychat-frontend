@@ -18,14 +18,10 @@ function Reviews({ product }) {
 	const dispatch = useDispatch();
 	const [showing, setShowing] = useState(false);
 	const [editShowing, setEditShowing] = useState(false);
-	const [reviewId, setReviewId] = useState([]);
-	const [reviews, setReviews] = useState([]);
-	const [rating, setRating] = useState('');
+	const [rating, setRating] = useState(null);
 
+	const reducer = (acc, currentVal) => { return acc + currentVal};
 	const navigate = useNavigate();
-
-	console.log(product.reviews);
-	console.log(product);
 
 	const handleShowing = (event) => {
 		event.preventDefault();
@@ -38,7 +34,7 @@ function Reviews({ product }) {
 	};
 
 	const initialReviewData = {
-		rating: null,
+		rating: rating,
 		product_id: id,
 		review_title: '',
 		review_body: '',
@@ -52,34 +48,9 @@ function Reviews({ product }) {
 		});
 	};
 
-	// const getReview = async () => {
-	// 	try {
-	// 		const data = await axios
-	// 			.get(`https://desolate-brushlands-04983.herokuapp.com/shop/review/`)
-	// 			.then((data) => setReviews(data.data));
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// };
-	// useEffect(() => {
-	// 	getReview();
-	// }, []);
-
-	const newid = reviewId.filter((item) => {
-		if (item.product_id === product.id) {
-			return product.reviews[0].id;
-		} else {
-			return '';
-		}
-	});
-
-console.log(id);
-
 	const handleUpdate = (event, id) => {
 		event.preventDefault();
-		
 		dispatch(editProductReview(id));
-		console.log(id); 
 	};
 
 	if (!product.reviews) {
