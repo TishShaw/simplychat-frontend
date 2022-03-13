@@ -27,7 +27,7 @@ function Face() {
 
 	useEffect(() => {
 		filterProducts();
-	});
+	},[]);
 
 	return (
 		<div className='face'>

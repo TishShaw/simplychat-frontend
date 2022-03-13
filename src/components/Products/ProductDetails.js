@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetails } from '../../redux/actions/productAction/productAction';
+import { CREATE_PRODUCT_REVIEW_RESET } from '../../redux/constants/productConstants';
 import Rating from '../Rating/Rating';
 import ProductBox from '../ProductBox';
 import './ProductList.styles.css';
@@ -11,13 +12,25 @@ function ProductDetail({ match, history }) {
 	const dispatch = useDispatch();
 	const productDetails = useSelector((state) =>  state.productDetails)
 	const { product } = productDetails;
+
+
 	const navigate = useNavigate();
 	const [reviewId, setReviewId] = useState([]);
 	const [qty, setQty] = useState(1);
 	const [rating, setRating] = useState(0);
 
 
+	const initialReviewData = {
+		rating: null,
+		product_id: id,
+		review_title: '',
+		review_body: '',
+	};
+
+
+	const [newReview, setNewReview] = useState(initialReviewData);
 	useEffect(() => {
+
 		dispatch(getProductDetails(id));
 	}, [dispatch, id]);
 	
@@ -48,8 +61,6 @@ function ProductDetail({ match, history }) {
 			console.log(error);
 		}
 	};
-
-	console.log(product);
 
 	if (!product) {
 		return null;

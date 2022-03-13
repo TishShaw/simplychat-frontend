@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link, useSearchParams, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import CartItem from './CartItem';
-import { addToCart } from '../../redux/actions/cartAction/cartAction';
+import {
+	addToCart,
+	removeFromCart,
+} from '../../redux/actions/cartAction/cartAction';
 import './styles/Cart.style.css';
 
 function Cart({ match, history, location }) {
@@ -21,9 +23,15 @@ function Cart({ match, history, location }) {
 		}
 	}, [dispatch, id, qty]);
 
+	const handleRemoveFromCart = (id) => {
+		dispatch(removeFromCart(id));
+	};
+
+
 	if (!cartItems) {
 		return null;
 	}
+
 	return (
 		<div>
 			<h1 className='cart-title'>Your Bag</h1>
@@ -78,7 +86,8 @@ function Cart({ match, history, location }) {
 												))}
 											</select>
 
-											<button>
+											<button
+												onClick={() => handleRemoveFromCart(item.product)}>
 												<i className='fas fa-trash col'></i>
 											</button>
 										</div>

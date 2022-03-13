@@ -5,11 +5,12 @@ import {
 	GET_PRODUCTS_DETAILS_REQUEST,
 	GET_PRODUCTS_DETAILS_SUCCESSFUL,
 	GET_PRODUCTS_DETAILS_FAILED,
-
 	CREATE_PRODUCT_REVIEW_REQUEST,
 	CREATE_PRODUCT_REVIEW_SUCCESSFUL,
 	CREATE_PRODUCT_REVIEW_FAILED,
 	CREATE_PRODUCT_REVIEW_RESET,
+	REMOVE_PRODUCT_REVIEW_SUCCESSFUL,
+	UPDATE_PRODUCT_REVIEW,
 } from '../constants/productConstants';
 
 export const productsReducer = (state = {products: []}, action) => {
@@ -21,6 +22,12 @@ export const productsReducer = (state = {products: []}, action) => {
 
 		case GET_ALL_PRODUCTS_FAILED:
 			return { loading: false, products: action.payload };
+
+		case REMOVE_PRODUCT_REVIEW_SUCCESSFUL:
+			return {
+				...state,
+				reviews: state.filter((x) => x.product !== action.payload),
+			};
 
 		default:
 			return state;
@@ -37,6 +44,12 @@ export const productsDetailsReducer = (state = {product : {reviews: []}}, action
 		case GET_PRODUCTS_DETAILS_FAILED:
 			return { loading: false, error: action.payload };
 
+		case UPDATE_PRODUCT_REVIEW:
+			return {
+				...state,
+				reviews: {loading: false, reviews: action.payload},
+			};
+
 		default:
 			return state;
 	}
@@ -48,7 +61,7 @@ export const productReviewReducer = (state = {}, action) => {
 			return { loading: true };
 
 		case CREATE_PRODUCT_REVIEW_SUCCESSFUL:
-			return { loading: false, success: true };
+			return { loading: false, success: true};
 
 		case CREATE_PRODUCT_REVIEW_FAILED:
 			return { loading: false, error: action.payload };

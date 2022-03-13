@@ -1,20 +1,14 @@
 import React, { useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import Badge from 'react-bootstrap/Badge';
-import Bag from '../../assets/images/icons8-bag-64.png';
-import { useSelector, useDispatch } from 'react-redux';
-import CartItem from '../Cart/CartItem';
-
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { ProductContext } from '../../Context';
+import Bag from '../../assets/images/icons8-bag-64.png';
 import './NavBar.styles.css';
 
 function NavBar(props) {
 	const { handleThisLogout, login, currentUser } = useContext(ProductContext);
 	const cart = useSelector((state) => state.cart);
 	const { cartItems } = cart;
-	console.log(cartItems.length);
-	const dispatch = useDispatch();
-
 
 	return (
 		<div>
@@ -103,7 +97,6 @@ function NavBar(props) {
 								<div className='nav-right'>
 									<Link to={`/cart`}>
 										<img src={Bag} alt='' className='nav-cart' />
-										
 									</Link>
 								</div>
 							)}

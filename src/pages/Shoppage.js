@@ -9,14 +9,13 @@ function Shoppage() {
 	const dispatch = useDispatch();
 	const product = useSelector((state) => state.product);
 	const { products } = product;
-	console.log(product);
 
 	const [filteredArr, setFilteredArr] = useState([]);
 
 	useEffect(() => {
 		dispatch(getProducts(product));
 	},[])
-	
+
 	const productsFilter = (event) => {
 		event.preventDefault();
 

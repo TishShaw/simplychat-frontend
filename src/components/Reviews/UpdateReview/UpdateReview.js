@@ -9,7 +9,7 @@ function UpdateReview({ newReview, handleChange, handleUpdate, editShowing, rati
 	return (
 		<div className='review-container '>
 			<form className='review-form' onSubmit={handleUpdate}>
-				<div controlId='rating'>
+				<div>
 					<label>Rating</label>
 					<select
 						as='select'

@@ -1,22 +1,31 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ProductContext } from '../../Context';
+import { useDispatch } from 'react-redux';
+import { editProductReview } from '../../redux/actions/productAction/productAction';
 import { Button } from 'bootstrap-4-react/lib/components';
 import Rating from '../Rating/Rating';
 import NewReview from './NewReview/NewReview';
 import UpdateReview from './UpdateReview/UpdateReview';
+import EditBtn from '../EditBtn';
+import DeleteBtn from '../DeleteBtn';
 import './Reviews.styles.css';
-import axios from 'axios';
+
 
 function Reviews({ product }) {
 	const { login, currentUser } = useContext(ProductContext);
 	const { id } = useParams();
-
+	const dispatch = useDispatch();
 	const [showing, setShowing] = useState(false);
 	const [editShowing, setEditShowing] = useState(false);
 	const [reviewId, setReviewId] = useState([]);
 	const [reviews, setReviews] = useState([]);
-	const [rating, setRating] = useState(0);
+	const [rating, setRating] = useState('');
+
+	const navigate = useNavigate();
+
+	console.log(product.reviews);
+	console.log(product);
 
 	const handleShowing = (event) => {
 		event.preventDefault();
@@ -25,7 +34,6 @@ function Reviews({ product }) {
 
 	const handleEditShowing = (event) => {
 		event.preventDefault();
-		getReview(id);
 		setEditShowing(!editShowing);
 	};
 
@@ -36,53 +44,26 @@ function Reviews({ product }) {
 		review_body: '',
 	};
 
-	const navigate = useNavigate();
 	const [newReview, setNewReview] = useState(initialReviewData);
-	
+
 	const handleChange = (event) => {
 		setNewReview((prevState) => {
 			return { ...prevState, [event.target.id]: event.target.value };
 		});
 	};
 
-	const createNewReview = async () => {
-		try {
-			const response = await fetch(
-				'https://desolate-brushlands-04983.herokuapp.com/shop/review/',
-				{
-					method: 'POST',
-					body: JSON.stringify(newReview),
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: `Token ${localStorage.getItem('token')}`,
-					},
-				}
-			);
-			if (response.status === 201) {
-				
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		createNewReview();
-	};
-
-	const getReview = async () => {
-		try {
-			const data = await axios
-				.get(`https://desolate-brushlands-04983.herokuapp.com/shop/review/`)
-				.then((data) => setReviews(data.data));
-		} catch (error) {
-			console.log(error);
-		}
-	};
-	useEffect(() => {
-		getReview();
-	}, []);
+	// const getReview = async () => {
+	// 	try {
+	// 		const data = await axios
+	// 			.get(`https://desolate-brushlands-04983.herokuapp.com/shop/review/`)
+	// 			.then((data) => setReviews(data.data));
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
+	// useEffect(() => {
+	// 	getReview();
+	// }, []);
 
 	const newid = reviewId.filter((item) => {
 		if (item.product_id === product.id) {
@@ -92,58 +73,15 @@ function Reviews({ product }) {
 		}
 	});
 
-	const editReview = async () => {
-		try {
-			const response = await fetch(
-				`https://desolate-brushlands-04983.herokuapp.com/shop/review/${newid[0].id}`,
-				{
-					method: 'PUT',
-					body: JSON.stringify(newReview),
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: `Token ${localStorage.getItem('token')}`,
-					},
-				}
-			);
-			if (response.status === 200) {
-				navigate('/shop');
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
+console.log(id);
 
-	const removeReview = async () => {
-		try {
-			const response = await fetch(
-				`https://desolate-brushlands-04983.herokuapp.com/shop/review/${newid[0].id}`,
-				{
-					method: 'DELETE',
-					body: JSON.stringify(newReview),
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: `Token ${localStorage.getItem('token')}`,
-					},
-				}
-			);
-			if (response.status === 204) {
-				navigate('/shop');
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	const handleDelete = (event) => {
+	const handleUpdate = (event, id) => {
 		event.preventDefault();
-		getReview(id);
-		removeReview();
+		
+		dispatch(editProductReview(id));
+		console.log(id); 
 	};
 
-	const handleUpdate = (event) => {
-		event.preventDefault();
-		editReview();
-	};
 	if (!product.reviews) {
 		return <p>Loading Reviews...</p>;
 	}
@@ -167,7 +105,7 @@ function Reviews({ product }) {
 
 				<div className='review-results'>
 					{product.reviews.map((item) => {
-						return ((
+						return (
 							<div key={item.id}>
 								<div className='' style={{ width: '18rem', marginTop: '30px' }}>
 									<div className='' key={item.id}>
@@ -182,20 +120,19 @@ function Reviews({ product }) {
 											{item.owner}
 										</h6>
 										<p className='card-text'>{item.review_body}</p>
-										{currentUser && currentUser.username === item.owner && (
+										{currentUser.name === item.owner && (
 											<div>
-												<Button dark outline onClick={handleEditShowing}>
-													Edit
-												</Button>
-												<Button dark outline onClick={handleDelete}>
-													Delete
-												</Button>
+												<EditBtn
+													item={item}
+													handleEditShowing={handleEditShowing}
+												/>
+												<DeleteBtn item={item} />
 											</div>
 										)}
 									</div>
 								</div>
 							</div>
-						): null);
+						);
 					})}
 				</div>
 				{login && editShowing ? (
@@ -203,16 +140,17 @@ function Reviews({ product }) {
 						handleChange={handleChange}
 						handleUpdate={handleUpdate}
 						newReview={newReview}
+						setRating={setRating}
 					/>
 				) : null}
 				{login && showing ? (
 					<NewReview
 						handleChange={handleChange}
-						handleSubmit={handleSubmit}
 						newReview={newReview}
+						setNewReview={setNewReview}
 						editShowing={editShowing}
 						rating={rating}
-						setRating={setRating}						
+						setRating={setRating}
 					/>
 				) : null}
 				{login ? (

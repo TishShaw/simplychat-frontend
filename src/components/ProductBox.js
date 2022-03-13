@@ -4,7 +4,6 @@ import Review from './Reviews/Reviews';
 import './ProductBox.styles.css';
 
 function ProductBox({ product }) {
-	console.log(product);
 	const [selectedTab, setSelectedTab] = useState(0);
 
 	const handleChange = (event, newValue) => {
