@@ -2,8 +2,9 @@ import {
 	ADD_TO_CART,
 	DELETE_FROM_CART,
 	SAVE_SHIPPING_ADDRESS,
+	GET_CART_TOTAL,
+	CLEAR_SHOPPING_CART,
 } from '../constants/cartConstants';
-
 
 const initialstate = {
 	cartItems: [],
@@ -38,12 +39,25 @@ export const cartReducer = (state = initialstate, action) => {
 				cartItems: state.cartItems.filter((x) => x.product !== action.payload),
 			};
 
+		case GET_CART_TOTAL:
+			return {
+				...state,
+				cartTotal: state.cartItems
+					.reduce((acc, item) => acc + item.qty * item.price, 0)
+					.toFixed(2),
+			};
+
 		case SAVE_SHIPPING_ADDRESS:
 			return {
 				...state,
-				shippingAddress: action.payload
+				shippingAddress: action.payload,
 			};
 
+		case CLEAR_SHOPPING_CART:
+			return {
+				...state,
+				cartItems: []
+			}
 		default:
 			return state;
 	}

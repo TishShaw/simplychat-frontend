@@ -15,7 +15,7 @@ function Card({ item }) {
 
 	return (
 		<div className='Card'>
-			<div className='Card-item'>
+			
 				<div className='Card-content'>
 					<img className='card-image' src={item.image} alt='card' />
 					<p className='card-name'>{item.item}</p>
@@ -35,11 +35,11 @@ function Card({ item }) {
 							</Link>
 						</Button>
 						<div>
-							<CartBtn item={item} />
+							<CartBtn id={item.id} />
 						</div>
 					</div>
 				</div>
-			</div>
+			
 		</div>
 	);
 }

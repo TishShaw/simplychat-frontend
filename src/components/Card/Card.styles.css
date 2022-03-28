@@ -1,12 +1,15 @@
 .Card {
-    width: 200px;
+    width: 300px;
     display: flex;
 }
 
 .Card-content {
     height: 480px;
+    width: 200px;
     margin-bottom: 30px;
+    margin-right: 100px;
     padding: 10px;
+    font-size: 20px;
 }
 
 .ratingRow {

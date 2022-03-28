@@ -32,12 +32,6 @@ function Footer(props) {
 					<li><a href="mailto:tishtanya.shaw24@gmail.com">tishtanya.shaw24@gmail.com</a></li>
 				</ul>
 			</div>
-			<div className='footer-affiliate-section'>
-				<h1 className='footer-title'>Become An Affiliate</h1>
-				<ul>
-					<li>Sign Up Here</li>
-				</ul>
-			</div>
 
 			<div id='copyright'>
 				<div className='container'>

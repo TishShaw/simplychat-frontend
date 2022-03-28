@@ -12,7 +12,7 @@ function Hero(props) {
 				data-ride='carousel'>
 				<div className='carousel-inner'>
 					<div className='carousel-item active'>
-						<img className='d-block w-100' src={HeroImage} alt='First slide' />
+						<img className='d-block w-100' src={HeroImage2} alt='First slide' />
 					</div>
 					<div className='carousel-item'>
 						<img
@@ -25,7 +25,7 @@ function Hero(props) {
 						<img className='d-block w-100' src={HeroImage3} alt='Third slide' />
 					</div>
 				</div>
-				<a
+				{/* <a
 					className='carousel-control-prev'
 					href='#carouselExampleControls'
 					role='button'
@@ -44,7 +44,7 @@ function Hero(props) {
 						className='carousel-control-next-icon'
 						aria-hidden='true'></span>
 					<span className='sr-only'>Next</span>
-				</a>
+				</a> */}
 			</div>
 		);
 }

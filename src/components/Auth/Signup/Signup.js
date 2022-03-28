@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { createSignUp } from '../../../redux/actions/userAction';
 import { Button, Alert } from 'bootstrap-4-react';
 
-function Signup({ login }) {
+function Signup() {
 	const navigate = useNavigate();
-	const [error, setError] = useState(false);
-	const [success, setSuccess] = useState(false);
 	const initialFormData = {
 		name: '',
 		username: '',
@@ -14,48 +14,39 @@ function Signup({ login }) {
 		re_password: '',
 	};
 	const [formData, setFormData] = useState(initialFormData);
+	const dispatch = useDispatch();
+	const [passwordError, setPasswordError] = useState(false);
+	const userSignUpReducer = useSelector((state) => state.userLogin);
+	const { error, success, userData } = userSignUpReducer;
 
+	console.log(userData);
 
 	const handleInputChange = (event) => {
 		setFormData({ ...formData, [event.target.id]: event.target.value });
 	};
 
-	
-	const handleRegistration = async (event) => {
+	const handleRegistration = (event) => {
 		event.preventDefault();
-
-		if (!error) {
-			try {
-				const response = await fetch(
-					'https://desolate-brushlands-04983.herokuapp.com/users/',
-					{
-						method: 'POST',
-						body: JSON.stringify(formData),
-						headers: {
-							'Content-Type': 'application/json',
-						},
-					}
-				);
-				if (response.status === 201) {
-					setSuccess(true);
-					setTimeout(() => {
-						navigate('/login');
-					}, 3000);
-				}
-			} catch (error) {
-				console.log(error);
-			}
+		if (formData.password !== formData.re_password) {
+			return passwordError;
+		} else {
+			dispatch(createSignUp(formData));
 		}
 	};
 
 	const handlePasswordMatch = (event) => {
 		if (formData.password !== formData.re_password) {
-			setError(true);
+			setPasswordError(true);
 		} else {
-			setError(false);
+			setPasswordError(false);
 		}
 	};
 
+	useEffect(() => {
+		if (success) {
+			navigate('/login');
+		}
+	}, [userData]);
 	return (
 		<div className='login'>
 			<h1 className='login-title'>Register</h1>
@@ -129,7 +120,7 @@ function Signup({ login }) {
 				</Button>
 			</form>
 			{error && <Alert variant='danger'>Passwords must match!</Alert>}
-			{success && (
+			{userData && (
 				<Alert variant='success' className='mt-5'>
 					User successfully created! You will be redirected to log in. If you
 					are not automatically redirected, please click{' '}

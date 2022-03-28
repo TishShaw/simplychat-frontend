@@ -4,6 +4,7 @@ import { getProducts } from '../../redux/actions/productAction/productAction';
 import { Button } from 'bootstrap-4-react';
 import Rating from '../Rating/Rating';
 import './styles/Lips.styles.css';
+import Card from '../Card/Card';
 
 function Lips() {
 	const [lipProducts, setLipProducts] = useState([]);
@@ -11,9 +12,6 @@ function Lips() {
 	const { products } = product;
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(getProducts(product));
-	}, []);
 
 	const filterLips = () => {
 		const lipsFilter = products.filter((item) => {
@@ -25,8 +23,9 @@ function Lips() {
 	}
 
 	useEffect(() => {
+		dispatch(getProducts(product));
 		filterLips();
-	});
+	},[product]);
 
 	return (
 		<div className='lips'>
@@ -36,17 +35,9 @@ function Lips() {
 			<div className='lips-content'>
 				{lipProducts.map((item) => {
 					return (
-						<div>
-							<div key={item.id}>
-								<img src={item.image} alt='ProductImage' className='lipsImg'/>
-								<p>{item.item}</p>
-								<Rating />
-								<p>{item.price}</p>
-								<Button className='face-cartBtn'>VIEW</Button>
-
-								<Button className='face-cartBtn'>ADD TO CART</Button>
+							<div key={item.id} className='lip-card'>
+								<Card item={item}/>
 							</div>
-						</div>
 					);
 				})}
 			</div>

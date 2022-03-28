@@ -1,53 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { ProductContext } from '../../Context';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetails } from '../../redux/actions/productAction/productAction';
-import { CREATE_PRODUCT_REVIEW_RESET } from '../../redux/constants/productConstants';
+
 import Rating from '../Rating/Rating';
 import ProductBox from '../ProductBox';
 import './ProductList.styles.css';
 
 function ProductDetail({ match, history }) {
 	const { id } = useParams();
+
 	const dispatch = useDispatch();
-	const productDetails = useSelector((state) =>  state.productDetails)
-	const { product } = productDetails;
+
+	const productDetails = useSelector((state) => state.productDetails);
+		const { product } = productDetails;
+
+	const userLogin = useSelector((state) => state.userLogin);
+	const { userData } = userLogin;
+
 	const reducer = (acc, currentVal) => {
 		return acc + currentVal;
 	};
-
+	
 	const ratings = product.reviews.map((item) => item.rating);
 	const addRatings = ratings.reduce(reducer, 0);
 	const averageRatings = addRatings / ratings.length;
-
 	const navigate = useNavigate();
-	const [reviewId, setReviewId] = useState([]);
 	const [qty, setQty] = useState(1);
-	const [rating, setRating] = useState(0);
 
+	// const initialReviewData = {
+	// 	rating: null,
+	// 	product_id: id,
+	// 	review_title: '',
+	// 	review_body: '',
+	// };
 
-	const initialReviewData = {
-		rating: null,
-		product_id: id,
-		review_title: '',
-		review_body: '',
-	};
-
-
-	const [newReview, setNewReview] = useState(initialReviewData);
 	useEffect(() => {
 		dispatch(getProductDetails(id));
 	}, [dispatch, id]);
-	
-
-	const addToCart = (product) => {
-		dispatch({ type: 'ADD_TO_CART', payload: product });
-	};
 
 	const handleAddToCart = (product) => {
 		navigate(`/cart/${id}?qty=${qty}`);
 	};
-	
+
 	if (!product.reviews) {
 		return null;
 	}
@@ -93,18 +89,33 @@ function ProductDetail({ match, history }) {
 								</div>
 							)}
 
-							<div className='product-quantity'></div>
-							<div className='productBtn-container'>
-								<button className='productBtn' onClick={handleAddToCart}>
-									Add to Cart
-								</button>
-								<button className='productBtn'>Buy Now</button>
-								<img
-									src='https://img.icons8.com/ios/50/000000/like--v1.png'
-									className='productBtn-heart'
-									alt=''
-								/>{' '}
-							</div>
+							{userData ? (
+								<div className='productBtn-container'>
+									<button className='productBtn' onClick={handleAddToCart}>
+										Add to Cart
+									</button>
+									<button className='productBtn'>Buy Now</button>
+									<img
+										src='https://img.icons8.com/ios/50/000000/like--v1.png'
+										className='productBtn-heart'
+										alt=''
+									/>{' '}
+								</div>
+							) : (
+								<Link to='/login'>
+									<div className='productBtn-container'>
+										<button className='productBtn' onClick={handleAddToCart}>
+											Add to Cart
+										</button>
+										<button className='productBtn'>Buy Now</button>
+										<img
+											src='https://img.icons8.com/ios/50/000000/like--v1.png'
+											className='productBtn-heart'
+											alt=''
+										/>{' '}
+									</div>
+								</Link>
+							)}
 						</div>
 					</div>
 				</div>

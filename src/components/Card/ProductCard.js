@@ -32,7 +32,7 @@ function ProductCard({item}) {
 							</Link>
 						</Button>
 						<div>
-								<CartBtn item={item} />
+								<CartBtn id={item.id} />
 						</div>
 					</div>
 				</div>

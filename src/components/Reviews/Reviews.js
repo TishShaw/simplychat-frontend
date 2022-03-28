@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { useParams, Navigate } from 'react-router-dom';
 import { ProductContext } from '../../Context';
 import { useDispatch } from 'react-redux';
 import { editProductReview } from '../../redux/actions/productAction/productAction';
@@ -11,7 +11,6 @@ import EditBtn from '../EditBtn';
 import DeleteBtn from '../DeleteBtn';
 import './Reviews.styles.css';
 
-
 function Reviews({ product }) {
 	const { login, currentUser } = useContext(ProductContext);
 	const { id } = useParams();
@@ -19,9 +18,6 @@ function Reviews({ product }) {
 	const [showing, setShowing] = useState(false);
 	const [editShowing, setEditShowing] = useState(false);
 	const [rating, setRating] = useState(null);
-
-	const reducer = (acc, currentVal) => { return acc + currentVal};
-	const navigate = useNavigate();
 
 	const handleShowing = (event) => {
 		event.preventDefault();
@@ -53,8 +49,17 @@ function Reviews({ product }) {
 		dispatch(editProductReview(id));
 	};
 
-	if (!product.reviews) {
-		return <p>Loading Reviews...</p>;
+	if (!currentUser) {
+		return (
+			<p>
+				Please
+				<a href='/login' className='errorLogin'>
+					{' '}
+					log in
+				</a>{' '}
+				first.
+			</p>
+		);
 	}
 	return (
 		<div>
@@ -91,7 +96,7 @@ function Reviews({ product }) {
 											{item.owner}
 										</h6>
 										<p className='card-text'>{item.review_body}</p>
-										{currentUser.name === item.owner && (
+										{currentUser.name === item.owner ? (
 											<div>
 												<EditBtn
 													item={item}
@@ -99,7 +104,7 @@ function Reviews({ product }) {
 												/>
 												<DeleteBtn item={item} />
 											</div>
-										)}
+										) : null}
 									</div>
 								</div>
 							</div>

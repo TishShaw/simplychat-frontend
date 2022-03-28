@@ -3,18 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'bootstrap-4-react';
 import { getProducts } from '../../redux/actions/productAction/productAction';
 import Rating from '../Rating/Rating';
+import Card from '../Card/Card';
 import './styles/Face.css';
+
 
 function Face() {
 	const [faceProduct, setFaceProduct] = useState([]);
 	const dispatch = useDispatch();
 	const product = useSelector((state) => state.product);
 	const { products } = product;
-	console.log(products);
-
-	useEffect(() => {
-		dispatch(getProducts(product));
-	}, []);
 
 	const filterProducts = () => {
 		const face = products.filter((item) => {
@@ -25,9 +22,10 @@ function Face() {
 		setFaceProduct(face);
 	};
 
-	useEffect(() => {
-		filterProducts();
-	},[]);
+		useEffect(() => {
+			dispatch(getProducts(product));
+			filterProducts();
+		}, [product]);
 
 	return (
 		<div className='face'>
@@ -38,17 +36,7 @@ function Face() {
 				{faceProduct.map((item) => {
 					return (
 						<div key={item.id}>
-							<img
-								src={item.image}
-								alt='ProductPicture'
-								className='faceResultsImg'
-							/>
-							<p>{item.item}</p>
-							<Rating />
-							<p>{item.price}</p>
-							<Button className='face-cartBtn'>VIEW</Button>
-
-							<Button className='face-cartBtn'>ADD TO CART</Button>
+							<Card item={item} />
 						</div>
 					);
 				})}

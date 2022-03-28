@@ -1,22 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from '../redux/actions/cartAction/cartAction';
-import InjectedCheckoutForm from '../components/CheckoutForm';
 import './styles/CheckoutPage.styles.css';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 
 
-const stripePromise = loadStripe(
-	'pk_test_51KcjH6KanM364UbJUkBvqY0fq8dvfiprMOqo2ft8bFY3JqmYyl4mSICRkILE6xOIDL2eLZSQYUIKuZH6celdafEw00CQcNVHDt'
-);
 
 function CheckoutPage(props) {
-
-		  const options = {
-				// passing the client secret obtained from the server
-				clientSecret: '{{CLIENT_SECRET}}',
-			};
 	
 	const [address, setAddress] = useState('');
 	const [city, setCity] = useState('');
@@ -97,10 +86,10 @@ function CheckoutPage(props) {
 							</div>
 						</div>
 					</div>
-					<div class='accordion-item'>
-						<h2 class='accordion-header' id='headingTwo'>
+					<div className='accordion-item'>
+						<h2 className='accordion-header' id='headingTwo'>
 							<button
-								class='accordion-button collapsed'
+								className='accordion-button collapsed'
 								type='button'
 								data-bs-toggle='collapse'
 								data-bs-target='#collapseTwo'
@@ -111,13 +100,11 @@ function CheckoutPage(props) {
 						</h2>
 						<div
 							id='collapseTwo'
-							class='accordion-collapse collapse'
+							className='accordion-collapse collapse'
 							aria-labelledby='headingTwo'
 							data-bs-parent='#accordionExample'>
-							<div class='accordion-body'>
-								<Elements stripe={stripePromise} options={options}>
-									<InjectedCheckoutForm />
-								</Elements>
+							<div className='accordion-body'>
+								
 							</div>
 						</div>
 					</div>
@@ -146,11 +133,11 @@ function CheckoutPage(props) {
 						<div></div>
 						<hr />
 						<div>
-							<p>Subtotal $24.00</p>
-							<p>Standard Shipping $6.50</p>
+							<p>Subtotal $0.00</p>
+							<p>Standard Shipping $0.00</p>
 							<p>Sales Tax $0.00</p>
 							<hr />
-							<h4>Estimated Total $34.00</h4>
+							<h4>Estimated Total $0.00</h4>
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { userLoginReducer } from './reducers/userReducers';
 import { cartReducer } from './reducers/CartReducer';
 import {
 	productsReducer,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
 	product: productsReducer,
 	productDetails: productsDetailsReducer,
 	productCreateReview: productReviewReducer,
+	userLogin: userLoginReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
@@ -29,6 +31,10 @@ const getProductsFromStorage = localStorage.getItem('products')
 	? JSON.parse(localStorage.getItem('products'))
 	: [];
 
+const getUserFromStorage = localStorage.getItem('userData')
+	? JSON.parse(localStorage.getItem('userData'))
+	: [];
+
 const initialState = {
 	cart: {
 		cartItems: cartItemsFromStorage,
@@ -36,7 +42,9 @@ const initialState = {
 	},
 	product: {
 		products: getProductsFromStorage,
-		
+	},
+	userLogin: {
+		userData: getUserFromStorage,
 	},
 };
 

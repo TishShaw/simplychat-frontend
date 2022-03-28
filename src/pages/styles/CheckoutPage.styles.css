@@ -70,3 +70,8 @@
     flex-direction: column;
     
 }
+
+.accordion-item {
+    width: 600px;
+
+}

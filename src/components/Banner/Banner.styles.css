@@ -1,49 +1,110 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.banner {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.banner-image {
-   height: 200px;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 /*  Newsfeed Banner Styles */
 
 .news-container {
-    background-image:linear-gradient(
-			rgba(154, 107, 107, 0.5),
-			rgba(225, 119, 111, 0.413)
-		);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    height: 18em;
-    margin: 90px 0;
-    text-align: center;
+	background-image: linear-gradient(
+		rgba(154, 107, 107, 0.5),
+		rgba(225, 119, 111, 0.413)
+	);
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 40px;
+	height: 18em;
+	margin: 90px 0;
+	text-align: center;
+	margin-top: 2em;
 }
 
 .news-input {
-    outline: none;
-    width: 300px;
-    padding: 8px;
+	outline: none;
+	width: 300px;
+	padding: 8px;
 }
 
 .newsBtn {
-    border: none;
-    height: 45px;
-    width: 50px;
-    background-color: transparent;
-    border: 1px gray solid;
-    color: white;
- 
+	border: none;
+	height: 45px;
+	width: 50px;
+	background-color: transparent;
+	border: 1px gray solid;
+	color: white;
+}
+
+@media only screen and (min-width: 1100px) {
+	.banner-container {
+		height: 100%;
+		margin: auto;
+		width: 100vw;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.banner {
+		height: 250px;
+		width: 100vw;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.banner-image {
+		height: 200px;
+		width: 600px;
+		margin-top: 30px;
+	}
+}
+
+@media only screen and (max-width: 1100px) {
+	.banner-container {
+		height: 100%;
+		margin: auto;
+		margin-top: 45px;
+		width: 100vw;
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.banner {
+		height: 250px;
+		width: 100vw;
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: center;
+		align-items: center;
+		margin-top: 10em;
+	}
+
+	.banner-image {
+		height: 150px;
+		width: 600px;
+		margin-top: 20px;
+	}
+
+	.news-container {
+		background-image: linear-gradient(
+			rgba(154, 107, 107, 0.5),
+			rgba(225, 119, 111, 0.413)
+		);
+		color: white;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 40px;
+		height: 18em;
+		margin: 90px 0;
+		text-align: center;
+		margin-top: 20em;
+	}
 }

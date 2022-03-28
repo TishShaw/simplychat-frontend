@@ -1,15 +1,26 @@
 import React from 'react';
 import { Button } from 'bootstrap-4-react/lib/components';
-import { useDispatch} from 'react-redux';
-import { Link } from 'react-router-dom';
-// import { addToCart } from '../../redux/actions';
+import { useSelector } from 'react-redux';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
-function CartBtn({ addToCart , item}) {
-	const dispatch = useDispatch();
+function CartBtn({ id }) {
+	console.log(id);
+	const navigate = useNavigate();
+	const [searchParms] = useSearchParams();
+	const qty = Number(searchParms.get('qty'));
+
+	const cart = useSelector((state) => state.cart);
+	const { cartItems } = cart;
+	console.log(cartItems);
+
+	const handleAddToCart = (id) => {
+		if(qty) return 1;
+		navigate(`/cart/${id}?qty=${qty}`);
+	};
 
 	return (
-		<Button dark sm outline onClick={addToCart}>
-			<Link to={`/cart/:id?`}>Add to Cart</Link>
+		<Button onClick={() => handleAddToCart(id)} dark sm outline>
+			Add to Cart
 		</Button>
 	);
 }

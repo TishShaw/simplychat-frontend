@@ -14,7 +14,7 @@
 }
 
 .bestBtn {
-    margin-top: 120px;
+    margin-top: 100px;
 }
 
 .best-image:hover {
@@ -110,4 +110,13 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+@media only screen and (min-width: 600px) {
+    .best {
+        width: 100%;
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+        margin: 0 auto;
+    }
 }

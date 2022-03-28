@@ -9,6 +9,7 @@ function Shoppage() {
 	const dispatch = useDispatch();
 	const product = useSelector((state) => state.product);
 	const { products } = product;
+	
 
 	const [filteredArr, setFilteredArr] = useState([]);
 
@@ -52,7 +53,10 @@ function Shoppage() {
 		});
 		setFilteredArr(lip);
 	};
-
+	
+	if(!products) {
+		return <h3>Loading Products...</h3>
+	}
 	return (
 		<div className='shop'>
 			<div className='shop-image'>
@@ -67,6 +71,14 @@ function Shoppage() {
 							lipFilter={lipFilter}
 							productsFilter={productsFilter}
 						/>
+					</div>
+					<div className='shop-select'>
+						<label htmlFor="" className='shop-select__label'>Sort By:</label>
+						<select name='' id=''>
+							<option value=''>Best Sellers</option>
+							<option value=''>Price: Low to High</option>
+							<option value=''>Price: high to Low</option>
+						</select>
 					</div>
 					{filteredArr.length > 0 ? (
 						<div className='shop-results'>

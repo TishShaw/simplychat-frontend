@@ -13,6 +13,8 @@ import Face from './components/Category/Face';
 import Eyes from './components/Category/Eyes';
 import Cart from './components/Cart/Cart';
 import Layout from './Layout';
+import Checkout from './Checkout';
+import OrderConfirmation from './pages/OrderConfirmation';
 
 
 function App() {
@@ -21,7 +23,6 @@ function App() {
 	const [login, setLogin] = useState(
 		localStorage.getItem('token') ? true : false
 	);
-
 
 	const getUser = async () => {
 		try {
@@ -106,7 +107,8 @@ function App() {
 						<Route path='/cart' element={<Cart />} />
 						<Route path='/:id' element={<ProductDetail />} />
 						<Route path='/Favorites' element={<Favorites />} />
-						<Route path='/Checkout' element={<CheckoutPage />} />
+						<Route path='/checkoutpage' element={<Checkout />} />
+						<Route path='/orderConfirmation' element={<OrderConfirmation />} />
 					</Routes>
 				</Layout>
 			</ProductContext.Provider>

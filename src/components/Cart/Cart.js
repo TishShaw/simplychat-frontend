@@ -5,6 +5,7 @@ import {
 	addToCart,
 	removeFromCart,
 } from '../../redux/actions/cartAction/cartAction';
+import Paypal from '../Paypal/Paypal';
 import './styles/Cart.style.css';
 
 function Cart({ match, history, location }) {
@@ -26,13 +27,18 @@ function Cart({ match, history, location }) {
 		dispatch(removeFromCart(id));
 	};
 
+	const cartTotal = cartItems
+		.reduce((acc, item) => acc + item.qty * item.price, 0)
+		.toFixed(2);
+
+	const sumOfProduct = (item) => (item.qty * item.price).toFixed(2);
 
 	if (!cartItems) {
 		return null;
 	}
 
 	return (
-		<div>
+		<div className='cart'>
 			<h1 className='cart-title'>Your Bag</h1>
 			<div>
 				<ul className='row'>
@@ -46,7 +52,10 @@ function Cart({ match, history, location }) {
 			<div>
 				{cartItems.length === 0 ? (
 					<div>
-						Your cart is empty <Link to='/'>Continue Shopping</Link>
+						Your cart is empty{' '}
+						<Link to='/'>
+							<span className='emptyCart'>Continue Shopping</span>
+						</Link>
 					</div>
 				) : (
 					<div>
@@ -66,9 +75,8 @@ function Cart({ match, history, location }) {
 										<Link to={`/product/${item.product}`}>{item.name}</Link>
 									</div>
 
-									<div className='col'>
-										<p>${item.price}</p>
-
+									<div className='col col-item'>
+										<p className='col'>${item.price}</p>
 										<div className='col'>
 											<select
 												as='select'
@@ -84,7 +92,7 @@ function Cart({ match, history, location }) {
 													</option>
 												))}
 											</select>
-
+											<p className='col'>{sumOfProduct(item)}</p>
 											<button
 												onClick={() => handleRemoveFromCart(item.product)}>
 												<i className='fas fa-trash col'></i>
@@ -100,35 +108,14 @@ function Cart({ match, history, location }) {
 			<div>
 				<div className='total-card'>
 					<div>
-						<h5>
-							Subtotal $
-							{cartItems
-								.reduce((acc, item) => acc + item.qty * item.price, 0)
-								.toFixed(2)}
-						</h5>
+						<h5>Subtotal ${cartTotal}</h5>
 						<p>Standard Shipping Free</p>
 						<p>Sales Tax $0.00</p>
 						<hr />
-						<h5>
-							Estimated Total $
-							{cartItems
-								.reduce((acc, item) => acc + item.qty * item.price, 0)
-								.toFixed(2)}
-						</h5>
+						<h5>Estimated Total ${cartTotal}</h5>
 					</div>
 
-					<div>
-						<button
-							className='btn-block checkout-btn'
-							disabled={cartItems.length === 0}>
-							<Link to='/Checkout'>Secure Checkout</Link>
-						</button>
-						<button
-							className='btn-block checkout-btn'
-							disabled={cartItems.length === 0}>
-							Check Out With PayPal
-						</button>
-					</div>
+					{cartItems.length > 0 && <Paypal cartTotal={cartTotal} />}
 				</div>
 			</div>
 		</div>
