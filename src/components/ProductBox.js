@@ -5,27 +5,34 @@ import './ProductBox.styles.css';
 
 function ProductBox({ product }) {
 	const [selectedTab, setSelectedTab] = useState(0);
-
 	const handleChange = (event, newValue) => {
 		event.preventDefault();
 		setSelectedTab(newValue);
 	};
-
 	return (
 		<div position='static' className='ProductBox-container'>
-			<div>
+			<div className='tabs-container'>
 				<Tabs
 					className='ProductBox-Tab__container'
 					value={selectedTab}
-					onChange={handleChange} centered>
+					variant='scrollable'
+					scrollButtons='auto'
+					onChange={handleChange}
+					centered>
 					<Tab label='Description' className='tab-title active-tab' />
 					<Tab label='Reviews' className='tab-title' />
 					<Tab label='Shipping & Returns' className='tab-title' />
 					<Tab label='Privacy Policy' className='tab-title' />
 				</Tabs>
 			</div>
-
-			<div>{selectedTab === 0 && <p><br />{product.description}</p>}</div>
+			<div>
+				{selectedTab === 0 && (
+					<p>
+						<br />
+						{product.description}
+					</p>
+				)}
+			</div>
 			<div>{selectedTab === 1 && <Review product={product} />}</div>
 			<div>
 				{selectedTab === 2 && (

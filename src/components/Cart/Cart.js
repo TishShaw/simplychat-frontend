@@ -41,14 +41,14 @@ function Cart({ match, history, location }) {
 		<div className='cart'>
 			<h1 className='cart-title'>Your Bag</h1>
 			<div>
-				<ul className='row'>
+				<ul className='row cartProductTitle'>
 					<li className='col-md-8 bold'>Product</li>
 					<li className='col bold'>Price</li>
 					<li className='col bold'>Quantity</li>
 					<li className='col bold'>Total</li>
 				</ul>
 			</div>
-			<hr />
+			
 			<div>
 				{cartItems.length === 0 ? (
 					<div>
@@ -60,7 +60,7 @@ function Cart({ match, history, location }) {
 				) : (
 					<div>
 						{cartItems.map((item) => (
-							<div key={item.product}>
+							<div key={item.product} className="cart-products">
 								<div className='row'>
 									<div className='col'>
 										<img

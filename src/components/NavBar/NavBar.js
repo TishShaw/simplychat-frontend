@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserLogout } from '../../redux/actions/userAction';
 
 import Bag from '../../assets/images/icons8-bag-64.png';
-import './NavBar.styles.css';
+import '../../styles/NavBar.styles.css';
 
 function NavBar(props) {
 	const navigate = useNavigate();

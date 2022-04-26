@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { ProductContext } from '../../Context';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetails } from '../../redux/actions/productAction/productAction';
@@ -14,7 +13,7 @@ function ProductDetail({ match, history }) {
 	const dispatch = useDispatch();
 
 	const productDetails = useSelector((state) => state.productDetails);
-		const { product } = productDetails;
+	const { product } = productDetails;
 
 	const userLogin = useSelector((state) => state.userLogin);
 	const { userData } = userLogin;
@@ -22,7 +21,7 @@ function ProductDetail({ match, history }) {
 	const reducer = (acc, currentVal) => {
 		return acc + currentVal;
 	};
-	
+
 	const ratings = product.reviews.map((item) => item.rating);
 	const addRatings = ratings.reduce(reducer, 0);
 	const averageRatings = addRatings / ratings.length;
@@ -94,12 +93,6 @@ function ProductDetail({ match, history }) {
 									<button className='productBtn' onClick={handleAddToCart}>
 										Add to Cart
 									</button>
-									<button className='productBtn'>Buy Now</button>
-									<img
-										src='https://img.icons8.com/ios/50/000000/like--v1.png'
-										className='productBtn-heart'
-										alt=''
-									/>{' '}
 								</div>
 							) : (
 								<Link to='/login'>
@@ -107,12 +100,6 @@ function ProductDetail({ match, history }) {
 										<button className='productBtn' onClick={handleAddToCart}>
 											Add to Cart
 										</button>
-										<button className='productBtn'>Buy Now</button>
-										<img
-											src='https://img.icons8.com/ios/50/000000/like--v1.png'
-											className='productBtn-heart'
-											alt=''
-										/>{' '}
 									</div>
 								</Link>
 							)}

@@ -12,7 +12,6 @@ function Login(props) {
 	};
 
 	const [formData, setFormData] = useState(initialFormData);
-	const [error, setError] = useState(false);
 	const navigate = useNavigate();
 
 	const handleChange = (event) => {
@@ -36,7 +35,7 @@ function Login(props) {
 
 	return (
 		<div className='login'>
-			<h1 className='login-title'>Welcome Back, Beautiful</h1>
+			<h1 className='login-title'>Welcome back, Beautiful!</h1>
 			<form onSubmit={handleSubmit}>
 				<div className='form-group'>
 					<label htmlFor='email'>Email address</label>

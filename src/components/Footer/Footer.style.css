@@ -8,10 +8,11 @@
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
-	width: 100vw;
+	width: 100%;
 	color: black;
 	padding-top: 20px;
 	font-size: 15px;
+	margin: auto;
 	margin-top: 30px;
 	bottom: 0;
 	right: 0;
@@ -35,6 +36,7 @@
 
 	.footer {
 		height: 300px;
+		width: 100%;
 	}
 }
 
@@ -43,3 +45,16 @@
 		width: 250px;
 	}
 }
+ @media screen and (max-width: 700px) {
+	 .footer {
+		width: 100%;
+		font-size: 16px;
+		display: flex;
+		flex-wrap: wrap;
+		bottom: 0;
+		height: 500px;
+	 }
+	.footer-title {
+		width: 200px;
+	}
+ }

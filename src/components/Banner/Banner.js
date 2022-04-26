@@ -14,6 +14,7 @@ function Banner(props) {
 					<img src={lipsbanner} alt='' className='banner-image' />
 					<img src={blushbanner} alt='' className='banner-image' />
 				</div>
+				
 			</div>
 		);
 }

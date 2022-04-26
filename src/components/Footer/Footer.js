@@ -20,7 +20,7 @@ function Footer(props) {
 			<div className='footer-shop-section'>
 				<h1 className='footer-title'>Shop</h1>
 				<ul>
-					<li><Link to='/shop'>Shop All Products</Link></li>
+					
 					<li><Link to='/face'>Face Products</Link></li>
 					<li><Link to='/eyes'>Eye Products</Link></li>
 					<li><Link to='/lips'>Lip Products</Link></li>
