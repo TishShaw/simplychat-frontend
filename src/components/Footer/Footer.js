@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { MdMailOutline, MdRoom } from 'react-icons/md';
+import { BsFillTelephoneFill } from 'react-icons/bs';
 import './Footer.style.css';
 
 function Footer(props) {
@@ -20,27 +22,33 @@ function Footer(props) {
 			<div className='footer-shop-section'>
 				<h1 className='footer-title'>Shop</h1>
 				<ul>
-					
-					<li><Link to='/face'>Face Products</Link></li>
-					<li><Link to='/eyes'>Eye Products</Link></li>
-					<li><Link to='/lips'>Lip Products</Link></li>
+					<li>
+						<Link to='/face'>Face Products</Link>
+					</li>
+					<li>
+						<Link to='/eyes'>Eye Products</Link>
+					</li>
+					<li>
+						<Link to='/lips'>Lip Products</Link>
+					</li>
 				</ul>
 			</div>
 			<div className='footer-contact-section'>
 				<h1 className='footer-title'>Get In Touch</h1>
 				<ul>
-					<li><a href="mailto:tishtanya.shaw24@gmail.com">tishtanya.shaw24@gmail.com</a></li>
+					<li>
+						<MdRoom /> 234 Haynes St, Arlington VA 22202
+					</li>
+					<li>
+						<BsFillTelephoneFill /> 123 456 7893
+					</li>
+					<li>
+						<a href='mailto:tishtanya.shaw24@gmail.com'>
+							<MdMailOutline /> tishtanya.shaw24@gmail.com
+						</a>
+					</li>
 				</ul>
-			</div>
-
-			<div id='copyright'>
-				<div className='container'>
-					<div className='row'>
-						<div className='col-lg-6 mb-2 mb-lg-0'>
-							<p className='text-center text-lg-left'>©2022 Keita's Beauty</p>
-						</div>
-					</div>
-				</div>
+				<img src='https://i.ibb.co/Qfvn4z6/payment.png' alt='payment types' />
 			</div>
 		</div>
 	);
