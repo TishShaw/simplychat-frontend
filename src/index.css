@@ -53,7 +53,7 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
-a {
+a, Link {
 	text-decoration: none;
-	color: black;
+	color: inherit;
 }
