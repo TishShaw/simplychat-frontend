@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Tab, Tabs } from '@material-ui/core';
-import Review from './Reviews/Reviews';
+import Review from '../Reviews/Reviews';
 import './ProductBox.styles.css';
 
 function ProductBox({ product }) {

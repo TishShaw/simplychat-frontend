@@ -1,8 +1,8 @@
 import React from 'react';
-import HeroImage from '../assets/images/3.png';
-import HeroImage2 from '../assets/images/4.png';
-import HeroImage3 from '../assets/images/shopnow.png';
-import '../styles/Hero.styles.css';
+import HeroImage from '../../assets/images/3.png';
+import HeroImage2 from '../../assets/images/4.png';
+import HeroImage3 from '../../assets/images/shopnow.png';
+import './Hero.styles.css';
 
 function Hero(props) {
     return (
@@ -14,7 +14,7 @@ function Hero(props) {
 					<div className='carousel-item active'>
 						<img
 							className='d-block heroImage'
-							src={HeroImage2}
+							src={HeroImage}
 							alt='First slide'
 						/>
 					</div>

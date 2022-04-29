@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetails } from '../../redux/actions/productAction/productAction';
 import Rating from '../Rating/Rating';
-import ProductBox from '../ProductBox';
+import ProductBox from '../ProductBox/ProductBox';
 import './ProductList.styles.css';
 
 function ProductDetail() {

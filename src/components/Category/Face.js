@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from 'bootstrap-4-react';
 import { getProducts } from '../../redux/actions/productAction/productAction';
-import Rating from '../Rating/Rating';
 import Card from '../Card/Card';
 import './styles/Face.css';
 

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserLogout } from '../../redux/actions/userAction';
 import { CLEAR_SHOPPING_CART } from '../../redux/constants/cartConstants';
 import Bag from '../../assets/images/icons8-bag-64.png';
-import '../../styles/NavBar.styles.css';
+import './NavBar.styles.css';
 
 function NavBar(props) {
 	const [navbar, setNavbar] = useState(false);
@@ -38,11 +38,7 @@ function NavBar(props) {
 			<nav className='navbar navbar-expand-lg navbar-light bg-pink-900'>
 				<div className='container-fluid navbar-logo'>
 					<h2 className='logo-title'>
-						<Link
-							to='/'
-							>
-							Keita's Beauty
-						</Link>
+						<Link to='/'>Keita's Beauty</Link>
 					</h2>
 
 					<button

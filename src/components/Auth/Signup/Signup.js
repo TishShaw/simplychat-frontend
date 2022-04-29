@@ -106,7 +106,7 @@ function Signup() {
 				</Button>
 			</form>
 			{error && <Alert variant='danger'>Passwords must match!</Alert>}
-			{userData && (
+			{success && (
 				<Alert variant='success' className='mt-5'>
 					User successfully created! You will be redirected to log in. If you
 					are not automatically redirected, please click{' '}

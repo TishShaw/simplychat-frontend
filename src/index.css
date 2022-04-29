@@ -48,12 +48,16 @@ table {
 }
 
 /* end of css reset */
-
 body {
 	font-family: 'Roboto', sans-serif;
 }
 
-a, Link {
+a,
+a.visited, 
+a:hover,
+Link,
+Link.visited,
+Link:hover {
 	text-decoration: none;
-	color: inherit;
+	color: inherit !important;
 }

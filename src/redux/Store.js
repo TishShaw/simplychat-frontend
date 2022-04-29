@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { userLoginReducer, userInfoReducer } from './reducers/userReducers';
 import { cartReducer } from './reducers/CartReducer';
+import { userLoginReducer, userInfoReducer } from './reducers/userReducers';
 import {
 	productsReducer,
 	productsDetailsReducer,
@@ -50,11 +50,10 @@ const initialState = {
 	},
 	userLogin: {
 		userData: getUserFromStorage,
-		
 	},
 	userInfo: {
 		userInfo: getUserInfoFromStorage,
-	}
+	},
 };
 
 export const store = createStore(
