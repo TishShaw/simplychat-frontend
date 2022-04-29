@@ -67,9 +67,3 @@ All feedback and suggestions are welcome! Feel free to drop an issue.
 If you'd like to contribute to the codebase, please fork and clone this repo, then submit a pull request with any code changes.
 
 
-## Major Hurdles
- 
- A major hurdle when working on creating this full stack project was deployment. I initially tried deploying my front end with netlify but ran into a blocker with the build.command. I solved this issue by switching hosting services to github pages.
- 
-
-
