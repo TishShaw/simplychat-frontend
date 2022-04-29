@@ -18,7 +18,7 @@ function ProductBox({ product }) {
 					variant='scrollable'
 					scrollButtons='auto'
 					onChange={handleChange}
-					centered>
+					>
 					<Tab label='Description' className='tab-title active-tab' />
 					<Tab label='Reviews' className='tab-title' />
 					<Tab label='Shipping & Returns' className='tab-title' />

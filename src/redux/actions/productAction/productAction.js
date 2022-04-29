@@ -59,17 +59,20 @@ export const getProductDetails = (id) => async (dispatch) => {
 	}
 };
 
-export const removeProductReview = (id) => async (dispatch) => {
+export const removeProductReview = (id, token) => async (dispatch) => {
+	
 	try {
+		
+		console.log(token);
 		const config = {
 			headers: {
 				'Content-type': 'application/json',
-				Authorization: `Token ${localStorage.getItem('token')}`,
+				Authorization: `Token ${token}`,
 			},
 		};
 
 		dispatch({ type: GET_PRODUCTS_DETAILS_REQUEST });
-
+		console.log(token);
 		const { data } = await axios.delete(
 			`https://desolate-brushlands-04983.herokuapp.com/shop/review/${id}`,
 			config
@@ -90,46 +93,44 @@ export const removeProductReview = (id) => async (dispatch) => {
 	}
 };
 
-export const createProductReviews =
-	(id, reviews) => async (dispatch, getState) => {
-		try {
-			dispatch({ type: CREATE_PRODUCT_REVIEW_REQUEST });
+export const createProductReviews = (id, token, newReview) => async (dispatch, getState) => {
+	try {
+		dispatch({ type: CREATE_PRODUCT_REVIEW_REQUEST });
 
-			const config = {
-				headers: {
-					'Content-type': 'application/json',
+		const config = {
+			headers: {
+				'Content-type': 'application/json',
+				'Authorization': `Token ${token}`,
+			},
+		};
 
-					Authorization: `Token ${localStorage.getItem('token')}`,
-				},
-			};
+		const { data } = await axios.post(
+			`https://desolate-brushlands-04983.herokuapp.com/shop/review/`,
+			newReview,
+			config
+		);
 
-			const { data } = await axios.post(
-				`https://desolate-brushlands-04983.herokuapp.com/shop/review/`,
-				reviews,
-				config
-			);
+		dispatch({
+			type: CREATE_PRODUCT_REVIEW_SUCCESSFUL,
+			payload: data,
+		});
+	} catch (error) {
+		dispatch({
+			type: CREATE_PRODUCT_REVIEW_FAILED,
+			payload:
+				error.response && error.response.data.detail
+					? error.response.data.detail
+					: error.message,
+		});
+	}
+};
 
-			dispatch({
-				type: CREATE_PRODUCT_REVIEW_SUCCESSFUL,
-				payload: data,
-			});
-		} catch (error) {
-			dispatch({
-				type: CREATE_PRODUCT_REVIEW_FAILED,
-				payload:
-					error.response && error.response.data.detail
-						? error.response.data.detail
-						: error.message,
-			});
-		}
-	};
-
-export const editProductReview = (id) => async (dispatch) => {
+export const editProductReview = (id, token, newReview) => async (dispatch) => {
 	try {
 		const config = {
 			headers: {
 				'Content-type': 'application/json',
-				Authorization: `Token ${localStorage.getItem('token')}`,
+				Authorization: `Token ${token}`,
 			},
 		};
 
@@ -137,7 +138,8 @@ export const editProductReview = (id) => async (dispatch) => {
 
 		const { data } = await axios.put(
 			`https://desolate-brushlands-04983.herokuapp.com/shop/review/${id}`,
-			config
+			config,
+			newReview
 		);
 
 		dispatch({

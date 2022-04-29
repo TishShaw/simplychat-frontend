@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts } from '../../redux/actions/productAction/productAction';
-import { Button } from 'bootstrap-4-react';
-import Rating from '../Rating/Rating';
 import './styles/Lips.styles.css';
 import Card from '../Card/Card';
 
@@ -12,21 +10,27 @@ function Lips() {
 	const { products } = product;
 	const dispatch = useDispatch();
 
+	useEffect(() => {
+		dispatch(getProducts());
+	},[]);
 
 	const filterLips = () => {
+
 		const lipsFilter = products.filter((item) => {
 			if (item.category_name === 'lips') {
-				return item.item;
+				return item;
 			}
 		});
 		setLipProducts(lipsFilter);
 	}
 
 	useEffect(() => {
-		dispatch(getProducts(product));
 		filterLips();
-	},[product]);
+	});
 
+	if(!filterLips){
+		return <h3>Loading...</h3>
+	}
 	return (
 		<div className='lips'>
 			<div className='lips-headerImg'>

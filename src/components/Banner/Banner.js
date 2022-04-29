@@ -9,12 +9,12 @@ function Banner(props) {
     return (
 			<div className='banner-container'>
 				<div className='banner'>
-					<img src={mascarabanner} alt='' className='banner-image' />
-					<img src={shadowbanner} alt='' className='banner-image' />
-					<img src={lipsbanner} alt='' className='banner-image' />
-					<img src={blushbanner} alt='' className='banner-image' />
+					<ul>
+						<li>Beauty</li>
+						<li>Make up</li>
+						<li>Make up</li>
+					</ul>
 				</div>
-				
 			</div>
 		);
 }

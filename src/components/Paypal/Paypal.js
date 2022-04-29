@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import OrderConfirmation from '../../pages/OrderConfirmation';
+import { useNavigate } from 'react-router-dom';
 
 function Paypal({cartTotal}) {
 	const navigate=useNavigate();
@@ -26,8 +25,7 @@ function Paypal({cartTotal}) {
 					const order = await actions.order.capture();
 					console.log(order);
 					if (order.status === 'COMPLETED') {
-						navigate('/orderConfirmation');
-						
+						navigate('/orderConfirmation');				
 					}
 				},
 				onError: (err) => {
@@ -35,9 +33,7 @@ function Paypal({cartTotal}) {
 				},
 			})
 			.render(paypal.current);
-	}, []);
-
-	
+	}, []);	
 		return (
 			<div>
 				<div ref={paypal}></div>

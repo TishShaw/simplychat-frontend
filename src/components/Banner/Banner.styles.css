@@ -5,7 +5,6 @@
 }
 
 /*  Newsfeed Banner Styles */
-
 .news-container {
 	background-image: linear-gradient(
 		rgba(154, 107, 107, 0.5),
@@ -19,9 +18,9 @@
 	padding: 40px;
 	height: 18em;
 	width: 50em;
-	margin: 90px 0;
+	margin: 90px 0px 30px 00px;
 	text-align: center;
-	margin-top: 2em;
+	/* margin-top: 2em; */
 }
 
 .news-input {
@@ -61,16 +60,7 @@
 }
 
 @media only screen and (min-width: 300px) {
-	.banner-container {
-		height: 100%;
-		margin: auto;
-		margin-top: 50px;
-		width: 100%;
-		display: flex;
-		flex-direction: column-reverse;
-		justify-content: center;
-		align-items: center;
-	}
+
 
 	.banner {
 		height: 250px;
@@ -97,10 +87,8 @@
 		justify-content: center;
 		align-items: center;
 		padding: 40px;
-		height: 18em;
-		margin: 90px 0;
+		height: 18em;	
 		text-align: center;
-		margin-top: 40em;
 		width: 100%;
 	}
 }

@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import Button from 'bootstrap-4-react/lib/components/Button';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CREATE_PRODUCT_REVIEW_RESET } from '../../../redux/constants/productConstants';
 import { createProductReviews } from '../../../redux/actions/productAction/productAction';
 import './NewReview.styles.css';
+import { UserContext } from '../../../Context';
 
 function NewReview({
 	newReview,
@@ -13,27 +14,15 @@ function NewReview({
 	rating,
 	setRating,
 }) {
-	const dispatch = useDispatch();
+	const { token } = useContext(UserContext);
 	const { id } = useParams();
+	const dispatch = useDispatch();	
 	const navigate = useNavigate;
-	const productCreateReview = useSelector((state) => state.productCreateReview);
-	const { loading, success, error } = productCreateReview;
-
-	useEffect(() => {
-		if (success) {
-			setNewReview(newReview);
-			dispatch({ type: CREATE_PRODUCT_REVIEW_RESET });
-			navigate('/shop');
-		}
-
-		dispatch(createProductReviews(id, newReview));
-	}, [dispatch, id]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		dispatch(createProductReviews(id, newReview));
-
+		dispatch(createProductReviews(id, token, newReview));
+		navigate('/shop')
 	}
 
 	return (

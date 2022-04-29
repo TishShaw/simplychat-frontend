@@ -19,9 +19,7 @@ function Login(props) {
 	};
 
 	const userLogin = useSelector((state) => state.userLogin);
-	const { userData, success } = userLogin;
-	console.log(userData);
-	console.log(success);
+	const { success } = userLogin;
 	const dispatch = useDispatch();
 
 	const handleSubmit = (event) => {

@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCartTotal } from '../redux/actions/cartAction/cartAction';
 import { CLEAR_SHOPPING_CART } from '../redux/constants/cartConstants';
 import './styles/OrderConfrmation.css';
+import { UserContext } from '../Context';
 
 function OrderConfirmation() {
+	const { userDetails } = useContext(UserContext);
+	
 	const [order, setOrder] = useState([]);
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.cart);
@@ -16,6 +19,7 @@ function OrderConfirmation() {
 	useEffect(() => {
 		setOrder(cartItems);
 		dispatch(getCartTotal());
+		dispatch({type: CLEAR_SHOPPING_CART})
 	}, []);
 
 	if (!cartItems) {
@@ -25,7 +29,7 @@ function OrderConfirmation() {
 		<div className='confirmation'>
 			<div className='confirmation__container'>
 				<div className='confirmation__container-top'>
-					<h1>Thank you for you purchase, Jane Doe!</h1>
+					<h1>Thank you for you purchase, {userDetails.name}!</h1>
 					<p className='confirmation__container-topText'>
 						{' '}
 						You will recieve a confirmation email with your transaction number
@@ -34,7 +38,7 @@ function OrderConfirmation() {
 					</p>
 					<p className='confirmation__ref'>Order ref:huhr92fw333</p>
 				</div>
-				
+
 				<div className='confirmation__container-end'>
 					<p>Order Details:</p>
 					{order.map((item) => (

@@ -5,6 +5,9 @@ import {
 	USER_LOGIN_REQUEST,
 	USER_LOGIN_SUCCESSFUL,
 	USER_LOGIN_FAILED,
+	USER_INFO_REQUEST,
+	USER_INFO_FAILED,
+	USER_INFO_SUCCESSFUL,
 	USER_LOGOUT,
 } from '../constants/userConstants';
 
@@ -43,6 +46,36 @@ export const createSignUp = (formData) => async (dispatch) => {
 	}
 };
 
+export const getUserInfo = (token) => async (dispatch) => {
+	try {
+		dispatch({ type: USER_INFO_REQUEST });
+
+		const { data } = await axios.get(
+			'https://desolate-brushlands-04983.herokuapp.com/users/me',
+			{
+				headers: {
+					'Authorization': `Token ${token}`,
+				},
+			}
+		);
+
+		dispatch({
+			type: USER_INFO_SUCCESSFUL,
+			payload: data,
+		});
+
+		localStorage.setItem('userInfo', JSON.stringify(data));
+	} catch (error) {
+		dispatch({
+			type: USER_INFO_FAILED,
+			payload:
+				error.response && error.response.data.detail
+					? error.response.data.detail
+					: error.message,
+		});
+	}
+};
+
 export const getUserLogin = (formData) => async (dispatch) => {
 	try {
 		dispatch({ type: USER_LOGIN_REQUEST });
@@ -58,7 +91,7 @@ export const getUserLogin = (formData) => async (dispatch) => {
 			formData,
 			config
 		);
-        console.log(data);
+		console.log(data);
 
 		dispatch({
 			type: USER_LOGIN_SUCCESSFUL,
@@ -66,6 +99,7 @@ export const getUserLogin = (formData) => async (dispatch) => {
 		});
 
 		localStorage.setItem('userData', JSON.stringify(data));
+
 	} catch (error) {
 		dispatch({
 			type: USER_LOGIN_FAILED,
@@ -79,6 +113,8 @@ export const getUserLogin = (formData) => async (dispatch) => {
 
 export const getUserLogout = () => (dispatch) => {
 	localStorage.removeItem('userData');
+	localStorage.removeItem('userInfo');
+	localStorage.removeItem('cartItems');
 	dispatch({
 		type: USER_LOGOUT,
 	});

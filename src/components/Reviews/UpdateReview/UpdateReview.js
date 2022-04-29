@@ -1,7 +1,23 @@
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { editProductReview } from '../../../redux/actions/productAction/productAction';
 import Button from 'bootstrap-4-react/lib/components/Button';
 import '../NewReview/NewReview.styles.css';
+import { useContext } from 'react';
+import { UserContext } from '../../../Context';
 
-function UpdateReview({ newReview, handleChange, handleUpdate, editShowing, rating, setRating }) {
+
+function UpdateReview({ newReview, handleChange }) {
+	const { token } = useContext(UserContext);
+	const dispatch = useDispatch;
+	const { id } = useParams();
+
+	const handleUpdate = (event, id) => {
+		console.log(id);
+		event.preventDefault();
+		dispatch(editProductReview(id, newReview, token));
+	};
+
 	return (
 		<div className='review-container '>
 			<form className='review-form' onSubmit={handleUpdate}>

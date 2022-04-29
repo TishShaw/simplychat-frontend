@@ -8,7 +8,6 @@ function Signup() {
 	const navigate = useNavigate();
 	const initialFormData = {
 		name: '',
-		username: '',
 		email: '',
 		password: '',
 		re_password: '',
@@ -61,19 +60,6 @@ function Signup() {
 						className='form-control'
 						id='name'
 						placeholder='Enter name'
-						Required
-					/>
-				</div>
-				<div className='form-group'>
-					<label htmlFor='username'>Username</label>
-					<input
-						type='text'
-						name='username'
-						value={formData.username}
-						onChange={handleInputChange}
-						className='form-control'
-						id='username'
-						placeholder='Enter username'
 						Required
 					/>
 				</div>

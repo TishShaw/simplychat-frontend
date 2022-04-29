@@ -29,14 +29,11 @@ function Card({ item }) {
 					</div>
 					<p className='card-price'>{item.price}</p>
 					<div className='buttons'>
-						<Button dark sm outline className='pc-btn'>
+						<button className='cardButton'>
 							<Link to={`/${item.id}`} className='cardBtn'>
 								View
 							</Link>
-						</Button>
-						<div>
-							<CartBtn id={item.id} />
-						</div>
+						</button>
 					</div>
 				</div>
 			

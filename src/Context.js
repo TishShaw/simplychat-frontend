@@ -1,2 +1,2 @@
 import React from 'react';
-export const ProductContext = React.createContext(null);
+export const UserContext = React.createContext(null);

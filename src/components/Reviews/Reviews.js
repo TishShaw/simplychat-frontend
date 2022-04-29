@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
-import { ProductContext } from '../../Context';
+import { useParams } from 'react-router-dom';
+import { UserContext } from '../../Context';
 import { useDispatch } from 'react-redux';
 import { editProductReview } from '../../redux/actions/productAction/productAction';
 import { Button } from 'bootstrap-4-react/lib/components';
@@ -12,9 +12,9 @@ import DeleteBtn from '../DeleteBtn';
 import './Reviews.styles.css';
 
 function Reviews({ product }) {
-	const { login, currentUser } = useContext(ProductContext);
 	const { id } = useParams();
 	const dispatch = useDispatch();
+	const { loggedIn, currentUser, userDetails } = useContext(UserContext);
 	const [showing, setShowing] = useState(false);
 	const [editShowing, setEditShowing] = useState(false);
 	const [rating, setRating] = useState(null);
@@ -44,11 +44,6 @@ function Reviews({ product }) {
 		});
 	};
 
-	const handleUpdate = (event, id) => {
-		event.preventDefault();
-		dispatch(editProductReview(id));
-	};
-
 	if (!currentUser) {
 		return (
 			<p>
@@ -57,7 +52,7 @@ function Reviews({ product }) {
 					{' '}
 					log in
 				</a>{' '}
-				first.
+				to create a review.
 			</p>
 		);
 	}
@@ -91,35 +86,36 @@ function Reviews({ product }) {
 											value={item.rating}
 											color='#f8e825'
 										/>
-										<h5 className='card-title'>{item.review_title}</h5>
+										<div className='reviewButtons'>
+											<h5 className='card-title'>{item.review_title}</h5>
+												{item.owner === userDetails.name ? (
+													<div className='reviewButtonControls'>
+														<EditBtn
+															item={item}
+															handleEditShowing={handleEditShowing}
+														/>
+														<DeleteBtn item={item} />
+													</div>
+												) : null}
+										</div>
 										<h6 className='card-subtitle mb-2 text-muted'>
 											{item.owner}
 										</h6>
 										<p className='card-text'>{item.review_body}</p>
-										{currentUser.name === item.owner ? (
-											<div>
-												<EditBtn
-													item={item}
-													handleEditShowing={handleEditShowing}
-												/>
-												<DeleteBtn item={item} />
-											</div>
-										) : null}
 									</div>
 								</div>
 							</div>
 						);
 					})}
 				</div>
-				{login && editShowing ? (
+				{!loggedIn && editShowing ? (
 					<UpdateReview
 						handleChange={handleChange}
-						handleUpdate={handleUpdate}
 						newReview={newReview}
 						setRating={setRating}
 					/>
 				) : null}
-				{login && showing ? (
+				{!loggedIn && showing ? (
 					<NewReview
 						handleChange={handleChange}
 						newReview={newReview}
@@ -129,13 +125,6 @@ function Reviews({ product }) {
 						setRating={setRating}
 					/>
 				) : null}
-				{login ? (
-					''
-				) : (
-					<div className='alert alert-primary alert-message' role='alert'>
-						please login to add a review!
-					</div>
-				)}
 			</div>
 		</div>
 	);

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link, useSearchParams, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -7,8 +7,10 @@ import {
 } from '../../redux/actions/cartAction/cartAction';
 import Paypal from '../Paypal/Paypal';
 import './styles/Cart.style.css';
+import { UserContext } from '../../Context';
 
-function Cart({ match, history, location }) {
+function Cart() {
+	const { currentUser, loggedIn } = useContext(UserContext);
 	const { id } = useParams();
 	const [searchParms] = useSearchParams();
 	const qty = Number(searchParms.get('qty'));
@@ -48,19 +50,19 @@ function Cart({ match, history, location }) {
 					<li className='col bold'>Total</li>
 				</ul>
 			</div>
-			
+
 			<div>
 				{cartItems.length === 0 ? (
 					<div>
 						Your cart is empty{' '}
-						<Link to='/'>
+						<Link to='/shop'>
 							<span className='emptyCart'>Continue Shopping</span>
 						</Link>
 					</div>
 				) : (
 					<div>
 						{cartItems.map((item) => (
-							<div key={item.product} className="cart-products">
+							<div key={item.product} className='cart-products'>
 								<div className='row'>
 									<div className='col'>
 										<img
@@ -105,19 +107,39 @@ function Cart({ match, history, location }) {
 					</div>
 				)}
 			</div>
-			<div>
-				<div className='total-card'>
-					<div>
-						<h5>Subtotal ${cartTotal}</h5>
-						<p>Standard Shipping Free</p>
-						<p>Sales Tax $0.00</p>
-						<hr />
-						<h5>Estimated Total ${cartTotal}</h5>
+			{loggedIn === true ? (
+				<div>
+					<div className='total-card'>
+						<div>
+							<h5>Subtotal ${cartTotal}</h5>
+							<p>Standard Shipping Free</p>
+							<p>Sales Tax $0.00</p>
+							<hr />
+							<h5>Estimated Total ${cartTotal}</h5>
+						</div>
+						{cartItems.length > 0 && <Paypal cartTotal={cartTotal} />}
 					</div>
-
-					{cartItems.length > 0 && <Paypal cartTotal={cartTotal} />}
 				</div>
-			</div>
+			) : (
+				<div>
+					<div className='total-card'>
+						<div>
+							<h5>Subtotal ${cartTotal}</h5>
+							<p>Standard Shipping Free</p>
+							<p>Sales Tax $0.00</p>
+							<hr />
+							<h5>Estimated Total ${cartTotal}</h5>
+						</div>
+						<div>
+							Please{' '}
+							<Link to='/login' style={{ color: 'red' }}>
+								log in
+							</Link>{' '}
+							to continue
+						</div>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 }

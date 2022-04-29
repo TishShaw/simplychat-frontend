@@ -9,8 +9,8 @@ function Shoppage() {
 	const dispatch = useDispatch();
 	const product = useSelector((state) => state.product);
 	const { products } = product;
-
 	const [filteredArr, setFilteredArr] = useState([]);
+	const [checked, setChecked] = useState(false);
 
 	useEffect(() => {
 		dispatch(getProducts(product));
@@ -20,8 +20,7 @@ function Shoppage() {
 		event.preventDefault();
 
 		const product = products.filter((item) => {
-			if (item.category_name) return item.item;
-			console.log('allproducts');
+			if (item.category_name) return item.item;		
 		});
 		setFilteredArr(product);
 	};
@@ -53,6 +52,53 @@ function Shoppage() {
 		setFilteredArr(lip);
 	};
 
+	const handleFilterPrice = (e) => {
+		const value = e;
+		if (value === 'lowToHigh') {
+			const asc = products.sort((a, b) =>
+				a.price - b.price
+			);
+			setFilteredArr(asc);
+		}
+		if (value === 'highToLow') {
+			const desc = products.sort((a, b) =>
+				b.price - a.price
+			);
+			setFilteredArr(desc);
+		}
+		if(value === 'bestSellers') {
+			const highlyRated = products.filter((item) => {
+				if(item.reviews.rating >= 3) {					
+					return item;
+				}
+			})			
+			setFilteredArr(highlyRated);
+		}
+	};
+
+	const handleChange = (e) => {
+		const target = e.target.value;
+		setChecked(!checked);
+
+		const soldOut = products.filter((item) => {
+			if(item.countInStock === 0) {		
+				return item;
+			}
+		})
+		if(target === 'outOfStock'){
+			setFilteredArr(soldOut)
+		}
+
+		const Available = products.filter((item) => {
+			if (item.countInStock > 0) {
+				return item;
+			}
+		});
+		if (target === 'inStock') {
+			setFilteredArr(Available);
+		};
+	};
+
 	if (!products) {
 		return <h3>Loading Products...</h3>;
 	}
@@ -68,14 +114,16 @@ function Shoppage() {
 						eyeFilter={eyeFilter}
 						lipFilter={lipFilter}
 						productsFilter={productsFilter}
+						handleFilterPrice={handleFilterPrice}
+						handleChange={handleChange}
 					/>
 				</div>
 				<div className='shop-select'>
 					<label className='shop-select__label'>Sort By:</label>
-					<select name='' id=''>
-						<option value=''>Best Sellers</option>
-						<option value=''>Price: Low to High</option>
-						<option value=''>Price: high to Low</option>
+					<select onChange={(e) => handleFilterPrice(e.target.value)}>
+						<option value='bestSellers'>Best Sellers</option>
+						<option value='lowToHigh'>Price: Low to High</option>
+						<option value='highToLow'>Price: high to Low</option>
 					</select>
 				</div>
 				<div className='shop-content'>

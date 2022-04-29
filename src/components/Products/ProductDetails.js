@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetails } from '../../redux/actions/productAction/productAction';
-
 import Rating from '../Rating/Rating';
 import ProductBox from '../ProductBox';
 import './ProductList.styles.css';
 
-function ProductDetail({ match, history }) {
+function ProductDetail() {
 	const { id } = useParams();
-
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const productDetails = useSelector((state) => state.productDetails);
@@ -22,18 +21,10 @@ function ProductDetail({ match, history }) {
 		return acc + currentVal;
 	};
 
-	const ratings = product.reviews.map((item) => item.rating);
-	const addRatings = ratings.reduce(reducer, 0);
-	const averageRatings = addRatings / ratings.length;
-	const navigate = useNavigate();
+	let ratings = product?.reviews.map((item) => item.rating);
+	const addRatings = ratings?.reduce(reducer, 0);
+	const averageRatings = addRatings / ratings?.length;
 	const [qty, setQty] = useState(1);
-
-	// const initialReviewData = {
-	// 	rating: null,
-	// 	product_id: id,
-	// 	review_title: '',
-	// 	review_body: '',
-	// };
 
 	useEffect(() => {
 		dispatch(getProductDetails(id));
@@ -68,7 +59,7 @@ function ProductDetail({ match, history }) {
 							<p className='card-text-price'>$ {product.price}</p>
 							<div className='product-status'>
 								Status:
-								{product.coutInStock > 0 ? '  Out of Stock' : ' In Stock'}
+								{product.coutInStock > 0 ? 'In Stock' : 'Out of Stock'}
 							</div>
 							{product.countInStock > 0 && (
 								<div>
@@ -90,16 +81,20 @@ function ProductDetail({ match, history }) {
 
 							{userData ? (
 								<div className='productBtn-container'>
-									<button className='productBtn' onClick={handleAddToCart}>
-										Add to Cart
-									</button>
+									{product.countInStock > 0 && (
+										<button className='productBtn' onClick={handleAddToCart}>
+											Add to Cart
+										</button>
+									)}
 								</div>
 							) : (
 								<Link to='/login'>
 									<div className='productBtn-container'>
-										<button className='productBtn' onClick={handleAddToCart}>
-											Add to Cart
-										</button>
+										{product.countInStock > 0 && (
+											<button className='productBtn' onClick={handleAddToCart}>
+												Add to Cart
+											</button>
+										)}
 									</div>
 								</Link>
 							)}

@@ -2,30 +2,30 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserLogout } from '../../redux/actions/userAction';
-
+import { CLEAR_SHOPPING_CART } from '../../redux/constants/cartConstants';
 import Bag from '../../assets/images/icons8-bag-64.png';
 import '../../styles/NavBar.styles.css';
 
 function NavBar(props) {
+	const [navbar, setNavbar] = useState(false);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const userLogin = useSelector((state) => state.userLogin);
 	const { userData } = userLogin;
-
 	const cart = useSelector((state) => state.cart);
 	const { cartItems } = cart;
 
 	const logout = () => {
 		dispatch(getUserLogout());
+		dispatch({ type: CLEAR_SHOPPING_CART });
 		navigate('/');
 	};
-	const [navbar, setNavbar] = useState(false)
 
 	const handleClick = (e) => {
 		e.preventDefault();
-			setNavbar(!navbar)
-	}
+		setNavbar(!navbar);
+	};
 
 	return (
 		<div>
@@ -35,16 +35,16 @@ function NavBar(props) {
 				</p>
 			</div>
 
-			<nav
-				className='navbar navbar-expand-lg navbar-light bg-pink-900'
-				light='true'>
+			<nav className='navbar navbar-expand-lg navbar-light bg-pink-900'>
 				<div className='container-fluid navbar-logo'>
-					<Link
-						className='navbar-brand fw-bold fs-50 text-white '
-						to='/'
-						onClick={(e) => handleClick()}>
-						<h2 className='logo-title'>Keita's Beauty</h2>
-					</Link>
+					<h2 className='logo-title'>
+						<Link
+							to='/'
+							>
+							Keita's Beauty
+						</Link>
+					</h2>
+
 					<button
 						className='navbar-toggler'
 						type='button'
@@ -98,7 +98,7 @@ function NavBar(props) {
 							</li>
 						</ul>
 						<div className='nav-right'>
-							{userData ? (
+							{userData?.auth_token ? (
 								<div
 									light
 									md

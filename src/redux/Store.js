@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { userLoginReducer } from './reducers/userReducers';
+import { userLoginReducer, userInfoReducer } from './reducers/userReducers';
 import { cartReducer } from './reducers/CartReducer';
 import {
 	productsReducer,
@@ -17,6 +17,7 @@ const reducer = combineReducers({
 	productDetails: productsDetailsReducer,
 	productCreateReview: productReviewReducer,
 	userLogin: userLoginReducer,
+	userInfo: userInfoReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
@@ -35,6 +36,10 @@ const getUserFromStorage = localStorage.getItem('userData')
 	? JSON.parse(localStorage.getItem('userData'))
 	: [];
 
+const getUserInfoFromStorage = localStorage.getItem('userInfo')
+	? JSON.parse(localStorage.getItem('userInfo'))
+	: [];
+
 const initialState = {
 	cart: {
 		cartItems: cartItemsFromStorage,
@@ -45,7 +50,11 @@ const initialState = {
 	},
 	userLogin: {
 		userData: getUserFromStorage,
+		
 	},
+	userInfo: {
+		userInfo: getUserInfoFromStorage,
+	}
 };
 
 export const store = createStore(

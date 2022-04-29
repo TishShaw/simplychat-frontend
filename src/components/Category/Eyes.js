@@ -18,7 +18,7 @@ function Eyes() {
 	const filterEyes = () => {
 		const eyesFilter = products.filter((item) => {
 			if (item.category_name === 'eyes') {
-				return item.item;
+				return item;
 			}
 		});
 		setEyes(eyesFilter);
@@ -26,7 +26,7 @@ function Eyes() {
 
 	useEffect(() => {
 		filterEyes();
-	}, []);
+	});
 
 	return (
 		<div className='eyes'>

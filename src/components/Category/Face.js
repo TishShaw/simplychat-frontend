@@ -6,27 +6,31 @@ import Rating from '../Rating/Rating';
 import Card from '../Card/Card';
 import './styles/Face.css';
 
-
 function Face() {
 	const [faceProduct, setFaceProduct] = useState([]);
 	const dispatch = useDispatch();
 	const product = useSelector((state) => state.product);
 	const { products } = product;
+	console.log(products);
 
+	useEffect(() => {
+		dispatch(getProducts());
+	}, []);
 	const filterProducts = () => {
 		const face = products.filter((item) => {
 			if (item.category_name === 'face') {
-				return item.item;
+				return item;
 			}
 		});
 		setFaceProduct(face);
 	};
+	useEffect(() => {
+		filterProducts();
+	});
 
-		useEffect(() => {
-			dispatch(getProducts(product));
-			filterProducts();
-		}, [product]);
-
+	if (!filterProducts) {
+		return <h3>Loading...</h3>;
+	}
 	return (
 		<div className='face'>
 			<div className='face-headerImg'>
