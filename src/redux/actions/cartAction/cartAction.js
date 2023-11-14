@@ -4,12 +4,11 @@ import {
 	DELETE_FROM_CART,
 	GET_CART_TOTAL,
 	SAVE_SHIPPING_ADDRESS,
-
 } from '../../constants/cartConstants';
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
 	const { data } = await axios.get(
-		` https://desolate-brushlands-04983.herokuapp.com/shop/${id}`
+		`https://keitabeautybackend-a0275470644f.herokuapp.com/shop/${id}`
 	);
 
 	dispatch({
@@ -52,5 +51,5 @@ export const saveShippingAddress = (data) => (dispatch) => {
 		payload: data,
 	});
 
-	localStorage.setItem('shippingAdress', JSON.stringify(data))
-}
+	localStorage.setItem('shippingAdress', JSON.stringify(data));
+};

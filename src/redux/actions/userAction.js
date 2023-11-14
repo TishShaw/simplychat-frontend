@@ -24,7 +24,7 @@ export const createSignUp = (formData) => async (dispatch) => {
 		};
 
 		const { data } = await axios.post(
-			'https://desolate-brushlands-04983.herokuapp.com/users/',
+			'https://keitabeautybackend-a0275470644f.herokuapp.com/users/',
 			formData,
 			config
 		);
@@ -51,10 +51,10 @@ export const getUserInfo = (token) => async (dispatch) => {
 		dispatch({ type: USER_INFO_REQUEST });
 
 		const { data } = await axios.get(
-			'https://desolate-brushlands-04983.herokuapp.com/users/me',
+			'https://keitabeautybackend-a0275470644f.herokuapp.com/users/me',
 			{
 				headers: {
-					'Authorization': `Token ${token}`,
+					Authorization: `Token ${token}`,
 				},
 			}
 		);
@@ -87,7 +87,7 @@ export const getUserLogin = (formData) => async (dispatch) => {
 		};
 
 		const { data } = await axios.post(
-			'https://desolate-brushlands-04983.herokuapp.com/token/login',
+			'https://keitabeautybackend-a0275470644f.herokuapp.com/token/login',
 			formData,
 			config
 		);
@@ -99,7 +99,6 @@ export const getUserLogin = (formData) => async (dispatch) => {
 		});
 
 		localStorage.setItem('userData', JSON.stringify(data));
-
 	} catch (error) {
 		dispatch({
 			type: USER_LOGIN_FAILED,

@@ -18,9 +18,7 @@ export const getProducts = () => async (dispatch) => {
 	try {
 		dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
 
-		const { data } = await axios.get(
-			'https://desolate-brushlands-04983.herokuapp.com/shop/'
-		);
+		const { data } = await axios.get('http://127.0.0.1:8000/shop/');
 		dispatch({
 			type: GET_ALL_PRODUCTS_SUCCESSFUL,
 			payload: data,
@@ -40,9 +38,7 @@ export const getProductDetails = (id) => async (dispatch) => {
 	try {
 		dispatch({ type: GET_PRODUCTS_DETAILS_REQUEST });
 
-		const { data } = await axios.get(
-			`https://desolate-brushlands-04983.herokuapp.com/shop/${id}`
-		);
+		const { data } = await axios.get(`http://127.0.0.1:8000/shop/${id}`);
 
 		dispatch({
 			type: GET_PRODUCTS_DETAILS_SUCCESSFUL,
@@ -60,9 +56,7 @@ export const getProductDetails = (id) => async (dispatch) => {
 };
 
 export const removeProductReview = (id, token) => async (dispatch) => {
-	
 	try {
-		
 		console.log(token);
 		const config = {
 			headers: {
@@ -74,7 +68,7 @@ export const removeProductReview = (id, token) => async (dispatch) => {
 		dispatch({ type: GET_PRODUCTS_DETAILS_REQUEST });
 		console.log(token);
 		const { data } = await axios.delete(
-			`https://desolate-brushlands-04983.herokuapp.com/shop/review/${id}`,
+			`http://127.0.0.1:8000/shop/review/${id}`,
 			config
 		);
 
@@ -93,37 +87,38 @@ export const removeProductReview = (id, token) => async (dispatch) => {
 	}
 };
 
-export const createProductReviews = (id, token, newReview) => async (dispatch, getState) => {
-	try {
-		dispatch({ type: CREATE_PRODUCT_REVIEW_REQUEST });
+export const createProductReviews =
+	(id, token, newReview) => async (dispatch, getState) => {
+		try {
+			dispatch({ type: CREATE_PRODUCT_REVIEW_REQUEST });
 
-		const config = {
-			headers: {
-				'Content-type': 'application/json',
-				'Authorization': `Token ${token}`,
-			},
-		};
+			const config = {
+				headers: {
+					'Content-type': 'application/json',
+					Authorization: `Token ${token}`,
+				},
+			};
 
-		const { data } = await axios.post(
-			`https://desolate-brushlands-04983.herokuapp.com/shop/review/`,
-			newReview,
-			config
-		);
+			const { data } = await axios.post(
+				`http://127.0.0.1:8000/shop/review/`,
+				newReview,
+				config
+			);
 
-		dispatch({
-			type: CREATE_PRODUCT_REVIEW_SUCCESSFUL,
-			payload: data,
-		});
-	} catch (error) {
-		dispatch({
-			type: CREATE_PRODUCT_REVIEW_FAILED,
-			payload:
-				error.response && error.response.data.detail
-					? error.response.data.detail
-					: error.message,
-		});
-	}
-};
+			dispatch({
+				type: CREATE_PRODUCT_REVIEW_SUCCESSFUL,
+				payload: data,
+			});
+		} catch (error) {
+			dispatch({
+				type: CREATE_PRODUCT_REVIEW_FAILED,
+				payload:
+					error.response && error.response.data.detail
+						? error.response.data.detail
+						: error.message,
+			});
+		}
+	};
 
 export const editProductReview = (id, token, newReview) => async (dispatch) => {
 	try {
@@ -137,7 +132,7 @@ export const editProductReview = (id, token, newReview) => async (dispatch) => {
 		dispatch({ type: GET_PRODUCTS_DETAILS_REQUEST });
 
 		const { data } = await axios.put(
-			`https://desolate-brushlands-04983.herokuapp.com/shop/review/${id}`,
+			`http://127.0.0.1:8000/shop/review/${id}`,
 			config,
 			newReview
 		);

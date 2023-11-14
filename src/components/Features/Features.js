@@ -10,14 +10,11 @@ function Features() {
 	console.log(products);
 	const dispatch = useDispatch();
 	const amt = 5;
-	const product = products.slice(0, amt);
-
+	const product = products?.slice(0, amt);
 
 	useEffect(() => {
 		dispatch(getProducts());
-		
 	}, []);
-
 
 	if (!product) {
 		return <h1>Loading...</h1>;
@@ -28,7 +25,7 @@ function Features() {
 				New<span className='span'>Arrivals</span>
 			</h1>
 			<div className='featuresContainer'>
-				{product.map((item) => (
+				{product?.map((item) => (
 					<div>
 						<div className='features-item'>
 							<img className='features-image' src={item.image} alt='' />
