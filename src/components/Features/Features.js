@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts } from '../../redux/actions/productAction/productAction';
 import './Features.styles.css';
@@ -7,7 +6,7 @@ import './Features.styles.css';
 function Features() {
 	const productArr = useSelector((state) => state.product);
 	const { products } = productArr;
-	console.log(products);
+
 	const dispatch = useDispatch();
 	const amt = 5;
 	const product = products?.slice(0, amt);

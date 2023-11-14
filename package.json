@@ -66,5 +66,8 @@
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/TishShaw/KeitaBeauty-frontend/issues"
+	},
+	"engines": {
+		"node": "18.x"
 	}
 }
