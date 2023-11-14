@@ -10,6 +10,7 @@ function Features() {
 	const dispatch = useDispatch();
 	const amt = 5;
 	const product = products?.slice(0, amt);
+	console.log(product);
 
 	useEffect(() => {
 		dispatch(getProducts());

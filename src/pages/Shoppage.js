@@ -20,7 +20,7 @@ function Shoppage() {
 		event.preventDefault();
 
 		const product = products.filter((item) => {
-			if (item.category_name) return item.item;		
+			if (item.category_name) return item.item;
 		});
 		setFilteredArr(product);
 	};
@@ -55,23 +55,19 @@ function Shoppage() {
 	const handleFilterPrice = (e) => {
 		const value = e;
 		if (value === 'lowToHigh') {
-			const asc = products.sort((a, b) =>
-				a.price - b.price
-			);
+			const asc = products.sort((a, b) => a.price - b.price);
 			setFilteredArr(asc);
 		}
 		if (value === 'highToLow') {
-			const desc = products.sort((a, b) =>
-				b.price - a.price
-			);
+			const desc = products.sort((a, b) => b.price - a.price);
 			setFilteredArr(desc);
 		}
-		if(value === 'bestSellers') {
+		if (value === 'bestSellers') {
 			const highlyRated = products.filter((item) => {
-				if(item.reviews.rating >= 3) {					
+				if (item.reviews.rating >= 3) {
 					return item;
 				}
-			})			
+			});
 			setFilteredArr(highlyRated);
 		}
 	};
@@ -81,12 +77,12 @@ function Shoppage() {
 		setChecked(!checked);
 
 		const soldOut = products.filter((item) => {
-			if(item.countInStock === 0) {		
+			if (item.countInStock === 0) {
 				return item;
 			}
-		})
-		if(target === 'outOfStock'){
-			setFilteredArr(soldOut)
+		});
+		if (target === 'outOfStock') {
+			setFilteredArr(soldOut);
 		}
 
 		const Available = products.filter((item) => {
@@ -96,7 +92,7 @@ function Shoppage() {
 		});
 		if (target === 'inStock') {
 			setFilteredArr(Available);
-		};
+		}
 	};
 
 	if (!products) {
@@ -129,13 +125,13 @@ function Shoppage() {
 				<div className='shop-content'>
 					{filteredArr.length > 0 ? (
 						<div className='shop-results'>
-							{filteredArr.map((item) => (
+							{filteredArr?.map((item) => (
 								<Card key={item.id} item={item} />
 							))}
 						</div>
 					) : (
 						<div className='shop-results'>
-							{products.map((item) => (
+							{products?.map((item) => (
 								<Card key={item.id} item={item} />
 							))}
 						</div>
