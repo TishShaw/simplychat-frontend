@@ -9,6 +9,7 @@ import Lips from './components/Category/Lips';
 import Face from './components/Category/Face';
 import Eyes from './components/Category/Eyes';
 import Cart from './components/Cart/Cart';
+import FavoritesPage from './pages/FavoritesPage';
 import Layout from './Layout';
 import Checkout from './Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
@@ -25,6 +26,7 @@ function App() {
 					<Route path='/eyes' element={<Eyes />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/shop' element={<Shoppage />} />
+					<Route path='/wishlist' element={<FavoritesPage />} />
 					<Route path='/signup' element={<Signup />} />
 					<Route path='/cart/:id' element={<Cart />} />
 					<Route path='/cart' element={<Cart />} />

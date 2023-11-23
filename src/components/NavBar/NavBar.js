@@ -3,14 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserLogout } from '../../redux/actions/userAction';
 import { CLEAR_SHOPPING_CART } from '../../redux/constants/cartConstants';
-import Bag from '../../assets/images/icons8-bag-64.png';
+import BagIcon from '../../assets/images/icons8-bag-64.png';
+import HeartIcon from '../../assets/images/icons8-favorite-50.png';
+import UserIcon from '../../assets/images/icons8-user-64.png';
+
 import './NavBar.styles.css';
 
-function NavBar(props) {
-	const [navbar, setNavbar] = useState(false);
+const NavBar = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-
+	const [showDropDown, setShowDropDown] = useState(false);
 	const userLogin = useSelector((state) => state.userLogin);
 	const { userData } = userLogin;
 	const cart = useSelector((state) => state.cart);
@@ -22,113 +24,106 @@ function NavBar(props) {
 		navigate('/');
 	};
 
-	const handleClick = (e) => {
-		e.preventDefault();
-		setNavbar(!navbar);
-	};
-
 	return (
-		<div>
+		<>
 			<div className='navbar-header'>
 				<p className='paragraph-banner'>
 					FREE SHIPPING ON ANY U.S. ORDER | FREE RETURNS
 				</p>
 			</div>
-
-			<nav className='navbar navbar-expand-lg navbar-light bg-pink-900'>
-				<div className='container-fluid navbar-logo'>
-					<h2 className='logo-title'>
+			<nav class='navbar navbar-expand-lg bg-body-tertiary navbar-container z-3'>
+				<div class='container-fluid'>
+					<h2 className='logo-title navbar-brand'>
 						<Link to='/'>Keita's Beauty</Link>
 					</h2>
-
 					<button
-						className='navbar-toggler'
+						class='navbar-toggler'
 						type='button'
 						data-bs-toggle='collapse'
 						data-bs-target='#navbarSupportedContent'
 						aria-controls='navbarSupportedContent'
-						aria-expanded='true'
-						aria-label='Toggle navigation'>
-						<span className='navbar-toggler-icon'></span>
+						aria-expanded='false'
+						aria-label='Toggle navigation'
+					>
+						<span class='navbar-toggler-icon mobileIcon'>
+							<i class='fa-solid fa-bars'></i>
+						</span>
 					</button>
-					<div
-						className='collapse navbar-collapse'
-						id='navbarSupportedContent'
-						open={navbar}>
-						<ul className='navbar-nav mx-auto mb-2 mb-lg-0'>
-							<li className='nav-item'>
-								<Link
-									onClick={(e) => handleClick()}
-									className='nav-link active text-white'
-									aria-current='page'
-									to='/shop'>
+					<div class='collapse navbar-collapse' id='navbarSupportedContent'>
+						<ul class='navbar-nav me-auto mb-2 mb-lg-0'>
+							<li class='nav-item'>
+								<Link class='nav-link active' aria-current='page' to='/shop'>
 									Shop All
 								</Link>
 							</li>
-							<li className='nav-item'>
-								<Link
-									onClick={(e) => handleClick()}
-									className='nav-link active text-white'
-									aria-current='page'
-									to='/face'>
+							<li class='nav-item'>
+								<Link class='nav-link' to='/face'>
 									Face
 								</Link>
 							</li>
-							<li className='nav-item'>
-								<Link
-									onClick={(e) => handleClick()}
-									className='nav-link active text-white'
-									aria-current='page'
-									to='/lips'>
-									Lips
-								</Link>
-							</li>
-							<li className='nav-item'>
-								<Link
-									onClick={(e) => handleClick()}
-									className='nav-link active text-white'
-									aria-current='page'
-									to='/eyes'>
+							<li class='nav-item'>
+								<Link class='nav-link' to='/eyes'>
 									Eyes
 								</Link>
 							</li>
+							<li class='nav-item'>
+								<Link class='nav-link' to='/lips'>
+									Lips
+								</Link>
+							</li>
 						</ul>
-						<div className='nav-right'>
-							{userData?.auth_token ? (
-								<div
-									light
-									md
-									outline
-									className='nav-right-item'
-									onClick={logout}>
-									<Link to='/shop'>Log Out</Link>
-								</div>
-							) : (
-								<div light md outline className='nav-right-item'>
-									<Link to='/login'>Log In </Link>|
-									<Link to='/signup'> Sign Up</Link>
-								</div>
-							)}
-							{userData ? (
+						<form class='d-flex' role='search'>
+							<input
+								class='form-control me-2'
+								type='search'
+								placeholder='Search'
+								aria-label='Search'
+							/>
+						</form>
+						<div>
+							<div className='nav-right'>
 								<div className='nav-right'>
-									<Link to={`/cart`}>
-										<img src={Bag} alt='' className='nav-cart' />
-										{cartItems.length}
+									<Link to={`/wishlist`}>
+										<img src={HeartIcon} alt='' className='nav-cart' />
 									</Link>
 								</div>
-							) : (
 								<div className='nav-right'>
 									<Link to={`/cart`}>
-										<img src={Bag} alt='' className='nav-cart' />
+										<img src={BagIcon} alt='' className='nav-cart' />
+										<span className='nav-cart-length'>{cartItems.length}</span>
 									</Link>
 								</div>
-							)}
+
+								{userData.length > 0 ? (
+									<div class='nav-right' onClick={() => setShowDropDown(true)}>
+										<img src={UserIcon} alt='' className='nav-cart' />
+										<i class='fa-solid fa-caret-down downArrow'></i>
+									</div>
+								) : (
+									<div class='nav-right '>
+										<Link to='/login'>
+											<img src={UserIcon} alt='' className='nav-cart' />
+										</Link>
+									</div>
+								)}
+								{showDropDown && (
+									<div className='dropDownMenu'>
+										<button
+											type='button'
+											class='btn btn-outline-dark'
+											onClick={logout}
+										>
+											Logout
+										</button>
+									</div>
+								)}
+							</div>
 						</div>
 					</div>
 				</div>
 			</nav>
-		</div>
+		</>
 	);
-}
+};
 
 export default NavBar;
