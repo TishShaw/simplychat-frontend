@@ -1,43 +1,43 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { Button } from 'bootstrap-4-react';
 import CartBtn from '../Cart/CartBtn';
+import Rating from '../Rating/Rating';
 import './ProductCard.styles.css';
 
-function ProductCard({item}) {
-	console.log(item)
+function ProductCard({ item }) {
+	console.log(item);
+	const reducer = (acc, currentVal) => {
+		return acc + currentVal;
+	};
 
-    return (
-			<div className='productCard'>
-				<div className='productCard-item'>
-					<div className='productCard-content'>
-						<img className='best-image' src={item.image} alt='' />
-						<p className='best-name'>{item.item}</p>
-						<p className='best-price'>{item.price}</p>
-						<i className='fa-solid fa-heart heart'></i>
-					</div>
+	const ratings = item.reviews.map((item) => item.rating);
+	const addRatings = ratings.reduce(reducer, 0);
+	const averageRatings = addRatings / ratings.length;
 
-					<div className='buttons'>
-						<Button
-							dark
-							sm
-							outline
-							className='pc-btn'
-							onClick={() => {
-								
-							}}>
-							<Link to={`/${item.id}`}>
-								View
-							</Link>
-						</Button>
-						<div>
-								<CartBtn id={item.id} />
-						</div>
+	return (
+		<div className='features-item'>
+			<Link to={`/${item.id}`}>
+				<div className='features-item-top'>
+					<img className='features-image' src={item.image} alt='' />
+					<p className='features-name'>{item.item}</p>
+					<p className='features-price'>${item.price}</p>
+					<div className='features-ratingRow'>
+						<Rating
+							value={averageRatings}
+							color='#f8e825'
+							className='ratings'
+						/>
+						({item.reviews.length})
 					</div>
 				</div>
+			</Link>
+			<CartBtn id={item.id} />
+			<div className='features-item-span'>
+				<i class='fa-regular fa-heart'></i>
+				<span className='features-span'>Add to wishlist</span>
 			</div>
-		);
+		</div>
+	);
 }
 
 export default ProductCard;

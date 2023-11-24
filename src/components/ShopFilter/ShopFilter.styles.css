@@ -2,36 +2,71 @@
 .shopFilter-availability,
 .shopFilter-sort {
 	border: 1px gray solid;
+	border-radius: 10px;
 	width: 300px;
-    margin-bottom: 30px;
-	
-	
+	margin-bottom: 30px;
 }
 
 .shopFilter-categoriesHeading__title,
 .shopFilter-sort__title,
 .shopFilter-categoriesHeading__title {
 	background-color: rgb(218, 211, 211);
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 	padding: 10px;
 	font-size: 22px;
-	
 }
 
 .checkbox {
-	margin-right: 5px;
+	margin: 0px 5px;
 }
 
 .column {
-	margin: 10px;
+	/* margin: 10px; */
 	line-height: 30px;
 	cursor: pointer;
 }
 
-.outofstock-label,
-.instock-label {
-	margin-right: 5px;
-}
-
 .shopFilter-container {
 	width: 100%;
-} 
+}
+
+.shopFilter-categories .column li {
+	border-bottom: 1.5px solid lightgray;
+	width: 100%;
+	padding: 5px 5px 5px 10px;
+}
+
+.shopFilter-categories .column li:nth-child(1) {
+	margin-top: -10px;
+}
+
+.shopFilter-categories .column li:nth-child(4) {
+	border-bottom: none;
+	margin-bottom: -15px;
+}
+
+.shopFilter-availability h5 {
+	padding: 2px 0px 10px 10px;
+	border-bottom: 1.5px solid lightgray;
+}
+
+.shopFilter-availability .outofstock-label,
+.shopFilter-availability .instock-label {
+	padding-left: 10px;
+}
+
+.shopFilter-sort .column div {
+	border-bottom: 1.5px solid lightgray;
+	width: 100%;
+	padding: 5px 5px 5px 10px;
+}
+
+.shopFilter-sort .column div:nth-child(1) {
+	margin-top: -10px;
+}
+
+.shopFilter-sort .column div:nth-child(2) {
+	border-bottom: none;
+	padding-bottom: 5px;
+}
