@@ -5,7 +5,6 @@ import Rating from '../Rating/Rating';
 import './ProductCard.styles.css';
 
 function ProductCard({ item }) {
-	console.log(item);
 	const reducer = (acc, currentVal) => {
 		return acc + currentVal;
 	};

@@ -8,9 +8,10 @@ const CartBtn = ({ id }) => {
 	const dispatch = useDispatch();
 	const [searchParms] = useSearchParams();
 	const qty = Number(searchParms.get('qty'));
+	console.log(qty);
 
 	const handleAddToCart = (id) => {
-		if (qty) return 1;
+		if (qty <= 0) return 1;
 		dispatch(addToCart(id, qty));
 	};
 

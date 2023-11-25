@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Rating.styles.css';
 
-function Rating({ text, value, color }) {
-	
-
+const Rating = ({ text, value, color }) => {
 	return (
 		<div className='star-rating'>
 			<span>
@@ -15,7 +13,8 @@ function Rating({ text, value, color }) {
 							: value >= 0.5
 							? 'fas fa-star-half-alt'
 							: 'far fa-star'
-					}></i>
+					}
+				></i>
 			</span>
 
 			<span>
@@ -27,7 +26,8 @@ function Rating({ text, value, color }) {
 							: value >= 1.5
 							? 'fas fa-star-half-alt'
 							: 'far fa-star'
-					}></i>
+					}
+				></i>
 			</span>
 
 			<span>
@@ -39,7 +39,8 @@ function Rating({ text, value, color }) {
 							: value >= 2.5
 							? 'fas fa-star-half-alt'
 							: 'far fa-star'
-					}></i>
+					}
+				></i>
 			</span>
 
 			<span>
@@ -51,7 +52,8 @@ function Rating({ text, value, color }) {
 							: value >= 3.5
 							? 'fas fa-star-half-alt'
 							: 'far fa-star'
-					}></i>
+					}
+				></i>
 			</span>
 
 			<span>
@@ -63,12 +65,13 @@ function Rating({ text, value, color }) {
 							: value >= 4.5
 							? 'fas fa-star-half-alt'
 							: 'far fa-star'
-					}></i>
+					}
+				></i>
 			</span>
 
 			<span>{text && text}</span>
 		</div>
 	);
-}
+};
 
 export default Rating;

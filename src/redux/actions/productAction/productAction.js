@@ -18,7 +18,9 @@ export const getProducts = () => async (dispatch) => {
 	try {
 		dispatch({ type: GET_ALL_PRODUCTS_REQUEST });
 
-		const { data } = await axios.get('http://localhost:8000/shop/');
+		const { data } = await axios.get(
+			'https://keitabeautybackend-a0275470644f.herokuapp.com/shop/'
+		);
 		dispatch({
 			type: GET_ALL_PRODUCTS_SUCCESSFUL,
 			payload: data,
@@ -38,7 +40,9 @@ export const getProductDetails = (id) => async (dispatch) => {
 	try {
 		dispatch({ type: GET_PRODUCTS_DETAILS_REQUEST });
 
-		const { data } = await axios.get(`http://localhost:8000/shop/${id}`);
+		const { data } = await axios.get(
+			`https://keitabeautybackend-a0275470644f.herokuapp.com/shop/${id}`
+		);
 
 		dispatch({
 			type: GET_PRODUCTS_DETAILS_SUCCESSFUL,
@@ -68,7 +72,7 @@ export const removeProductReview = (id, token) => async (dispatch) => {
 		dispatch({ type: GET_PRODUCTS_DETAILS_REQUEST });
 		console.log(token);
 		const { data } = await axios.delete(
-			`http://localhost:8000/shop/review/${id}`,
+			`https://keitabeautybackend-a0275470644f.herokuapp.com/shop/review/${id}`,
 			config
 		);
 
@@ -100,7 +104,7 @@ export const createProductReviews =
 			};
 
 			const { data } = await axios.post(
-				`http://localhost:8000/shop/review/`,
+				`https://keitabeautybackend-a0275470644f.herokuapp.com/shop/review/`,
 				newReview,
 				config
 			);
@@ -132,7 +136,7 @@ export const editProductReview = (id, token, newReview) => async (dispatch) => {
 		dispatch({ type: GET_PRODUCTS_DETAILS_REQUEST });
 
 		const { data } = await axios.put(
-			`http://localhost:8000/shop/review/${id}`,
+			`https://keitabeautybackend-a0275470644f.herokuapp.com/shop/review/${id}`,
 			config,
 			newReview
 		);

@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserLogin } from '../../../redux/actions/userAction';
 import { Button, Alert } from 'bootstrap-4-react';
+import logoImg from '../../../assets/images/2.png';
 import './Login.styles.css';
 
 function Login(props) {
@@ -28,12 +29,22 @@ function Login(props) {
 	};
 
 	useEffect(() => {
-		if(success === true) navigate('/shop')
+		if (success === true) navigate('/shop');
 	});
 
 	return (
 		<div className='login'>
-			<h1 className='login-title'>Welcome back, Beautiful!</h1>
+			<img
+				src={logoImg}
+				style={{
+					position: 'absolute',
+					width: '500px',
+					height: '500px',
+					left: 0,
+				}}
+				alt='logo'
+			/>
+			<h1 className='login-title'>Login</h1>
 			<form onSubmit={handleSubmit}>
 				<div className='form-group'>
 					<label htmlFor='email'>Email address</label>
@@ -58,13 +69,16 @@ function Login(props) {
 						placeholder='Enter Password'
 					/>
 					<Button outline dark lg type='submit' className='loginBtn'>
-						Enter
+						Login
 					</Button>
 				</div>
 			</form>
 			<div className='member'>
 				<h5>
-					Not a member? <Link to='/signup'>Register</Link>{' '}
+					Already have an account?{' '}
+					<Link to='/signup'>
+						<span className='member-span'>Register</span>
+					</Link>{' '}
 				</h5>
 			</div>
 			{success === false && (

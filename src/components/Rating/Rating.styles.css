@@ -1,14 +1,19 @@
 button {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
 }
 
 .on {
-  color: gold;
+	color: gold;
 }
 
 .off {
-  color: #ccc;
+	color: #ccc;
+}
+
+.star-rating {
+	font-size: 14.5px;
+	display: flex;
 }

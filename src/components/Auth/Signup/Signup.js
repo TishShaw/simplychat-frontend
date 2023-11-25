@@ -3,22 +3,24 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSignUp } from '../../../redux/actions/userAction';
 import { Button, Alert } from 'bootstrap-4-react';
+import './Signup.css';
 
 function Signup() {
 	const navigate = useNavigate();
 	const initialFormData = {
 		name: '',
 		email: '',
+		username: '',
 		password: '',
 		re_password: '',
 	};
 	const [formData, setFormData] = useState(initialFormData);
+	console.log(formData);
 	const dispatch = useDispatch();
 	const [passwordError, setPasswordError] = useState(false);
-	const userSignUpReducer = useSelector((state) => state.userLogin);
+	const userSignUpReducer = useSelector((state) => state);
 	const { error, success, userData } = userSignUpReducer;
-
-	console.log(userData);
+	console.log(userSignUpReducer);
 
 	const handleInputChange = (event) => {
 		setFormData({ ...formData, [event.target.id]: event.target.value });
@@ -77,6 +79,19 @@ function Signup() {
 					<small id='emailHelp' className='form-text text-muted'>
 						We'll never share your email with anyone else.
 					</small>
+				</div>
+				<div className='form-group'>
+					<label htmlFor='name'>Username</label>
+					<input
+						type='text'
+						name='username'
+						value={formData.username}
+						onChange={handleInputChange}
+						className='form-control'
+						id='username'
+						placeholder='Enter username'
+						Required
+					/>
 				</div>
 				<label htmlFor='password'>Password</label>
 				<input
