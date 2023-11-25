@@ -66,9 +66,17 @@
 	padding: 20px 10px 0px 0px;
 }
 
+.shop-select select {
+	border: 1.5px solid lightpink;
+	border-radius: 5px;
+	color: pink;
+	outline: none;
+}
+
 .shop-select__label {
 	margin-right: 10px;
 	margin-top: 5.5px;
+	color: rgb(250, 167, 181);
 }
 
 @media screen and (min-width: 1024px) {
@@ -116,5 +124,11 @@
 		gap: 35px;
 		width: 100%;
 		margin-top: 30px;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.shop-results {
+		margin-left: 0px;
 	}
 }

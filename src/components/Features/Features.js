@@ -1,22 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts } from '../../redux/actions/productAction/productAction';
 import './Features.styles.css';
+import ProductCard from '../Card/ProductCard';
 
 function Features() {
+	const [featAmt, setFeatAmt] = useState(4);
 	const productArr = useSelector((state) => state.product);
 	const { products } = productArr;
 
 	const dispatch = useDispatch();
-	const amt = 5;
-	const product = products?.slice(0, amt);
-	console.log(product);
 
 	useEffect(() => {
 		dispatch(getProducts());
+	}, [dispatch]);
+
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth > 2000) {
+				setFeatAmt(6);
+			} else {
+				setFeatAmt(3);
+			}
+		};
+
+		// Initial check
+		handleResize();
+
+		// Event listener for window resize
+		window.addEventListener('resize', handleResize);
+
+		// Cleanup the event listener on component unmount
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
 	}, []);
 
-	if (!product) {
+	if (!products) {
 		return <h1>Loading...</h1>;
 	}
 	return (
@@ -25,15 +45,10 @@ function Features() {
 				New<span className='span'>Arrivals</span>
 			</h1>
 			<div className='featuresContainer'>
-				{product?.map((item) => (
-					<div>
-						<div className='features-item'>
-							<img className='features-image' src={item.image} alt='' />
-							<p className='features-name'>{item.item}</p>
-							<p className='features-price'>{item.price}</p>
-						</div>
-						<button className=''>View</button>
-					</div>
+				{products?.slice(0, featAmt).map((item, idx) => (
+					<>
+						<ProductCard item={item} key={idx} />
+					</>
 				))}
 			</div>
 		</div>

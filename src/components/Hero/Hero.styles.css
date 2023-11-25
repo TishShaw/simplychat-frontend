@@ -9,8 +9,19 @@
 }
 
 @media screen and (min-width: 850px) {
-		.heroImage {
-			height: 600px;
-			width: 100%;
-		}
+	.heroImage {
+		height: 700px;
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 2200px) {
+	.heroImage {
+		height: 920px;
+		width: 90%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: auto;
+	}
 }

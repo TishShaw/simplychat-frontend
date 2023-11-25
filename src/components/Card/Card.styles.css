@@ -108,3 +108,18 @@ a:hover {
 		font-size: 15.5px;
 	}
 }
+
+@media only screen and (max-width: 400px) {
+	.Card {
+		width: 150px;
+		height: 350px;
+		margin: 0;
+		padding: 0;
+	}
+	.Card-content {
+		height: 290px;
+		width: 150px;
+		margin-bottom: 30px;
+		font-size: 14px;
+	}
+}
