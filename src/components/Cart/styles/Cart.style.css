@@ -15,6 +15,18 @@
 	padding: 10px;
 }
 
+.addBtn {
+	border: 1px solid lightpink;
+	color: lightpink;
+	padding: 5px 25px;
+	border-radius: 10px;
+}
+
+.addBtn:hover {
+	background-color: lightpink;
+	color: white;
+}
+
 @media only screen and (min-width: 300px) {
 	.cart-card-empty-bag {
 		display: flex;
@@ -46,6 +58,10 @@
 	.cart-card-product-title {
 		font-size: 12px;
 		width: 100%;
+	}
+
+	.cart-card-product-price-line p {
+		color: pink;
 	}
 
 	.cart-card-product-wishlist {
@@ -173,5 +189,112 @@
 	.cart-card-checkout-payOpt > div > span {
 		padding: 0px 10px;
 		cursor: pointer;
+	}
+	.cart-card-checkoutBtn {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.cart-card-checkout-bottom {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		padding: 30px;
+	}
+	.cart-card-checkout-bottom form {
+		width: 50%;
+		margin-top: -270px;
+		font-size: 15.5px;
+	}
+	.cart-card-checkout-total-container {
+		width: 50%;
+		background-color: rgb(240, 240, 240);
+	}
+	.cart-card-checkout-payOpt {
+		background-color: white;
+		padding: 50x;
+	}
+	.cart-card-checkoutBtn {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.cart-card-checkoutBtn > button {
+		background-color: black;
+		color: white;
+		padding: 16.5px 75px;
+		border-radius: 50px;
+		letter-spacing: 1px;
+		display: block;
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+	.cart-card-container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		gap: 90px;
+		padding: 40px;
+	}
+	.cart-card-map {
+		grid-row: 1 / span 2;
+		grid-column: 1;
+		padding: 0px 20px;
+		vertical-align: top;
+	}
+	.cart-card-product-context {
+		width: 100%;
+		margin: auto;
+		vertical-align: top;
+	}
+
+	.cart-card-product-image {
+		height: 190px;
+		width: 190px;
+		margin-right: 25px;
+	}
+
+	.cart-card-product-title {
+		font-size: 14px;
+		width: 100%;
+	}
+
+	.cart-card-product-wishlist {
+		font-size: 13.5px;
+	}
+
+	.cart-card-checkout-bottom {
+		grid-row: 1;
+		grid-column: 2;
+		display: flex;
+		flex-direction: column;
+		margin-top: 270px;
+		width: 100%;
+		padding: 0px;
+	}
+	.cart-card-checkout {
+		height: 100%;
+		grid-column: 2;
+		width: 100%;
+	}
+	.cart-card-checkout-bottom form {
+		width: 100%;
+		margin-top: -270px;
+		font-size: 15.5px;
+	}
+	.cart-card-checkoutBtn > button {
+		background-color: black;
+		color: white;
+		padding: 10.5px 75px;
+		border-radius: 50px;
+		letter-spacing: 1px;
+		display: flex;
+	}
+	.cart-card-checkout-total-container {
+		width: 100%;
+		background-color: rgb(240, 240, 240);
 	}
 }

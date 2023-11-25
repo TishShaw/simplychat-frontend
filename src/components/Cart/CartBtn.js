@@ -1,15 +1,17 @@
 import React from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../redux/actions/cartAction/cartAction';
 import './styles/Cart.style.css';
 
 const CartBtn = ({ id }) => {
-	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const [searchParms] = useSearchParams();
 	const qty = Number(searchParms.get('qty'));
 
 	const handleAddToCart = (id) => {
 		if (qty) return 1;
-		navigate(`/cart/${id}?qty=${qty}`);
+		dispatch(addToCart(id, qty));
 	};
 
 	return (
