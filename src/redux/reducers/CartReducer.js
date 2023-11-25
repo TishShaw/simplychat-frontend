@@ -1,3 +1,5 @@
+import { produce } from 'immer';
+
 import {
 	ADD_TO_CART,
 	DELETE_FROM_CART,
@@ -6,59 +8,52 @@ import {
 	CLEAR_SHOPPING_CART,
 } from '../constants/cartConstants';
 
-const initialstate = {
+const initialState = {
 	cartItems: [],
 	shippingAddress: {},
+	cartTotal: 0,
 };
 
-export const cartReducer = (state = initialstate, action) => {
-	switch (action.type) {
-		case ADD_TO_CART:
-			const cartItems = action.payload;
-			const existItem = state.cartItems.find(
-				(x) => x.product === cartItems.product
-			);
+export const cartReducer = (state = initialState, action) => {
+	return produce(state, (draft) => {
+		switch (action.type) {
+			case ADD_TO_CART: {
+				const cartItem = action.payload;
+				const existingItemIndex = draft.cartItems.findIndex(
+					(x) => x.product === cartItem.product
+				);
 
-			if (existItem) {
-				return {
-					...state,
-					cartItems: state.cartItems.map((x) =>
-						x.product === existItem.product ? cartItems : x
-					),
-				};
-			} else {
-				return {
-					...state,
-					cartItems: [...state.cartItems, cartItems],
-				};
+				if (existingItemIndex !== -1) {
+					draft.cartItems[existingItemIndex] = cartItem;
+				} else {
+					draft.cartItems.push(cartItem);
+				}
+				break;
 			}
 
-		case DELETE_FROM_CART:
-			return {
-				...state,
-				cartItems: state.cartItems.filter((x) => x.product !== action.payload),
-			};
+			case DELETE_FROM_CART:
+				draft.cartItems = draft.cartItems.filter(
+					(item) => item.product !== action.payload
+				);
+				break;
 
-		case GET_CART_TOTAL:
-			return {
-				...state,
-				cartTotal: state.cartItems
-					.reduce((acc, item) => acc + item.qty * item.price, 0)
-					.toFixed(2),
-			};
+			case GET_CART_TOTAL:
+				draft.cartTotal = draft.cartItems.reduce(
+					(acc, item) => acc + item.qty * item.price,
+					0
+				);
+				break;
 
-		case SAVE_SHIPPING_ADDRESS:
-			return {
-				...state,
-				shippingAddress: action.payload,
-			};
+			case SAVE_SHIPPING_ADDRESS:
+				draft.shippingAddress = action.payload;
+				break;
 
-		case CLEAR_SHOPPING_CART:
-			return {
-				...state,
-				cartItems: []
-			}
-		default:
-			return state;
-	}
+			case CLEAR_SHOPPING_CART:
+				draft.cartItems = [];
+				break;
+
+			default:
+				break;
+		}
+	});
 };
