@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts } from '../../redux/actions/productAction/productAction';
-import './Features.styles.css';
 import ProductCard from '../Card/ProductCard';
+import './Features.styles.css';
 
 function Features() {
 	const [featAmt, setFeatAmt] = useState(4);
@@ -24,13 +24,10 @@ function Features() {
 			}
 		};
 
-		// Initial check
 		handleResize();
 
-		// Event listener for window resize
 		window.addEventListener('resize', handleResize);
 
-		// Cleanup the event listener on component unmount
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};

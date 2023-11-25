@@ -10,6 +10,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
 	const { data } = await axios.get(
 		`https://keitabeautybackend-a0275470644f.herokuapp.com/shop/${id}`
 	);
+	console.log('data', data);
 
 	dispatch({
 		type: ADD_TO_CART,
@@ -19,7 +20,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
 			image: data.image,
 			price: data.price,
 			reviews: data.reviews,
-			countInStock: data.countInStock,
+			count_inStock: data.count_inStock,
 			qty,
 		},
 	});
@@ -37,6 +38,7 @@ export const removeFromCart = (id) => (dispatch, getState) => {
 };
 
 export const getCartTotal = (data) => (dispatch) => {
+	console.log('getCartTotal', data);
 	dispatch({
 		type: GET_CART_TOTAL,
 		payload: data,

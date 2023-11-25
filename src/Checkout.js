@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {API_URL} from './config/index';
+import { API_URL } from './config/index';
 
 function Checkout(props) {
 	useEffect(() => {
@@ -17,20 +17,22 @@ function Checkout(props) {
 		}
 	}, []);
 
-    const handleSubmit = () => {
-        fetch(`http://localhost:8000/api/stripe/create-checkout-session`, {
-					credentials: 'include',
-					method: 'POST',
-					mode: 'same-origin',
-					headers: {
-						Accept: 'application/json',
-						'Content-Type': 'application/json',
-						Authorization: `Token ${localStorage.getItem('token')}`,
-					},
-					body: {},
-				});
-
-    }
+	const handleSubmit = () => {
+		fetch(
+			`https://keitabeautybackend-a0275470644f.herokuapp.com/api/stripe/create-checkout-session`,
+			{
+				credentials: 'include',
+				method: 'POST',
+				mode: 'same-origin',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+					Authorization: `Token ${localStorage.getItem('token')}`,
+				},
+				body: {},
+			}
+		);
+	};
 	return (
 		<section>
 			<div className='product'>

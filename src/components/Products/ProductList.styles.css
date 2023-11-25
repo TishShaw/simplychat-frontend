@@ -1,86 +1,133 @@
 .card-body {
-    width: 100%;
+	width: 100%;
 }
 
 .card-text-title {
-    font-size: 28px;
-    letter-spacing: 0.5px;
+	font-size: 28px;
+	letter-spacing: 0.5px;
 }
 
 .card-text-price {
-    font-size: 26px;
-    font-weight: 400;
+	font-size: 26px;
+	font-weight: 400;
 }
 
 .productBtn-container {
-    margin-top: 50px;
-    width: 100%;
+	margin-top: 50px;
+	width: 100%;
 }
 
 .productBtn {
-    background-color: rgb(232, 204, 202);
-    border: none;
-    color: rgb(17, 14, 14);
-    height: 60px;
-    width: 190px;
-    margin-right:  10px;
+	background-color: rgb(232, 204, 202);
+	border: none;
+	color: rgb(17, 14, 14);
+	height: 60px;
+	width: 190px;
+	margin-right: 10px;
 }
 
 .productBtn-heart {
-    height: 50px;
-    width: 45px;
+	height: 50px;
+	width: 45px;
 }
 
 .product-quantity {
-    display: inline-block;
+	display: inline-block;
 }
 
 .input-quantity {
-    width: 30px;
+	width: 30px;
 }
 
-
 .product-quantity-subtract {
-    height: 5px;
-    grid-column: 1;
+	height: 5px;
+	grid-column: 1;
 }
 
 .product-quantity-add {
-    grid-column: 3;
+	grid-column: 3;
 }
 
 .pd-wrapper {
-    height: 100%;
-    max-width: 90%;
-    margin: auto;
-    margin-top: 70px;
+	height: 100%;
+	max-width: 90%;
+	margin: auto;
+	margin-top: 70px;
+	overflow: hidden;
 }
 
 .pro-card-container {
-    margin: auto;
-    width: 100%;
+	margin: auto;
+	width: 100%;
 }
 
-
 .pc-heart {
-    margin-left: 20px;
+	margin-left: 20px;
 }
 
 .product-box-section {
-    height: 100%;
-    width: 100%;
-    margin: 100px auto;
+	height: 100%;
+	width: 100%;
+	margin: 100px auto;
 }
 
 button {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 .alert-message {
-    width: 200px;
+	width: 200px;
 }
 
 .img-thumbnail {
-    width:900px;
-    height: 468px;
+	width: 900px;
+	height: 468px;
+}
+
+@media only screen and (min-width: 300px) {
+	.img-thumbnail {
+		width: 900px;
+		height: 298px;
+	}
+
+	.card-text-title {
+		width: 100vw;
+		font-size: 20px;
+		letter-spacing: 0.5px;
+		font-weight: bold;
+	}
+
+	.card-body-title-rating {
+		width: 100%;
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+	}
+
+	.card-text-price {
+		display: flex;
+		flex-direction: row;
+		width: 100px;
+		font-size: 20px;
+		font-weight: 400;
+		color: rgb(241, 167, 179);
+	}
+
+	.card-body {
+		padding: 0;
+		width: 100%;
+		line-height: 20px;
+	}
+
+	.product-box-section {
+		height: 100%;
+		width: 100%;
+		margin-top: -5px;
+	}
+}
+
+@media only screen and (min-width: 700px) {
+	.product-box-section {
+		margin-top: 60px;
+	}
 }

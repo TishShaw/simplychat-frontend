@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetails } from '../../redux/actions/productAction/productAction';
 import Rating from '../Rating/Rating';
@@ -40,7 +40,7 @@ function ProductDetail() {
 	return (
 		<div className='pd-wrapper'>
 			<div className='mb-3'>
-				<div className='row g-5 pro-card-container'>
+				<div className='row pro-card-container'>
 					<div className='col-md-6 pro-card'>
 						<img
 							src={product.image ? product.image : ''}
@@ -48,28 +48,32 @@ function ProductDetail() {
 							alt='...'
 						/>
 					</div>
-					<div className='col-md-4'>
+					<div className='col-md-4 mt-2'>
 						<div className='card-body'>
 							<p className='card-text-title'>{product.item}</p>
-							<Rating
-								value={averageRatings}
-								text={`(${product.reviews.length}) reviews`}
-								color={'#f8e825'}
-							/>
-							<p className='card-text-price'>$ {product.price}</p>
+							<div className='card-body-title-rating'>
+								<Rating
+									value={averageRatings}
+									text={`(${product.reviews.length})`}
+									color={'#f8e825'}
+									className='card-body-rating'
+								/>
+								<p className='card-text-price'>$ {product.price}</p>
+							</div>
 							<div className='product-status'>
 								Status:
-								{product.coutInStock > 0 ? 'In Stock' : 'Out of Stock'}
+								{product.is_active ? 'In Stock' : 'Out of Stock'}
 							</div>
-							{product.countInStock > 0 && (
+							{product.count_inStock && (
 								<div>
 									<div>Qty</div>
 									<div xs='auto' className='my-1'>
 										<select
 											as='select'
 											value={qty}
-											onChange={(e) => setQty(e.target.value)}>
-											{[...Array(product.countInStock).keys()].map((x) => (
+											onChange={(e) => setQty(e.target.value)}
+										>
+											{[...Array(product.count_inStock).keys()].map((x) => (
 												<option key={x + 1} value={x + 1}>
 													{x + 1}
 												</option>
@@ -79,25 +83,13 @@ function ProductDetail() {
 								</div>
 							)}
 
-							{userData ? (
-								<div className='productBtn-container'>
-									{product.countInStock > 0 && (
-										<button className='productBtn' onClick={handleAddToCart}>
-											Add to Cart
-										</button>
-									)}
-								</div>
-							) : (
-								<Link to='/login'>
-									<div className='productBtn-container'>
-										{product.countInStock > 0 && (
-											<button className='productBtn' onClick={handleAddToCart}>
-												Add to Cart
-											</button>
-										)}
-									</div>
-								</Link>
-							)}
+							<div className='productBtn-container'>
+								{product.count_inStock > 0 && (
+									<button className='productBtn' onClick={handleAddToCart}>
+										Add to Cart
+									</button>
+								)}
+							</div>
 						</div>
 					</div>
 				</div>
