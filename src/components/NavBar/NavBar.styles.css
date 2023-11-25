@@ -26,7 +26,7 @@
 	width: 100vw;
 	background-color: rgb(231, 204, 202);
 	position: relative;
-	color:azure;
+	color: azure;
 }
 
 .nav-right {
@@ -41,21 +41,33 @@
 }
 
 .dropDownMenu {
-	background-color: azure;
-	width: 230px;
-	height: 100px;
+	background-color: rgb(231, 204, 202);
+	border-bottom-left-radius: 10px;
+	width: 200px;
+	height: 90px;
 	position: absolute;
 	top: 59px;
 	right: -41px;
+	display: flex;
+	justify-content: center;
+	font-size: 18px;
 }
 
 .dropDownMenu > button {
 	position: absolute;
 	right: 35%;
 	margin-top: 30px;
+	border-color: rgb(223, 146, 162);
+	color: rgb(223, 146, 162);
 }
 
-.nav-link  {
+.dropDownMenu > button:hover {
+	background-color: white;
+	color: rgb(231, 204, 202);
+	border-color: white;
+}
+
+.nav-link {
 	font-size: 20px;
 	margin-left: 10px;
 }
@@ -63,7 +75,7 @@
 .nav-cart {
 	width: 35px;
 	height: 35px;
-	color: rgb(223,146,162);
+	color: rgb(223, 146, 162);
 }
 
 .nav-cart-length {
@@ -87,7 +99,7 @@
 }
 
 .downArrow {
-	color: rgb(223,146,162);
+	color: rgb(223, 146, 162);
 	margin-left: 5px;
 }
 
@@ -126,5 +138,36 @@
 		-moz-transform: translateX(-100%); /* Firefox bug fix */
 		-webkit-transform: translateX(-100%); /* Firefox bug fix */
 		transform: translateX(-100%);
+	}
+}
+
+@media only screen and (max-width: 992px) {
+	.nav-right-icons {
+		margin-top: 12px;
+	}
+	.dropDownMenu {
+		background-color: transparent;
+		width: 230px;
+		height: 100px;
+		position: absolute;
+		top: 0;
+		right: -41px;
+	}
+
+	.dropDownMenu > button {
+		position: absolute;
+		right: 45%;
+		margin-top: 0;
+		border-color: white;
+		color: white;
+		transition: 0.3s;
+	}
+	.dropDownMenu > button:hover {
+		color: rgb(231, 204, 202);
+		background-color: white;
+		border-color: white;
+	}
+	.dropDownMenu-text {
+		display: none;
 	}
 }

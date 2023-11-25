@@ -12,24 +12,23 @@ function Lips() {
 
 	useEffect(() => {
 		dispatch(getProducts());
-	},[]);
+	}, []);
 
 	const filterLips = () => {
-
 		const lipsFilter = products.filter((item) => {
 			if (item.category_name === 'lips') {
 				return item;
 			}
 		});
 		setLipProducts(lipsFilter);
-	}
+	};
 
 	useEffect(() => {
 		filterLips();
 	});
 
-	if(!filterLips){
-		return <h3>Loading...</h3>
+	if (!filterLips) {
+		return <h3>Loading...</h3>;
 	}
 	return (
 		<div className='lips'>
@@ -39,9 +38,9 @@ function Lips() {
 			<div className='lips-content'>
 				{lipProducts.map((item) => {
 					return (
-							<div key={item.id} className='lip-card'>
-								<Card item={item}/>
-							</div>
+						<div key={item.id} className='lip-card'>
+							<Card item={item} />
+						</div>
 					);
 				})}
 			</div>

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getProducts } from '../redux/actions/productAction/productAction';
 import Card from '../components/Card/Card';
 import ShopFilter from '../components/ShopFilter/ShopFilter';
+import { useParams, useLocation } from 'react-router-dom';
 import './styles/Shoppage.css';
 
 function Shoppage() {
@@ -11,9 +12,23 @@ function Shoppage() {
 	const { products } = product;
 	const [filteredArr, setFilteredArr] = useState([]);
 	const [checked, setChecked] = useState(false);
+	const location = useLocation();
+	const searchQuery = new URLSearchParams(location.search).get('search');
+	console.log(searchQuery);
 
 	useEffect(() => {
 		dispatch(getProducts(product));
+
+		if (searchQuery) {
+			const searchProduct = products.filter(
+				(product) =>
+					product.item.toLowerCase().includes(searchQuery.toLowerCase()) ||
+					product.category_name
+						.toLowerCase()
+						.includes(searchQuery.toLowerCase())
+			);
+			setFilteredArr(searchProduct);
+		}
 	}, []);
 
 	const productsFilter = (event) => {

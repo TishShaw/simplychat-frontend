@@ -10,7 +10,7 @@
 	border: 1.5px dotted rgb(91, 41, 22);
 	width: 100%;
 	margin: 30px 0;
-    text-align: center;
+	text-align: center;
 }
 
 .cartProductTitle {
@@ -40,7 +40,7 @@
 
 .bold {
 	font-weight: 600;
-	font-size: 20px;	
+	font-size: 20px;
 }
 
 .total-card {
@@ -62,12 +62,24 @@
 	width: 100%;
 }
 
+.addBtn {
+	border: 1px solid lightpink;
+	color: lightpink;
+	padding: 5px 10px;
+	width: 150px;
+	border-radius: 5px;
+}
+.addBtn:hover {
+	background-color: lightpink;
+	color: white;
+}
+
 @media only screen and (min-width: 750px) {
 	.total-card {
 		bottom: 0;
 		border: 2px black solid;
 		margin-top: 100px;
-		padding: 20px;				
+		padding: 20px;
 		width: 600px;
 		right: 0;
 	}

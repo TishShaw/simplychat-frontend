@@ -15,28 +15,20 @@ function Card({ item }) {
 
 	return (
 		<div className='Card'>
-			
-				<div className='Card-content'>
-					<img className='card-image' src={item.image} alt='card' />
-					<p className='card-name'>{item.item}</p>
-					<div className='ratingRow'>
-						<Rating
-							value={averageRatings}
-							color='#f8e825'
-							className='ratings'
-						/>
-						({item.reviews.length})
-					</div>
-					<p className='card-price'>{item.price}</p>
-					<div className='buttons'>
-						<button className='cardButton'>
-							<Link to={`/${item.id}`} className='cardBtn'>
-								View
-							</Link>
-						</button>
-					</div>
+			<div className='Card-content'>
+				<img className='card-image' src={item.image} alt='card' />
+				<p className='card-name'>{item.item}</p>
+				<div className='ratingRow'>
+					<Rating value={averageRatings} color='#f8e825' className='ratings' />(
+					{item.reviews.length})
 				</div>
-			
+				<p className='card-price'>${item.price}</p>
+				<div className='buttons'>
+					<Link to={`/${item.id}`}>
+						<Button className='cardButton'>Add to cart</Button>
+					</Link>
+				</div>
+			</div>
 		</div>
 	);
 }

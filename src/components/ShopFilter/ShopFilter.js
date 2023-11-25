@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ShopFilter.styles.css';
 
 function ShopFilter({
@@ -7,11 +7,8 @@ function ShopFilter({
 	lipFilter,
 	productsFilter,
 	handleFilterPrice,
-	handleChange
-
+	handleChange,
 }) {
-
-
 	return (
 		<div className='shopFilter-container'>
 			<div className='shopFilter-categories'>
@@ -21,7 +18,7 @@ function ShopFilter({
 					</h3>
 				</div>
 				<ul className='column'>
-					<li onClick={productsFilter}>All</li>
+					<li onClick={productsFilter}>Shop All Products</li>
 					<li onClick={faceFilter}>Face</li>
 					<li onClick={eyeFilter}>Eyes</li>
 					<li onClick={lipFilter}>Lips</li>
@@ -35,7 +32,7 @@ function ShopFilter({
 					<h5>Availability</h5>
 					<form>
 						<label className='outofstock-label'>
-							Out of stock
+							Out of Stock
 							<input
 								type='checkbox'
 								className='checkbox'
@@ -44,7 +41,7 @@ function ShopFilter({
 							/>
 						</label>
 						<label className='instock-label'>
-							In stock
+							In Stock
 							<input
 								type='checkbox'
 								className='checkbox'
@@ -61,9 +58,10 @@ function ShopFilter({
 				</div>
 				<div
 					className='column'
-					onClick={(e) => handleFilterPrice(e.target.value)}>
-					<div value='lowToHigh'>Price, low to high</div>
-					<div value='highToLow'>Price, high to low</div>
+					onClick={(e) => handleFilterPrice(e.target.value)}
+				>
+					<div value='lowToHigh'>Price, Low to High</div>
+					<div value='highToLow'>Price, High to Low</div>
 				</div>
 			</div>
 		</div>

@@ -25,7 +25,7 @@ function App() {
 					<Route path='/face' element={<Face />} />
 					<Route path='/eyes' element={<Eyes />} />
 					<Route path='/login' element={<Login />} />
-					<Route path='/shop' element={<Shoppage />} />
+					<Route path='/shop/:searchTerm?' element={<Shoppage />} />
 					<Route path='/wishlist' element={<FavoritesPage />} />
 					<Route path='/signup' element={<Signup />} />
 					<Route path='/cart/:id' element={<Cart />} />

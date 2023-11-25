@@ -6,22 +6,36 @@ import { CLEAR_SHOPPING_CART } from '../../redux/constants/cartConstants';
 import BagIcon from '../../assets/images/icons8-bag-64.png';
 import HeartIcon from '../../assets/images/icons8-favorite-50.png';
 import UserIcon from '../../assets/images/icons8-user-64.png';
-
 import './NavBar.styles.css';
 
 const NavBar = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [showDropDown, setShowDropDown] = useState(false);
+	const [searchTerm, setSearchTerm] = useState('');
+	const [searchTermResults, setSearchTermResults] = useState(null);
 	const userLogin = useSelector((state) => state.userLogin);
 	const { userData } = userLogin;
 	const cart = useSelector((state) => state.cart);
 	const { cartItems } = cart;
+	const product = useSelector((state) => state.product);
+	const { products } = product;
 
 	const logout = () => {
 		dispatch(getUserLogout());
 		dispatch({ type: CLEAR_SHOPPING_CART });
 		navigate('/');
+	};
+
+	const handleSearch = (e) => {
+		e.preventDefault();
+		const filteredProducts = products.filter(
+			(product) =>
+				product.item.toLowerCase().includes(searchTerm.toLowerCase()) ||
+				product.category_name.toLowerCase().includes(searchTerm.toLowerCase())
+		);
+		setSearchTermResults(filteredProducts);
+		navigate(`/shop?search=${searchTerm}`);
 	};
 
 	return (
@@ -78,12 +92,19 @@ const NavBar = () => {
 								type='search'
 								placeholder='Search'
 								aria-label='Search'
+								value={searchTerm}
+								onChange={(e) => setSearchTerm(e.target.value)}
+								onKeyDown={(e) => {
+									if (e.key === 'Enter') {
+										handleSearch(e);
+									}
+								}}
 							/>
 						</form>
-						<div>
+						<div className='nav-right-icons'>
 							<div className='nav-right'>
 								<div className='nav-right'>
-									<Link to={`/wishlist`}>
+									<Link to={`/`}>
 										<img src={HeartIcon} alt='' className='nav-cart' />
 									</Link>
 								</div>
@@ -94,8 +115,11 @@ const NavBar = () => {
 									</Link>
 								</div>
 
-								{userData.length > 0 ? (
-									<div class='nav-right' onClick={() => setShowDropDown(true)}>
+								{userData ? (
+									<div
+										class='nav-right'
+										onClick={() => setShowDropDown(!showDropDown)}
+									>
 										<img src={UserIcon} alt='' className='nav-cart' />
 										<i class='fa-solid fa-caret-down downArrow'></i>
 									</div>
@@ -106,8 +130,9 @@ const NavBar = () => {
 										</Link>
 									</div>
 								)}
-								{showDropDown && (
+								{showDropDown && userData && (
 									<div className='dropDownMenu'>
+										<p className='dropDownMenu-text'>Leaving so soon?</p>
 										<button
 											type='button'
 											class='btn btn-outline-dark'
