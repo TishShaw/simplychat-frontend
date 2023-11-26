@@ -8,7 +8,7 @@ import {
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
 	const { data } = await axios.get(
-		`https://keitabeautybackend-a0275470644f.herokuapp.com/shop/${id}`
+		`https://keitabeauty-7ca4e6f71d54.herokuapp.com/shop/${id}`
 	);
 	console.log('data', data);
 

@@ -24,7 +24,7 @@ export const createSignUp = (formData) => async (dispatch) => {
 		};
 
 		const { data } = await axios.post(
-			'https://keitabeautybackend-a0275470644f.herokuapp.com/users/',
+			'https://keitabeauty-7ca4e6f71d54.herokuapp.com/users/',
 			formData,
 			config
 		);
@@ -51,7 +51,7 @@ export const getUserInfo = (token) => async (dispatch) => {
 		dispatch({ type: USER_INFO_REQUEST });
 
 		const { data } = await axios.get(
-			'https://keitabeautybackend-a0275470644f.herokuapp.com/users/me',
+			'https://keitabeauty-7ca4e6f71d54.herokuapp.com/users/me',
 			{
 				headers: {
 					Authorization: `Token ${token}`,
@@ -87,7 +87,7 @@ export const getUserLogin = (formData) => async (dispatch) => {
 		};
 
 		const { data } = await axios.post(
-			'https://keitabeautybackend-a0275470644f.herokuapp.com/token/login',
+			'https://keitabeauty-7ca4e6f71d54.herokuapp.com/token/login',
 			formData,
 			config
 		);

@@ -19,7 +19,7 @@ function Checkout(props) {
 
 	const handleSubmit = () => {
 		fetch(
-			`https://keitabeautybackend-a0275470644f.herokuapp.com/api/stripe/create-checkout-session`,
+			`https://keitabeauty-7ca4e6f71d54.herokuapp.com/api/stripe/create-checkout-session`,
 			{
 				credentials: 'include',
 				method: 'POST',
